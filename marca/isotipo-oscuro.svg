@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="512" height="512">
+  <!-- respald.ar · isotipo para FONDO OSCURO (tinta o foto).
+       La capa de atrás pasa a blanco; la de adelante mantiene el cálido. -->
+  <rect x="17" y="14" width="55" height="55" rx="12" fill="#ffffff" transform="rotate(-7 44.5 41.5)"/>
+  <rect x="29" y="31" width="55" height="55" rx="12" fill="#ff8a3d" transform="rotate(-3 56.5 58.5)"/>
+</svg>

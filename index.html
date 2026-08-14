@@ -14,6 +14,14 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<!-- La voz visual de la marca: Bricolage Grotesque en los títulos (tiene
+     carácter, no es la letra de Windows) y Manrope en el texto (redonda y
+     legible). Si Google Fonts no responde, cae a la del sistema y la página
+     sigue viéndose bien. -->
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
 /* ═══════════════════════════════════════════════════════════════
    SISTEMA. Todo valor de espacio sale de acá; ningún número suelto.
@@ -26,8 +34,17 @@
    cuentan): dos ejes a menos de 10px son un error.
    ═══════════════════════════════════════════════════════════════ */
 :root{
+  /* ── COLOR: cada uno significa UNA cosa y no se cruzan los roles ──
+     · tinta  = la base seria de la marca
+     · cálido = LA ACCIÓN: todo botón donde querés que toquen
+     · lima   = LA ENERGÍA: datos que saltan, acentos, medallones
+     Si el lima aparece en un botón o el cálido en un dato, la página
+     pierde el idioma y todo vuelve a parecer decorado. */
   --tinta:#0f2a4a;
   --tinta-2:#16385f;
+  --calido:#ff8a3d;
+  --calido-osc:#c2540b;
+  --calido-txt:#2a1503;
   --lima:#c8ee3d;
   --lima-osc:#6f8c0e;
   --papel:#ffffff;
@@ -59,13 +76,15 @@
 html{-webkit-text-size-adjust:100%}
 body{
   margin:0;background:var(--papel);color:var(--tinta);
-  font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-family:Manrope,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   line-height:1.6;-webkit-font-smoothing:antialiased;
 }
 .wrap{max-width:var(--ancho);margin:0 auto;padding-inline:var(--e3)}
 
 /* ── tipografía ─────────────────────────────────────────────── */
-h1,h2,h3{margin:0 0 var(--e2);line-height:1.14;letter-spacing:-.02em;text-wrap:balance}
+/* los títulos llevan la letra con carácter; el texto va en Manrope */
+h1,h2,h3{margin:0 0 var(--e2);line-height:1.14;letter-spacing:-.02em;text-wrap:balance;
+  font-family:'Bricolage Grotesque',Manrope,system-ui,sans-serif}
 h1{font-size:clamp(30px,4.6vw,50px);font-weight:800}
 h2{font-size:clamp(24px,3.2vw,36px);font-weight:800}
 h3{font-size:18px;font-weight:700;margin-bottom:var(--e1)}
@@ -90,16 +109,20 @@ p:last-child{margin-bottom:0}
 header{position:sticky;top:0;z-index:50;background:var(--tinta);border-bottom:1px solid rgba(255,255,255,.12)}
 .barra{display:flex;align-items:center;justify-content:space-between;gap:var(--e2);height:64px}
 .marca{display:flex;align-items:center;gap:var(--gap-medallon);text-decoration:none;color:#fff}
-.marca-txt b{display:block;font-size:20px;font-weight:800;letter-spacing:-.03em;line-height:1.1}
+.marca-txt b{display:block;font-size:21px;font-weight:800;letter-spacing:-.035em;line-height:1.1;
+  font-family:'Bricolage Grotesque',Manrope,system-ui,sans-serif}
 .marca-txt span{display:block;font-size:12px;color:var(--gris-claro);line-height:1.2}
 
 .btn{
   display:inline-block;background:#fff;color:var(--tinta);text-decoration:none;
-  padding:13px var(--e3);border-radius:999px;font-weight:700;font-size:15px;
-  border:2px solid #fff;transition:transform .12s ease;text-align:center
+  padding:13px var(--e3);border-radius:999px;font-weight:800;font-size:15px;
+  border:2px solid #fff;transition:transform .12s ease;text-align:center;
+  font-family:Manrope,system-ui,sans-serif
 }
 .btn:hover{transform:translateY(-2px)}
-.btn-lima{background:var(--lima);border-color:var(--lima);color:#1e2b06}
+/* el botón de acción es CÁLIDO (se mantiene el nombre .btn-lima para no
+   tocar 14 llamadas; lo que cambió es qué color significa "tocá acá") */
+.btn-lima{background:var(--calido);border-color:var(--calido);color:#fff}
 .btn-borde{background:transparent;color:#fff;border-color:rgba(255,255,255,.45)}
 .btn-borde-t{background:transparent;color:var(--tinta);border-color:var(--tinta)}
 .btn-chico{padding:9px var(--e2);font-size:14px}
@@ -232,11 +255,17 @@ ul.lista li,ul.lista li b,.mod,.mod b,.hito,.hito b,.perfil,.perfil b,
 .pr li::before{content:"✓";position:absolute;left:0;color:var(--lima-osc);font-weight:800}
 .pr p{font-size:14.5px;color:var(--gris)}
 .pr-nota{margin-top:auto;font-size:13px;color:var(--gris);border-top:1px dashed var(--linea);padding-top:12px}
-.pr.destacado{background:var(--lima);border-color:var(--lima)}
-.pr.destacado .pr-rot,.pr.destacado .pr-sub,.pr.destacado .pr-nota{color:#41520d}
-.pr.destacado .pr-num small{color:#41520d}
-.pr.destacado li::before{color:#41520d}
-.pr.destacado .pr-nota{border-top-color:rgba(30,43,6,.22)}
+/* el plan recomendado va en tinta con el borde cálido: el lima acá competía
+   con los botones y dos verdes distintos peleaban en la misma pantalla */
+/* borde de 2px: el padding se compensa 1px más para que el interior caiga en
+   el MISMO eje que las tarjetas de borde fino (regla del borde que corre) */
+.pr.destacado{background:var(--tinta);border:2px solid var(--calido);color:#fff;padding:calc(var(--caja-b) - 1px)}
+.pr.destacado .pr-num{color:#fff}
+.pr.destacado .pr-rot{color:var(--calido)}
+.pr.destacado .pr-sub,.pr.destacado .pr-nota,.pr.destacado .pr-num small{color:var(--gris-claro)}
+.pr.destacado li{color:#fff}
+.pr.destacado li::before{color:var(--lima)}
+.pr.destacado .pr-nota{border-top-color:rgba(255,255,255,.22)}
 .pr.comparar{background:var(--papel-2)}
 
 /* ── la firma: quién hace el trabajo ────────────────────────── */
@@ -415,7 +444,8 @@ ul.lista li,ul.lista li b,.mod,.mod b,.hito,.hito b,.perfil,.perfil b,
 .chat-chip{background:#fff;border:1px solid var(--linea);border-radius:999px;padding:8px 14px;font-size:13.5px;font-weight:700;color:var(--tinta);cursor:pointer}
 .chat-envio{display:flex;gap:var(--e1);margin-top:var(--e2)}
 .chat-envio input{flex:1;border:1px solid var(--linea);border-radius:999px;padding:12px 18px;font-size:15px;color:var(--tinta);min-width:0}
-.chat-envio button{background:var(--lima);color:#1e2b06;border:0;border-radius:999px;padding:12px 22px;font-weight:800;font-size:15px;cursor:pointer}
+/* el "Mandar" del chat es una ACCIÓN: va cálido, como el resto de los botones */
+.chat-envio button{background:var(--calido);color:#fff;border:0;border-radius:999px;padding:12px 22px;font-weight:800;font-size:15px;cursor:pointer;font-family:Manrope,system-ui,sans-serif}
 .chat-envio button:disabled{background:var(--linea);color:var(--gris);cursor:wait}
 #chClip{background:#fff;border:1px solid var(--linea);padding:12px 15px;font-size:16px}
 /* el saludo cambia para invitar el adjunto */
@@ -484,9 +514,10 @@ footer b{color:#fff}
 <header>
   <div class="wrap barra">
     <a class="marca" href="#">
-      <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true">
-        <path d="M3 18.5 L11 26.5 L29 6.5" fill="none" stroke="#ffffff" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M20.5 6.5 L29 6.5 L29 15" fill="none" stroke="#c8ee3d" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- las dos capas: la de atrás respalda a la de adelante -->
+      <svg width="36" height="36" viewBox="0 0 100 100" aria-hidden="true">
+        <rect x="17" y="14" width="55" height="55" rx="12" fill="#ffffff" transform="rotate(-7 44.5 41.5)"/>
+        <rect x="29" y="31" width="55" height="55" rx="12" fill="#ff8a3d" transform="rotate(-3 56.5 58.5)"/>
       </svg>
       <span class="marca-txt">
         <b>respald.ar</b>

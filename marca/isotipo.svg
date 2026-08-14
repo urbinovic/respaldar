@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="340" height="340" viewBox="0 0 34 34">
-  <!-- respald.ar · isotipo: el tilde de "hecho" que sigue de largo y se vuelve
-       flecha hacia arriba (delegado + creciendo, un solo trazo).
-       Sobre fondo claro: trazo tinta #0F2A4A + flecha lima #C8EE3D.
-       Sobre fondo oscuro: cambiar el primer path a blanco #FFFFFF. -->
-  <path d="M3 18.5 L11 26.5 L29 6.5" fill="none" stroke="#0f2a4a" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M20.5 6.5 L29 6.5 L29 15" fill="none" stroke="#c8ee3d" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="512" height="512">
+  <!-- respald.ar · isotipo
+       Dos capas: la de atrás (tinta) sostiene a la de adelante (cálido).
+       Eso ES el nombre: vos al frente, el sistema respaldándote.
+       Sobre fondo oscuro, la capa de atrás va en blanco. -->
+  <rect x="17" y="14" width="55" height="55" rx="12" fill="#0f2a4a" transform="rotate(-7 44.5 41.5)"/>
+  <rect x="29" y="31" width="55" height="55" rx="12" fill="#ff8a3d" transform="rotate(-3 56.5 58.5)"/>
 </svg>

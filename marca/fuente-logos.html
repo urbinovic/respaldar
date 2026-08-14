@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Manrope:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* FUENTE de los PNG del logo. Cada bloque mide EXACTO lo que tiene que
+   exportarse; se renderiza con Edge headless a window-size = ese tamaño
+   y se recorta. La letra es la de la marca (Bricolage Grotesque). */
+  *{box-sizing:border-box;margin:0}
+  body{background:#fff;font-family:Manrope,system-ui,sans-serif}
+  .pieza{display:flex;align-items:center;justify-content:center}
+
+  /* 1 · horizontal sobre claro — 1200x320 */
+  #h-claro{width:1200px;height:320px;background:#fff;gap:34px}
+  /* 2 · horizontal sobre tinta — 1200x320 */
+  #h-oscuro{width:1200px;height:320px;background:#0f2a4a;gap:34px}
+  /* 3 · isotipo solo, cuadrado — 800x800 */
+  #iso{width:800px;height:800px;background:#0f2a4a}
+  /* 4 · perfil redondo para redes — 800x800 */
+  #perfil{width:800px;height:800px;background:#0f2a4a;flex-direction:column;gap:0}
+
+  .marca-txt b{display:block;font-family:'Bricolage Grotesque';font-weight:800;
+    font-size:104px;letter-spacing:-.045em;line-height:1}
+  .marca-txt span{display:block;font-size:27px;letter-spacing:.02em;margin-top:6px}
+  .claro b{color:#0f2a4a} .claro span{color:#586b7e}
+  .oscuro b{color:#fff}   .oscuro span{color:#aabfd3}
+</style>
+</head>
+<body>
+
+<div class="pieza" id="h-claro">
+  <svg width="150" height="150" viewBox="0 0 34 34">
+    <path d="M3 18.5 L11 26.5 L29 6.5" fill="none" stroke="#0f2a4a" stroke-width="4.6" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M20.5 6.5 L29 6.5 L29 15" fill="none" stroke="#ff8a3d" stroke-width="4.6" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  <span class="marca-txt claro"><b>respald.ar</b><span>Soluciones informáticas</span></span>
+</div>
+
+<div class="pieza" id="h-oscuro">
+  <svg width="150" height="150" viewBox="0 0 34 34">
+    <path d="M3 18.5 L11 26.5 L29 6.5" fill="none" stroke="#ffffff" stroke-width="4.6" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M20.5 6.5 L29 6.5 L29 15" fill="none" stroke="#ff8a3d" stroke-width="4.6" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  <span class="marca-txt oscuro"><b>respald.ar</b><span>Soluciones informáticas</span></span>
+</div>
+
+<div class="pieza" id="iso">
+  <svg width="440" height="440" viewBox="0 0 34 34">
+    <path d="M3 18.5 L11 26.5 L29 6.5" fill="none" stroke="#ffffff" stroke-width="4.6" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M20.5 6.5 L29 6.5 L29 15" fill="none" stroke="#ff8a3d" stroke-width="4.6" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</div>
+
+<div class="pieza" id="perfil">
+  <svg width="330" height="330" viewBox="0 0 34 34" style="margin-bottom:18px">
+    <path d="M3 18.5 L11 26.5 L29 6.5" fill="none" stroke="#ffffff" stroke-width="4.6" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M20.5 6.5 L29 6.5 L29 15" fill="none" stroke="#ff8a3d" stroke-width="4.6" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  <span style="font-family:'Bricolage Grotesque';font-weight:800;font-size:76px;color:#fff;letter-spacing:-.045em">respald.ar</span>
+</div>
+
+</body>
+</html>

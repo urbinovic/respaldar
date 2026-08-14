@@ -5,6 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Entrenador de ventas · respald.ar</title>
 <meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
 /* Página PRIVADA del equipo de ventas: no está linkeada desde ningún lado.
    Se comparte como respald.ar/vendedor.html?v=Nombre (el nombre personaliza).
@@ -12,6 +16,7 @@
 :root{
   --tinta:#0f2a4a; --tinta-2:#16385f;
   --lima:#c8ee3d; --lima-osc:#6f8c0e;
+  --calido:#ff8a3d;
   --papel:#ffffff; --papel-2:#eef2f7;
   --gris:#586b7e; --gris-claro:#aabfd3; --linea:#dde5ed;
   --e1:8px; --e2:16px; --e3:24px;
@@ -19,9 +24,11 @@
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--tinta);color:#fff;min-height:100vh;
-  font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-family:Manrope,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   line-height:1.55;-webkit-font-smoothing:antialiased;
   display:flex;flex-direction:column}
+header b{font-family:'Bricolage Grotesque',Manrope,system-ui,sans-serif;letter-spacing:-.02em}
+.envio button{background:var(--calido)!important;color:#fff!important}
 header{display:flex;align-items:center;gap:var(--e2);padding:var(--e2) var(--e3);border-bottom:1px solid rgba(255,255,255,.14)}
 header b{font-size:18px;font-weight:800;letter-spacing:-.02em}
 header span{display:block;font-size:12px;color:var(--gris-claro);line-height:1.2}
@@ -47,9 +54,9 @@ main{flex:1;display:flex;flex-direction:column;max-width:760px;width:100%;margin
 <body>
 
 <header>
-  <svg width="30" height="30" viewBox="0 0 34 34" aria-hidden="true">
-    <path d="M3 18.5 L11 26.5 L29 6.5" fill="none" stroke="#ffffff" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M20.5 6.5 L29 6.5 L29 15" fill="none" stroke="#c8ee3d" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <svg width="32" height="32" viewBox="0 0 100 100" aria-hidden="true">
+    <rect x="17" y="14" width="55" height="55" rx="12" fill="#ffffff" transform="rotate(-7 44.5 41.5)"/>
+    <rect x="29" y="31" width="55" height="55" rx="12" fill="#ff8a3d" transform="rotate(-3 56.5 58.5)"/>
   </svg>
   <span><b>Entrenador de ventas</b><span>respald.ar · uso interno del equipo</span></span>
 </header>

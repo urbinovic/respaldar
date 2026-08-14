@@ -4,175 +4,293 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Manual de marca · respald.ar</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
   --tinta:#0f2a4a; --tinta-2:#16385f;
+  --calido:#ff8a3d; --calido-osc:#c2540b;
   --lima:#c8ee3d; --lima-osc:#6f8c0e;
-  --papel:#ffffff; --papel-2:#eef2f7;
+  --papel:#fff; --papel-2:#eef2f7;
   --gris:#586b7e; --gris-claro:#aabfd3; --linea:#dde5ed; --rojo:#c2453a;
   --e1:8px; --e2:16px; --e3:24px; --e4:40px; --e5:72px;
-  --caja:24px; --caja-b:23px; --radio:16px;
-  --intro:76ch; --ancho:960px;
+  --caja:24px; --caja-b:23px; --radio:16px; --ancho:1000px;
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--papel);color:var(--tinta);
-  font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-  line-height:1.6;-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--papel);color:var(--tinta);line-height:1.6;
+  font-family:Manrope,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
 .wrap{max-width:var(--ancho);margin:0 auto;padding-inline:var(--e3)}
-h1,h2,h3{margin:0 0 var(--e2);line-height:1.14;letter-spacing:-.02em;text-wrap:balance}
-h1{font-size:clamp(28px,4vw,44px);font-weight:800}
-h2{font-size:clamp(22px,3vw,30px);font-weight:800}
-h3{font-size:17px;font-weight:700;margin-bottom:var(--e1)}
+h1,h2,h3{font-family:'Bricolage Grotesque',Manrope,sans-serif;margin:0 0 var(--e2);
+  line-height:1.14;letter-spacing:-.025em;text-wrap:balance}
+h1{font-size:clamp(32px,5vw,52px);font-weight:800}
+h2{font-size:clamp(23px,3vw,33px);font-weight:800}
+h3{font-size:18px;font-weight:800;margin-bottom:var(--e1)}
 p{margin:0 0 var(--e2);text-align:justify;hyphens:auto;text-wrap:pretty}
 p:last-child{margin-bottom:0}
-.intro{max-width:var(--intro);margin:0 auto;text-align:center}
+.lead{font-size:18px;color:var(--gris)}
+.eyebrow{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--gris);margin-bottom:var(--e2)}
+section{padding-block:var(--e5);border-top:1px solid var(--linea)}
+.hero{background:linear-gradient(155deg,var(--tinta),var(--tinta-2));color:#fff;border:0;padding-block:var(--e5)}
+.hero .lead{color:var(--gris-claro)}
+.hero .eyebrow{color:var(--calido)}
+.intro{max-width:70ch;margin:0 auto var(--e4);text-align:center}
 .intro p{text-align:center}
-.hero{background:linear-gradient(180deg,var(--tinta),var(--tinta-2));color:#fff;padding-block:var(--e4)}
-.hero p{color:var(--gris-claro)}
-section{padding-block:var(--e4)}
-section:nth-child(even){background:var(--papel-2)}
 .grid{display:grid;gap:var(--e2)}
 .g2{grid-template-columns:repeat(2,1fr)}
 .g3{grid-template-columns:repeat(3,1fr)}
 .g4{grid-template-columns:repeat(4,1fr)}
-@media(max-width:800px){.g2,.g3,.g4{grid-template-columns:1fr}}
-.tarj{background:#fff;border:1px solid var(--linea);border-radius:var(--radio);padding:var(--caja-b);text-align:left}
-.tarj p{color:var(--gris);font-size:15px}
-.muestra{border:1px solid var(--linea);border-radius:var(--radio);padding:var(--e4);display:grid;place-items:center}
-.muestra.oscura{background:var(--tinta)}
-.sw{border-radius:var(--radio);padding:var(--caja);color:#fff;min-height:110px;display:flex;flex-direction:column;justify-content:space-between}
-.sw b{font-size:15px}
-.sw code{font-size:13px;opacity:.85}
+@media(max-width:860px){.g2,.g3,.g4{grid-template-columns:1fr}}
+.tarj{background:#fff;border:1px solid var(--linea);border-radius:var(--radio);padding:var(--caja-b);color:var(--tinta)}
+.tarj p{font-size:15px;color:var(--gris)}
+.muestra{border:1px solid var(--linea);border-radius:var(--radio);padding:var(--e4);display:grid;place-items:center;background:#fff}
+.muestra.osc{background:var(--tinta);border-color:var(--tinta)}
+.sw{border-radius:var(--radio);padding:var(--caja);color:#fff;min-height:132px;
+  display:flex;flex-direction:column;justify-content:flex-end}
+.sw b{font-size:15px;display:block}
+.sw code{font-size:12.5px;opacity:.85;font-family:ui-monospace,monospace}
+.sw small{display:block;font-size:12px;opacity:.8;margin-top:3px}
 .si{color:var(--lima-osc);font-weight:800}
 .no{color:var(--rojo);font-weight:800}
-ul{margin:0 0 var(--e2);padding-left:20px;text-align:left}
-li{margin-bottom:6px}
-code{background:var(--papel-2);border-radius:6px;padding:1px 6px}
-.frase{background:var(--tinta);color:#fff;border-radius:var(--radio);padding:var(--caja);text-align:center;font-size:19px;font-weight:700}
-.frase small{display:block;color:var(--gris-claro);font-weight:400;font-size:14px;margin-top:var(--e1)}
+ul{margin:0 0 var(--e2);padding-left:20px}
+li{margin-bottom:7px;font-size:15.5px}
+code.k{background:var(--papel-2);border-radius:6px;padding:1px 7px;font-size:13.5px;font-family:ui-monospace,monospace}
+.frase{background:var(--tinta);color:#fff;border-radius:var(--radio);padding:var(--e3);text-align:center;
+  font-family:'Bricolage Grotesque';font-weight:800;font-size:22px;line-height:1.25}
+.frase small{display:block;color:var(--gris-claro);font-weight:400;font-size:14px;margin-top:10px;font-family:Manrope}
+.tipo-demo{font-size:44px;line-height:1.1;letter-spacing:-.03em;margin-bottom:6px}
+.tipo-bric{font-family:'Bricolage Grotesque';font-weight:800}
+.tipo-man{font-family:Manrope;font-weight:800}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--linea);vertical-align:top}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--gris)}
+.mini{display:flex;align-items:flex-end;gap:22px;justify-content:center;padding:var(--e3);background:var(--papel-2);border-radius:var(--radio)}
+.mini small{display:block;text-align:center;font-size:11px;color:var(--gris);margin-top:6px}
 </style>
 </head>
 <body>
 
-<div class="hero">
+<section class="hero">
   <div class="wrap intro">
-    <h1>Manual de marca</h1>
-    <p>respald.ar · Soluciones informáticas. Cómo se ve, cómo habla y cómo se arma cualquier cosa que lleve la marca.</p>
+    <p class="eyebrow">Manual de marca</p>
+    <h1>respald.ar</h1>
+    <p class="lead">
+      Cómo se ve, cómo habla y cómo se arma cualquier cosa que lleve esta marca.
+      Si algo no está acá, se resuelve con el criterio de estas páginas.
+    </p>
   </div>
-</div>
+</section>
 
 <section>
   <div class="wrap">
-    <h2>1 · El logo</h2>
-    <p>El símbolo es <b>un tilde que sigue de largo y se convierte en flecha hacia
-    arriba</b>: la tarea quedó hecha y el negocio sube. Delegar y crecer en un
-    solo trazo. Se dibuja siempre con dos colores: el trazo principal en tinta
-    (o blanco sobre fondo oscuro) y la flecha SIEMPRE en lima.</p>
-    <div class="grid g2">
-      <div class="muestra"><img src="logo-horizontal.svg" alt="Logo sobre claro" style="max-width:300px;width:100%"></div>
-      <div class="muestra oscura"><img src="logo-horizontal-oscuro.svg" alt="Logo sobre oscuro" style="max-width:300px;width:100%"></div>
+    <div class="intro">
+      <p class="eyebrow">1 · La idea</p>
+      <h2>El azul va atrás. Siempre.</h2>
+      <p class="lead">
+        Respaldar es estar detrás de alguien. Por eso el símbolo son dos capas:
+        la de adelante, cálida, es el negocio del cliente. La de atrás, en
+        tinta, somos nosotros sosteniéndolo. Nunca al revés.
+      </p>
     </div>
-    <div class="grid g2" style="margin-top:var(--e2)">
+    <div class="grid g2">
+      <div class="muestra"><img src="isotipo.svg" width="190" height="190" alt="Isotipo sobre claro"></div>
+      <div class="muestra osc"><img src="isotipo-oscuro.svg" width="190" height="190" alt="Isotipo sobre oscuro"></div>
+    </div>
+    <div class="frase" style="margin-top:var(--e3)">
+      Aval.ar respalda a las personas. respald.ar respalda a los negocios.
+      <small>La familia de marcas, dicha en una línea.</small>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="intro">
+      <p class="eyebrow">2 · El logo</p>
+      <h2>Cuatro versiones y ninguna más</h2>
+    </div>
+    <div class="mini">
+      <div>
+        <svg width="88" height="88" viewBox="0 0 100 100"><rect x="17" y="14" width="55" height="55" rx="12" fill="#0f2a4a" transform="rotate(-7 44.5 41.5)"/><rect x="29" y="31" width="55" height="55" rx="12" fill="#ff8a3d" transform="rotate(-3 56.5 58.5)"/></svg>
+        <small>88 px</small>
+      </div>
+      <div>
+        <svg width="44" height="44" viewBox="0 0 100 100"><rect x="17" y="14" width="55" height="55" rx="12" fill="#0f2a4a" transform="rotate(-7 44.5 41.5)"/><rect x="29" y="31" width="55" height="55" rx="12" fill="#ff8a3d" transform="rotate(-3 56.5 58.5)"/></svg>
+        <small>44 px</small>
+      </div>
+      <div>
+        <svg width="22" height="22" viewBox="0 0 100 100"><rect x="17" y="14" width="55" height="55" rx="12" fill="#0f2a4a" transform="rotate(-7 44.5 41.5)"/><rect x="29" y="31" width="55" height="55" rx="12" fill="#ff8a3d" transform="rotate(-3 56.5 58.5)"/></svg>
+        <small>22 px</small>
+      </div>
+      <div>
+        <svg width="16" height="16" viewBox="0 0 100 100"><rect x="17" y="14" width="55" height="55" rx="12" fill="#0f2a4a" transform="rotate(-7 44.5 41.5)"/><rect x="29" y="31" width="55" height="55" rx="12" fill="#ff8a3d" transform="rotate(-3 56.5 58.5)"/></svg>
+        <small>16 px · favicon</small>
+      </div>
+    </div>
+    <div class="grid g2" style="margin-top:var(--e3)">
       <div class="tarj">
         <h3><span class="si">Sí</span></h3>
         <ul>
-          <li>Isotipo solo para favicon, foto de perfil de WhatsApp y redes.</li>
-          <li>Versión horizontal para la web, mails y facturas.</li>
-          <li>Aire alrededor: como mínimo, el alto del tilde.</li>
+          <li><code class="k">isotipo.svg</code> sobre fondo claro; <code class="k">isotipo-oscuro.svg</code> sobre tinta o foto.</li>
+          <li>El horizontal (símbolo + palabra) para la web, mails y facturas.</li>
+          <li>Aire alrededor: como mínimo, el ancho de la capa chica.</li>
+          <li>En una sola tinta: todo el símbolo en el color que haya.</li>
         </ul>
       </div>
       <div class="tarj">
         <h3><span class="no">No</span></h3>
         <ul>
-          <li>No rotarlo, estirarlo ni ponerle sombra.</li>
-          <li>No cambiar el lima de la flecha por otro color.</li>
-          <li>No apoyarlo sobre fotos con ruido: siempre sobre tinta o blanco.</li>
+          <li>No invertir el orden: el cálido NUNCA va atrás.</li>
+          <li>No rotarlo más, ni enderezarlo: el ángulo es parte del dibujo.</li>
+          <li>No ponerle sombra, degradado ni contorno.</li>
+          <li>No cambiar el cálido por el lima.</li>
         </ul>
       </div>
     </div>
-    <p style="margin-top:var(--e2)">Archivos: <code>marca/isotipo.svg</code> ·
-    <code>marca/logo-horizontal.svg</code> · <code>marca/logo-horizontal-oscuro.svg</code>.
-    Son SVG: se agrandan a cualquier tamaño sin perder calidad, y de ahí se
-    exportan los PNG que hagan falta.</p>
   </div>
 </section>
 
 <section>
   <div class="wrap">
-    <h2>2 · Los colores</h2>
-    <p>Dos protagonistas y sus acompañantes. La regla: <b>el lima es un acento,
-    nunca un fondo de página</b>. Va en botones, la flecha del logo y detalles.
-    Las páginas abren con tinta, nunca pálidas.</p>
-    <div class="grid g4">
-      <div class="sw" style="background:#0f2a4a"><b>Tinta</b><code>#0F2A4A</code></div>
-      <div class="sw" style="background:#16385f"><b>Tinta 2 (degradé)</b><code>#16385F</code></div>
-      <div class="sw" style="background:#c8ee3d;color:#1e2b06"><b>Lima</b><code>#C8EE3D</code></div>
-      <div class="sw" style="background:#6f8c0e"><b>Lima oscuro (texto)</b><code>#6F8C0E</code></div>
-      <div class="sw" style="background:#eef2f7;color:#0f2a4a;border:1px solid #dde5ed"><b>Papel 2 (franjas)</b><code>#EEF2F7</code></div>
-      <div class="sw" style="background:#586b7e"><b>Gris (texto)</b><code>#586B7E</code></div>
-      <div class="sw" style="background:#aabfd3;color:#0f2a4a"><b>Gris claro (s/ oscuro)</b><code>#AABFD3</code></div>
-      <div class="sw" style="background:#c2453a"><b>Rojo (solo alertas)</b><code>#C2453A</code></div>
+    <div class="intro">
+      <p class="eyebrow">3 · Los colores</p>
+      <h2>Cada color significa una cosa</h2>
+      <p class="lead">
+        Esta es la regla que sostiene todo: si el lima aparece en un botón o el
+        cálido en un dato, la página pierde el idioma.
+      </p>
     </div>
-    <p style="margin-top:var(--e2)">Sobre tinta: texto blanco o gris claro, botón lima.
-    Sobre blanco: texto tinta, gris para lo secundario. El texto sobre lima es
-    siempre <code>#1E2B06</code>, nunca blanco.</p>
+    <div class="grid g4">
+      <div class="sw" style="background:#0f2a4a"><b>Tinta</b><code>#0F2A4A</code><small>La base. Fondos serios.</small></div>
+      <div class="sw" style="background:#ff8a3d;color:#2a1503"><b>Cálido</b><code>#FF8A3D</code><small>LA ACCIÓN. Todo botón.</small></div>
+      <div class="sw" style="background:#c8ee3d;color:#1e2b06"><b>Lima</b><code>#C8EE3D</code><small>LA ENERGÍA. Datos que saltan.</small></div>
+      <div class="sw" style="background:#586b7e"><b>Gris</b><code>#586B7E</code><small>Texto secundario.</small></div>
+      <div class="sw" style="background:#16385f"><b>Tinta 2</b><code>#16385F</code><small>Solo para el degradé.</small></div>
+      <div class="sw" style="background:#c2540b"><b>Cálido oscuro</b><code>#C2540B</code><small>Cálido sobre blanco.</small></div>
+      <div class="sw" style="background:#6f8c0e"><b>Lima oscuro</b><code>#6F8C0E</code><small>Lima sobre blanco.</small></div>
+      <div class="sw" style="background:#eef2f7;color:#0f2a4a;border:1px solid #dde5ed"><b>Papel</b><code>#EEF2F7</code><small>Franjas claras.</small></div>
+    </div>
+    <div class="tarj" style="margin-top:var(--e3)">
+      <h3>Contraste, medido</h3>
+      <table>
+        <tr><th>Combinación</th><th>Ratio</th><th>Estado</th></tr>
+        <tr><td>Blanco sobre tinta</td><td>14,5:1</td><td><span class="si">AAA</span></td></tr>
+        <tr><td>Blanco sobre cálido</td><td>3,0:1</td><td>solo texto grande y botones</td></tr>
+        <tr><td>Gris claro sobre tinta</td><td>7,6:1</td><td><span class="si">AAA</span></td></tr>
+        <tr><td>Gris sobre blanco</td><td>5,5:1</td><td><span class="si">AA</span></td></tr>
+        <tr><td>Lima sobre tinta</td><td>10,9:1</td><td><span class="si">AAA</span></td></tr>
+      </table>
+      <p style="margin-top:var(--e2)">El cálido con texto blanco solo se usa en botones y títulos grandes.
+      Para texto chico sobre blanco va <code class="k">--calido-osc</code>.</p>
+    </div>
   </div>
 </section>
 
 <section>
   <div class="wrap">
-    <h2>3 · La letra</h2>
-    <p>Tipografía del sistema (<code>system-ui</code>): carga al instante y se ve
-    nativa en cada aparato. Títulos en <b>peso 800</b> con espaciado apretado
-    (−0.02em). Texto corrido en peso normal.</p>
-    <ul>
-      <li><b>Párrafos justificados</b>, con <code>hyphens:auto</code>. Los <b>títulos nunca</b> se justifican.</li>
-      <li>Los bloques de presentación (título + bajada) van <b>centrados</b> y anchos.</li>
-      <li>Lo alineado a la izquierda vive solo adentro de tarjetas y listas.</li>
-    </ul>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <h2>4 · La voz</h2>
+    <div class="intro">
+      <p class="eyebrow">4 · La letra</p>
+      <h2>Dos tipografías, un trabajo cada una</h2>
+    </div>
     <div class="grid g2">
       <div class="tarj">
-        <h3><span class="si">Así habla Respaldar</span></h3>
+        <div class="tipo-demo tipo-bric">Delegar</div>
+        <h3>Bricolage Grotesque</h3>
+        <p>Peso 800, solo para <b>títulos y el logo</b>. Tiene carácter: se nota
+        que alguien la eligió. Espaciado apretado (−.025em).</p>
+      </div>
+      <div class="tarj">
+        <div class="tipo-demo tipo-man">Delegar</div>
+        <h3>Manrope</h3>
+        <p>Pesos 400 a 800, para <b>todo el texto, botones y datos</b>. Redonda,
+        clara y liviana de cargar.</p>
+      </div>
+    </div>
+    <div class="tarj" style="margin-top:var(--e2)">
+      <ul>
+        <li><b>Párrafos justificados</b> con <code class="k">hyphens:auto</code>. Los títulos <b>nunca</b> se justifican.</li>
+        <li>Las dos se cargan de Google Fonts; si no responde, cae a la del sistema y la página no se rompe.</li>
+        <li>Medida de línea en <code class="k">ch</code>, no en píxeles.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="intro">
+      <p class="eyebrow">5 · La voz</p>
+      <h2>Cómo hablamos</h2>
+    </div>
+    <div class="grid g2">
+      <div class="tarj">
+        <h3><span class="si">Así</span></h3>
         <ul>
           <li>Voseo, directo, argentino: "contanos", "mirá", "tocalo".</li>
           <li>Frases cortas. El dato concreto antes que el adjetivo.</li>
-          <li>Le habla al dueño en su idioma, nunca en jerga técnica.</li>
+          <li>En el idioma del rubro del cliente, no en el nuestro.</li>
           <li>La IA se nota en lo que hace, no se declama.</li>
+          <li>El precio se dice. Los plazos se dicen. Las garantías se escriben.</li>
         </ul>
       </div>
       <div class="tarj">
         <h3><span class="no">Así no</span></h3>
         <ul>
-          <li>Nada de guiones largos en ningún texto.</li>
+          <li>Nada de guiones largos, en ningún texto.</li>
           <li>Nada de "soluciones integrales", "sinergia", "líder en".</li>
-          <li>No prometer como hecho lo que no corre: lo construible se vende como "te lo armamos".</li>
-          <li>El cliente califica a la persona que lo atendió, nunca al local.</li>
+          <li>No prometer como hecho lo que no corre: se ofrece como "te lo armamos".</li>
+          <li>El cliente califica a la <b>persona</b> que lo atendió, nunca al local.</li>
+          <li>No diagnosticarle al prospecto un dolor que no sabemos si tiene.</li>
         </ul>
       </div>
     </div>
-    <div class="grid g2" style="margin-top:var(--e2)">
-      <div class="frase">Delegar no es perder el control. Es tenerlo por primera vez.<small>La frase madre. Va en el hero y en los anuncios.</small></div>
-      <div class="frase">Menos tareas. Más decisiones.<small>La firma corta. Va bajo el logo y en la papelería.</small></div>
+    <div class="grid g2" style="margin-top:var(--e3)">
+      <div class="frase">Delegar no es perder el control. Es tenerlo por primera vez.<small>La frase madre. Hero y anuncios.</small></div>
+      <div class="frase">Precio cerrado y fecha de entrega.<small>La promesa corta. Cierra cualquier charla.</small></div>
     </div>
   </div>
 </section>
 
 <section>
   <div class="wrap">
-    <h2>5 · La composición</h2>
-    <ul>
-      <li><b>La página abre con color</b> (tinta en degradé). Nunca una portada pálida toda blanca.</li>
-      <li><b>Franjas alternadas</b>: tinta, blanco, gris papel. El lima solo como acento.</li>
-      <li><b>Escala de espacios cerrada</b>: 8 · 16 · 24 · 40 · 72. Ningún número inventado.</li>
-      <li><b>Un solo padding de caja</b> (24), y 23 en las cajas con borde de 1px para compensarlo.</li>
-      <li><b>Verificación</b>: se miden los ejes izquierdos en el DOM a 1280 y 375 de ancho. Dos ejes a menos de 10px son un error. Bien hecho, caen en múltiplos de 24.</li>
-    </ul>
+    <div class="intro">
+      <p class="eyebrow">6 · La composición</p>
+      <h2>Las reglas que hacen que se vea prolijo</h2>
+    </div>
+    <div class="tarj">
+      <ul>
+        <li><b>La página abre con color</b> (tinta en degradé). Nunca una portada blanca.</li>
+        <li><b>Franjas alternadas</b>: tinta, blanco, gris papel.</li>
+        <li><b>Los bloques de presentación van centrados</b> y anchos. Lo alineado a la izquierda vive solo dentro de tarjetas.</li>
+        <li><b>Escala de espacios cerrada</b>: 8 · 16 · 24 · 40 · 72. Ningún número inventado.</li>
+        <li><b>Un solo padding de caja</b> (24), y 23 en las que llevan borde de 1px, para compensarlo.</li>
+        <li><b>Toda caja de fondo claro declara su color de texto</b>, si no hereda el blanco de las franjas oscuras y el título desaparece.</li>
+        <li><b>Menos texto y más imagen</b>: si una sección no tiene nada visual, está mal.</li>
+        <li><b>Verificación</b>: se miden los ejes izquierdos en el DOM a 1280 y 375 px. Dos ejes a menos de 10 px son un error.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="intro">
+      <p class="eyebrow">7 · Los archivos</p>
+      <h2>Dónde está cada cosa</h2>
+    </div>
+    <div class="tarj">
+      <table>
+        <tr><th>Archivo</th><th>Para qué</th></tr>
+        <tr><td><code class="k">marca/isotipo.svg</code></td><td>Símbolo sobre fondo claro</td></tr>
+        <tr><td><code class="k">marca/isotipo-oscuro.svg</code></td><td>Símbolo sobre tinta o foto</td></tr>
+        <tr><td><code class="k">favicon.svg</code></td><td>Pestaña del navegador, con su fondo</td></tr>
+        <tr><td><code class="k">og.png</code></td><td>La tarjeta que se ve al compartir el link</td></tr>
+        <tr><td><code class="k">og-fuente.html</code></td><td>De donde sale el og.png (se regenera con Edge)</td></tr>
+        <tr><td><code class="k">marca/fuente-logos.html</code></td><td>De donde salen los PNG del logo</td></tr>
+      </table>
+    </div>
   </div>
 </section>
 
