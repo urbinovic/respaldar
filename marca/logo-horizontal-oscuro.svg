@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="160" viewBox="0 0 320 80">
+  <!-- respald.ar · logo horizontal para FONDO OSCURO (tinta #0F2A4A o similar) -->
+  <rect width="320" height="80" fill="#0f2a4a"/>
+  <path d="M14 42 L26 54 L53 24" fill="none" stroke="#ffffff" stroke-width="6.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M40 24 L53 24 L53 37" fill="none" stroke="#c8ee3d" stroke-width="6.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="74" y="47" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif"
+        font-size="30" font-weight="800" letter-spacing="-1" fill="#ffffff">respald.ar</text>
+  <text x="75" y="64" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif"
+        font-size="11.5" font-weight="400" fill="#aabfd3">Soluciones informáticas</text>
+</svg>

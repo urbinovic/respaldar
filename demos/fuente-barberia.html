@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Barbería Costa · turnos</title>
+<!-- FUENTE de barberia.jpg: pantalla de muestra (negocio inventado) para la
+     sección de demos. Se renderiza con Edge headless a 480x900 igual que las
+     capturas reales, así queda del mismo formato. -->
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;width:480px;background:#faf7f4;color:#1a1614;
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+  .top{background:linear-gradient(150deg,#241d1a,#4a3a30 60%,#6b5344);color:#fff;
+    padding:26px 24px 30px;position:relative;overflow:hidden}
+  .top::after{content:"";position:absolute;right:-40px;top:-30px;width:190px;height:190px;
+    border-radius:50%;background:rgba(214,168,106,.22)}
+  .logo{width:52px;height:52px;border-radius:14px;background:#d6a86a;color:#241d1a;
+    display:grid;place-items:center;font-weight:800;font-size:21px;letter-spacing:-.5px;margin-bottom:14px}
+  h1{margin:0 0 4px;font-size:31px;letter-spacing:-.5px}
+  .top p{margin:0;color:#e3d5c6;font-size:14.5px}
+  .cuerpo{padding:22px 24px}
+  .rot{font-size:11.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#8a7565;margin-bottom:11px}
+  .pros{display:flex;gap:10px;margin-bottom:22px}
+  .pro{flex:1;background:#fff;border:1px solid #ece3da;border-radius:14px;padding:12px 8px;text-align:center}
+  .pro.act{background:#241d1a;border-color:#241d1a;color:#fff}
+  .pro .av{width:38px;height:38px;border-radius:50%;background:#d6a86a;color:#241d1a;
+    display:grid;place-items:center;font-weight:800;font-size:15px;margin:0 auto 7px}
+  .pro.act .av{background:#d6a86a}
+  .pro b{display:block;font-size:14px}
+  .pro span{font-size:11.5px;color:#8a7565}
+  .pro.act span{color:#c9b8a8}
+  .horas{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:22px}
+  .h{background:#fff;border:1px solid #ece3da;border-radius:12px;padding:12px 0;text-align:center;font-weight:700;font-size:15px}
+  .h.no{color:#c4b6a8;text-decoration:line-through;background:#f2ece6}
+  .h.act{background:#d6a86a;border-color:#d6a86a;color:#241d1a}
+  .resumen{background:#fff;border:1px solid #ece3da;border-radius:16px;padding:16px 18px;margin-bottom:16px}
+  .fila{display:flex;justify-content:space-between;align-items:center;padding:7px 0;font-size:14.5px}
+  .fila+.fila{border-top:1px dashed #ece3da}
+  .fila b{font-size:15px}
+  .fila .verde{color:#4c7a1f;font-weight:800}
+  .btn{display:block;background:#241d1a;color:#fff;text-align:center;padding:15px;border-radius:999px;
+    font-weight:800;font-size:16px}
+  .nota{text-align:center;font-size:12.5px;color:#8a7565;margin-top:12px}
+</style>
+</head>
+<body>
+  <div class="top">
+    <div class="logo">BC</div>
+    <h1>Barbería Costa</h1>
+    <p>Corte, barba y color · Rivadavia, San Juan</p>
+  </div>
+  <div class="cuerpo">
+    <div class="rot">¿Con quién te atendés?</div>
+    <div class="pros">
+      <div class="pro act"><span class="av">N</span><b>Nico</b><span>Fade y barba</span></div>
+      <div class="pro"><span class="av">L</span><b>Lauti</b><span>Color</span></div>
+      <div class="pro"><span class="av">+</span><b>Cualquiera</b><span>El primero</span></div>
+    </div>
+
+    <div class="rot">Sábado 16 · horarios libres</div>
+    <div class="horas">
+      <div class="h">09:00</div>
+      <div class="h no">09:45</div>
+      <div class="h act">10:30</div>
+      <div class="h">11:15</div>
+      <div class="h no">12:00</div>
+      <div class="h">12:45</div>
+    </div>
+
+    <div class="resumen">
+      <div class="fila"><span>Corte + barba</span><b>$14.500</b></div>
+      <div class="fila"><span>Con Nico · sábado 10:30</span><b>45 min</b></div>
+      <div class="fila"><span>Seña para reservar</span><span class="verde">$4.000</span></div>
+    </div>
+    <div class="btn">Reservar y pagar la seña</div>
+    <div class="nota">Te llega el recordatorio el viernes a la noche</div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entrenador de ventas · respald.ar</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+/* Página PRIVADA del equipo de ventas: no está linkeada desde ningún lado.
+   Se comparte como respald.ar/vendedor.html?v=Nombre (el nombre personaliza).
+   Mismo sistema de diseño que index. */
+:root{
+  --tinta:#0f2a4a; --tinta-2:#16385f;
+  --lima:#c8ee3d; --lima-osc:#6f8c0e;
+  --papel:#ffffff; --papel-2:#eef2f7;
+  --gris:#586b7e; --gris-claro:#aabfd3; --linea:#dde5ed;
+  --e1:8px; --e2:16px; --e3:24px;
+  --caja:24px; --caja-b:23px; --radio:16px;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--tinta);color:#fff;min-height:100vh;
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  line-height:1.55;-webkit-font-smoothing:antialiased;
+  display:flex;flex-direction:column}
+header{display:flex;align-items:center;gap:var(--e2);padding:var(--e2) var(--e3);border-bottom:1px solid rgba(255,255,255,.14)}
+header b{font-size:18px;font-weight:800;letter-spacing:-.02em}
+header span{display:block;font-size:12px;color:var(--gris-claro);line-height:1.2}
+main{flex:1;display:flex;flex-direction:column;max-width:760px;width:100%;margin:0 auto;padding:var(--e2) var(--e3)}
+.hilo{flex:1;overflow-y:auto;display:flex;flex-direction:column;padding-block:var(--e1)}
+.burb{width:88%;padding:14px var(--e2);border-radius:14px;font-size:15px;margin-bottom:var(--e1);color:var(--tinta);white-space:pre-wrap}
+.mia{background:#dcf3c8;margin-left:auto;border-bottom-right-radius:4px}
+.suya{background:#fff;border-bottom-left-radius:4px}
+.chips{display:flex;flex-wrap:wrap;gap:var(--e1);padding-block:var(--e1)}
+.chip{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:#fff;
+  border-radius:999px;padding:8px 14px;font-size:13.5px;font-weight:700;cursor:pointer}
+.envio{display:flex;gap:var(--e1);padding-block:var(--e2)}
+.envio input{flex:1;border:0;border-radius:999px;padding:13px 18px;font-size:15px;color:var(--tinta);min-width:0}
+.envio button{background:var(--lima);color:#1e2b06;border:0;border-radius:999px;padding:13px 24px;font-weight:800;font-size:15px;cursor:pointer}
+.envio button:disabled{background:rgba(255,255,255,.2);color:var(--gris-claro);cursor:wait}
+.pensando{display:flex;gap:5px;padding:12px 4px}
+.pensando i{width:8px;height:8px;border-radius:50%;background:var(--gris-claro);animation:pns 1s infinite}
+.pensando i:nth-child(2){animation-delay:.18s}
+.pensando i:nth-child(3){animation-delay:.36s}
+@keyframes pns{0%,100%{opacity:.35;transform:translateY(0)}50%{opacity:1;transform:translateY(-3px)}}
+</style>
+</head>
+<body>
+
+<header>
+  <svg width="30" height="30" viewBox="0 0 34 34" aria-hidden="true">
+    <path d="M3 18.5 L11 26.5 L29 6.5" fill="none" stroke="#ffffff" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M20.5 6.5 L29 6.5 L29 15" fill="none" stroke="#c8ee3d" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  <span><b>Entrenador de ventas</b><span>respald.ar · uso interno del equipo</span></span>
+</header>
+
+<main>
+  <div class="hilo" id="hilo"></div>
+  <div class="chips" id="chips"></div>
+  <div class="envio">
+    <input id="txt" placeholder="Ej: entro a una cafetería, ¿qué le vendo?" autocomplete="off">
+    <button id="btn">Mandar</button>
+  </div>
+</main>
+
+<script>
+(function(){
+  var FN  = "https://ysbqvxebkxwylmmzrsjj.supabase.co/functions/v1/entrevista-ia";
+  var KEY = "sb_publishable_GsUGCK8H38vIRXUOP8WEpQ_qUFW8JVw";
+  var hilo = document.getElementById("hilo"), chips = document.getElementById("chips");
+  var txt = document.getElementById("txt"), btn = document.getElementById("btn");
+  var ocupado = false;
+
+  // el nombre del vendedor viaja en el link: vendedor.html?v=Matias
+  var nombre = (new URLSearchParams(location.search).get("v") || "").slice(0, 60);
+
+  var sid;
+  try{
+    sid = localStorage.getItem("vend_sid_" + nombre);
+    if(!sid){ sid = "vendedor_" + (nombre || "x") + "_" + Date.now().toString(36); localStorage.setItem("vend_sid_" + nombre, sid); }
+  }catch(_){ sid = "vendedor_" + Date.now(); }
+
+  var msjs = [];
+  try{ msjs = JSON.parse(sessionStorage.getItem("vend_chat") || "[]"); }catch(_){}
+
+  function burb(quien, texto){
+    var d = document.createElement("div");
+    d.className = "burb " + (quien === "yo" ? "mia" : "suya");
+    d.textContent = texto;
+    hilo.appendChild(d); hilo.scrollTop = hilo.scrollHeight;
+  }
+  function pensar(){
+    var d = document.createElement("div"); d.className = "pensando";
+    d.innerHTML = "<i></i><i></i><i></i>";
+    hilo.appendChild(d); hilo.scrollTop = hilo.scrollHeight; return d;
+  }
+  function ponerChips(sugs){
+    chips.innerHTML = "";
+    (sugs || []).slice(0,3).forEach(function(s){
+      var b = document.createElement("button");
+      b.className = "chip"; b.textContent = s;
+      b.onclick = function(){ preguntar(s); };
+      chips.appendChild(b);
+    });
+  }
+  function guardar(){ try{ sessionStorage.setItem("vend_chat", JSON.stringify(msjs)); }catch(_){} }
+
+  function preguntar(texto){
+    texto = String(texto || "").trim();
+    if(ocupado || !texto) return;
+    ocupado = true; btn.disabled = true;
+    burb("yo", texto);
+    msjs.push({rol:"usuario", texto:texto});
+    guardar(); ponerChips([]);
+    var espera = pensar();
+    function listoTurno(){ ocupado = false; btn.disabled = false; txt.focus(); }
+    function intentar(n){
+      fetch(FN, {
+        method:"POST",
+        headers:{ "Content-Type":"application/json", "Authorization":"Bearer " + KEY, "apikey":KEY },
+        body: JSON.stringify({ sid:sid, tipo:"vendedor", nombre:nombre, puesto:"", marca:"respaldar", mensajes:msjs, adjuntos:[] })
+      })
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if(d && d.reintentar && n < 3){ setTimeout(function(){ intentar(n+1); }, 1500); return; }
+        espera.remove();
+        var resp = (d && d.respuesta) ? d.respuesta : "Me trabé un segundo. ¿Me lo repetís?";
+        msjs.push({rol:"avi", texto:resp});
+        guardar(); burb("avi", resp);
+        ponerChips(d && d.sugerencias);
+        listoTurno();
+      })
+      .catch(function(){
+        if(n < 3){ setTimeout(function(){ intentar(n+1); }, 1500); return; }
+        espera.remove();
+        burb("avi", "Se cortó la conexión. Probá de nuevo en un rato, la charla queda guardada.");
+        listoTurno();
+      });
+    }
+    intentar(1);
+  }
+
+  btn.onclick = function(){ var v = txt.value; txt.value = ""; preguntar(v); };
+  txt.addEventListener("keydown", function(e){ if(e.key === "Enter"){ e.preventDefault(); btn.onclick(); } });
+
+  if(msjs.length){
+    msjs.forEach(function(m){ burb(m.rol === "usuario" ? "yo" : "avi", m.texto); });
+  } else {
+    burb("avi", "¡Buenas" + (nombre ? ", " + nombre : "") + "! 💪 Soy tu entrenador de ventas. Decime a qué negocio vas a entrar y te armo el pitch, o preguntame qué se puede prometer y qué no. Estoy para que salgas a vender tranquilo.");
+    ponerChips(["Entro a una cafetería", "¿Qué NO puedo prometer?", "¿Cuánto sale el pack?"]);
+  }
+})();
+</script>
+</body>
+</html>

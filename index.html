@@ -1,0 +1,1192 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Respaldar · Sistemas a medida para tu negocio</title>
+<meta name="description" content="Hacemos el sistema que tu negocio necesita. Vos atendés, el sistema carga, cuenta y controla. Presupuesto cerrado y fecha de entrega.">
+<!-- La tarjeta que se ve al compartir el link por WhatsApp: vende antes que la página -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Respaldar · Sistemas a medida para tu negocio">
+<meta property="og:description" content="La carga, la cuenta y el control los hace el sistema. Vos, a vender. Presupuesto cerrado y fecha de entrega.">
+<meta property="og:url" content="https://respald.ar/">
+<meta property="og:image" content="https://respald.ar/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+/* ═══════════════════════════════════════════════════════════════
+   SISTEMA. Todo valor de espacio sale de acá; ningún número suelto.
+   COMPOSICIÓN (regla de Pelá, 13/08): la página abre con COLOR y
+   los bloques de presentación van CENTRADOS — eyebrow, título y
+   bajada al medio, ocupando el ancho. Lo alineado a la izquierda
+   vive solo DENTRO de tarjetas y listas. Nada de columna angosta
+   pegada al margen con el resto del ancho vacío.
+   Se verifica midiendo ejes izquierdos en el DOM (los centrados no
+   cuentan): dos ejes a menos de 10px son un error.
+   ═══════════════════════════════════════════════════════════════ */
+:root{
+  --tinta:#0f2a4a;
+  --tinta-2:#16385f;
+  --lima:#c8ee3d;
+  --lima-osc:#6f8c0e;
+  --papel:#ffffff;
+  --papel-2:#eef2f7;
+  --gris:#586b7e;
+  --gris-claro:#aabfd3;
+  --linea:#dde5ed;
+  --rojo:#c2453a;
+
+  --e1:8px;
+  --e2:16px;
+  --e3:24px;
+  --e4:40px;
+  --e5:72px;
+
+  /* caja: UN solo padding; --caja-b compensa el borde de 1px */
+  --caja:24px;
+  --caja-b:23px;
+  --radio:16px;
+
+  --medallon:34px;
+  --gap-medallon:14px;
+
+  --intro:76ch;        /* ancho del bloque centrado de presentación */
+  --ancho:1120px;
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--papel);color:var(--tinta);
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  line-height:1.6;-webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:var(--ancho);margin:0 auto;padding-inline:var(--e3)}
+
+/* ── tipografía ─────────────────────────────────────────────── */
+h1,h2,h3{margin:0 0 var(--e2);line-height:1.14;letter-spacing:-.02em;text-wrap:balance}
+h1{font-size:clamp(30px,4.6vw,50px);font-weight:800}
+h2{font-size:clamp(24px,3.2vw,36px);font-weight:800}
+h3{font-size:18px;font-weight:700;margin-bottom:var(--e1)}
+p{margin:0 0 var(--e2);text-align:justify;hyphens:auto;text-wrap:pretty}
+p:last-child{margin-bottom:0}
+.eyebrow{
+  font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--tinta-2);margin-bottom:var(--e2)
+}
+.lead{font-size:clamp(17px,1.9vw,21px);color:var(--gris)}
+
+/* bloque de presentación: SIEMPRE centrado, al medio, ancho generoso */
+.intro{max-width:var(--intro);margin:0 auto var(--e4);text-align:center}
+.intro p{text-align:center}
+.intro .acciones{justify-content:center}
+.intro-fin{margin-top:var(--e4);margin-bottom:0}
+
+.mt-3{margin-top:var(--e3)}
+.mt-4{margin-top:var(--e4)}
+
+/* ── barra: oscura, atada al hero ───────────────────────────── */
+header{position:sticky;top:0;z-index:50;background:var(--tinta);border-bottom:1px solid rgba(255,255,255,.12)}
+.barra{display:flex;align-items:center;justify-content:space-between;gap:var(--e2);height:64px}
+.marca{display:flex;align-items:center;gap:var(--gap-medallon);text-decoration:none;color:#fff}
+.marca-txt b{display:block;font-size:20px;font-weight:800;letter-spacing:-.03em;line-height:1.1}
+.marca-txt span{display:block;font-size:12px;color:var(--gris-claro);line-height:1.2}
+
+.btn{
+  display:inline-block;background:#fff;color:var(--tinta);text-decoration:none;
+  padding:13px var(--e3);border-radius:999px;font-weight:700;font-size:15px;
+  border:2px solid #fff;transition:transform .12s ease;text-align:center
+}
+.btn:hover{transform:translateY(-2px)}
+.btn-lima{background:var(--lima);border-color:var(--lima);color:#1e2b06}
+.btn-borde{background:transparent;color:#fff;border-color:rgba(255,255,255,.45)}
+.btn-borde-t{background:transparent;color:var(--tinta);border-color:var(--tinta)}
+.btn-chico{padding:9px var(--e2);font-size:14px}
+.barra-der{display:flex;gap:var(--e2);align-items:center}
+.lnk{color:#fff;font-weight:700;font-size:14.5px;text-decoration:none;opacity:.92}
+.acciones{display:flex;flex-wrap:wrap;gap:var(--e2);margin-top:var(--e3);align-items:center}
+
+/* ── franjas ────────────────────────────────────────────────── */
+section{padding-block:var(--e5)}
+.clara{background:var(--papel-2)}
+.oscura{background:linear-gradient(180deg,var(--tinta) 0%,var(--tinta-2) 100%);color:#fff}
+.oscura .eyebrow{color:var(--lima)}
+.oscura .lead{color:var(--gris-claro)}
+
+/* hero: la portada tiene COLOR y una pantalla al lado del texto.
+   Con imagen al costado el texto va a la IZQUIERDA de su columna (dos
+   columnas centradas entre sí); en el celu se apila y vuelve al centro. */
+.hero{background:linear-gradient(180deg,var(--tinta) 0%,var(--tinta-2) 78%,#1c4471 100%);color:#fff;padding-block:calc(var(--e5) + var(--e3))}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:var(--e4);align-items:center}
+.hero-txt{text-align:left}
+.hero-txt p{text-align:left}
+.hero .lead{color:var(--gris-claro)}
+.hero em{font-style:normal;color:var(--lima)}
+.hero-nota{font-size:14.5px;color:var(--gris-claro);margin-top:var(--e3)}
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr}
+  .hero-txt{text-align:center}
+  .hero-txt p{text-align:center}
+  .hero-txt .acciones{justify-content:center}
+}
+
+/* ── grillas ────────────────────────────────────────────────── */
+.grid{display:grid;gap:var(--e2)}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:900px){.g2,.g3,.g4{grid-template-columns:1fr}}
+
+/* ── cajas: todas con el mismo padding compensado ───────────── */
+.tarj{background:var(--papel);border:1px solid var(--linea);border-radius:var(--radio);padding:var(--caja-b);text-align:left}
+.clara .tarj{background:#fff}
+.oscura .tarj{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.16)}
+.tarj p{color:var(--gris);font-size:15.5px}
+.oscura .tarj p{color:var(--gris-claro)}
+.tarj p b{color:var(--tinta)}
+.oscura .tarj p b{color:#fff}
+
+/* ── ítem con medallón ──────────────────────────────────────── */
+.item{display:flex;gap:var(--gap-medallon);align-items:flex-start;text-align:left}
+.medallon{
+  flex:0 0 var(--medallon);width:var(--medallon);height:var(--medallon);border-radius:50%;
+  display:grid;place-items:center;background:var(--lima);color:#1e2b06;font-weight:800;font-size:15px
+}
+.medallon svg{width:16px;height:16px}
+.item b{display:block;font-size:16px;line-height:1.35}
+.item p{font-size:15px;color:var(--gris);margin:2px 0 0;text-align:justify}
+
+ul.lista{list-style:none;padding:0;margin:0;display:grid;gap:var(--e1)}
+ul.lista li{background:var(--papel);border:1px solid var(--linea);border-radius:var(--radio);padding:var(--caja-b)}
+
+/* 🔴 REGLA ANTI "BLANCO SOBRE BLANCO": toda caja de fondo CLARO declara su
+   color de texto. Dentro de una franja .oscura el texto hereda #fff y los
+   títulos desaparecen sobre la tarjeta blanca. Ya pasó tres veces: los
+   números del tablero, la burbuja del chat y los pasos de la pata gratis. */
+ul.lista li,ul.lista li b,.mod,.mod b,.hito,.hito b,.perfil,.perfil b,
+.kpi,.kpi b,.screen,.wa,.snap,.burb{color:var(--tinta)}
+
+/* ── chat ───────────────────────────────────────────────────── */
+.wa{background:#e7ecf2;border:1px solid var(--linea);border-radius:var(--radio);padding:var(--caja-b);text-align:left}
+.wa-top{display:flex;gap:var(--gap-medallon);align-items:center;margin-bottom:var(--e2)}
+.wa-top b{display:block;font-size:15px;line-height:1.3}
+.wa-top span{display:block;font-size:12px;color:var(--gris);line-height:1.2}
+/* ancho fijo y padding del sistema: cada burbuja con su medida inventa ejes.
+   La burbuja NO tiene borde, así que usa --caja (la compensada es solo para
+   cajas con borde): 24+1+23+24 = 72, la misma columna que el resto */
+/* color EXPLÍCITO: el chat vivo está dentro de .oscura (color:#fff) y sin esto
+   la burbuja blanca escribía blanco sobre blanco — se veía solo el emoji */
+.burb{width:86%;padding:var(--caja);border-radius:14px;font-size:14.5px;margin-bottom:var(--e1);
+      box-shadow:0 1px 1px rgba(0,0,0,.06);color:var(--tinta)}
+@media(max-width:900px){.burb{width:100%}}
+.burb p{text-align:left;font-size:14.5px}
+.mia{background:#dcf3c8;margin-left:auto;border-bottom-right-radius:4px}
+.suya{background:#fff;border-bottom-left-radius:4px}
+.suya small{color:var(--gris)}
+.foto-boleta{background:linear-gradient(160deg,#c9d4e0,#eef2f6);border-radius:10px;height:96px;
+             display:grid;place-items:center;color:#6d7f92;font-size:13px;margin-bottom:var(--e1)}
+
+/* ── números ────────────────────────────────────────────────── */
+.kpi{background:#fff;border:1px solid var(--linea);border-radius:var(--radio);padding:var(--caja-b);text-align:left}
+.kpi span{display:block;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--gris)}
+/* tarjeta blanca dentro de .oscura: sin color explícito el número hereda blanco */
+.kpi b{display:block;font-size:clamp(23px,2.8vw,30px);font-weight:800;margin-top:6px;letter-spacing:-.02em;color:var(--tinta)}
+.kpi.verde b{color:var(--lima-osc)}
+.kpi.roja b{color:var(--rojo)}
+
+/* ── casos ──────────────────────────────────────────────────── */
+.caso .rubro{display:block;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--lima-osc);margin-bottom:var(--e1)}
+
+/* ── mini capturas (el sistema hablando, en chiquito) ─────────
+   Paddings del SISTEMA, nada inventado: la caja usa --e2 y las burbujas
+   10/--e2, así el texto de adentro cae en ejes propios a más de 10px de
+   los del resto de la tarjeta. Burbujas por ancho fijo + margen auto
+   (como el chat grande), nunca por porcentaje suelto. */
+.snap{background:#e7ecf2;border:1px solid var(--linea);border-radius:12px;padding:var(--caja-b);margin-top:var(--e2)}
+.snap .b{border-radius:10px;padding:10px var(--caja);font-size:13.5px;line-height:1.45;margin-bottom:6px;
+  box-shadow:0 1px 1px rgba(0,0,0,.05);color:var(--tinta);text-align:left;width:88%}
+.snap .b:last-child{margin-bottom:0}
+.snap .b.v{background:#dcf3c8;margin-left:auto;border-bottom-right-radius:3px}
+.snap .b.w{background:#fff;margin-right:auto;border-bottom-left-radius:3px}
+.snap .b small{color:var(--gris)}
+.snap.mail{background:#fff}
+.snap.mail .de{font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--gris);
+  border-bottom:1px solid var(--linea);padding-bottom:8px;margin-bottom:4px;text-align:left}
+.snap.mail .ml{font-size:13.5px;color:var(--tinta);padding:6px 0;border-bottom:1px dashed var(--linea);text-align:left}
+.snap.mail .ml:last-child{border-bottom:0}
+.joya > p{font-size:15px}
+
+/* ── precios: tres columnas, el a medida destacado ─────────── */
+.precios{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--e2);margin-top:var(--e3);align-items:stretch}
+@media(max-width:900px){.precios{grid-template-columns:1fr}}
+.pr{background:#fff;border:1px solid var(--linea);border-radius:var(--radio);padding:var(--caja-b);
+  text-align:left;display:flex;flex-direction:column;color:var(--tinta)}
+.pr-rot{font-size:11.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--gris)}
+.pr-num{display:block;font-size:clamp(26px,3.4vw,34px);font-weight:800;letter-spacing:-.02em;margin:6px 0 2px}
+.pr-num small{font-size:15px;font-weight:600;color:var(--gris)}
+.pr-num.afuera{color:var(--gris)}
+.pr-sub{font-size:14px;color:var(--gris);margin-bottom:var(--e2)}
+.pr ul{list-style:none;padding:0;margin:0 0 var(--e2);display:grid;gap:7px}
+.pr li{font-size:14.5px;padding-left:22px;position:relative}
+.pr li::before{content:"✓";position:absolute;left:0;color:var(--lima-osc);font-weight:800}
+.pr p{font-size:14.5px;color:var(--gris)}
+.pr-nota{margin-top:auto;font-size:13px;color:var(--gris);border-top:1px dashed var(--linea);padding-top:12px}
+.pr.destacado{background:var(--lima);border-color:var(--lima)}
+.pr.destacado .pr-rot,.pr.destacado .pr-sub,.pr.destacado .pr-nota{color:#41520d}
+.pr.destacado .pr-num small{color:#41520d}
+.pr.destacado li::before{color:#41520d}
+.pr.destacado .pr-nota{border-top-color:rgba(30,43,6,.22)}
+.pr.comparar{background:var(--papel-2)}
+
+/* ── la firma: quién hace el trabajo ────────────────────────── */
+.firma{display:flex;gap:var(--e4);align-items:center;max-width:900px;margin:0 auto}
+@media(max-width:760px){.firma{flex-direction:column;gap:var(--e3);text-align:center}
+  .firma-txt p{text-align:center}}
+.firma-foto{flex:0 0 156px;width:156px;height:156px;border-radius:50%;background:var(--lima);
+  color:#1e2b06;display:grid;place-items:center;font-size:50px;font-weight:800;letter-spacing:-.02em;
+  overflow:hidden;position:relative}
+/* la foto tapa las iniciales cuando existe. El archivo ya viene recortado en
+   cuadrado sobre la cara (440x440), así que acá va centrada y nada más. */
+.firma-foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
+.firma-foto em{font-style:normal}
+.firma-txt{text-align:left}
+.firma-txt h2{margin-bottom:10px}
+.firma-txt p{text-align:left}
+
+/* ── módulos: estampitas en vez de párrafos ─────────────────── */
+.modulos{display:grid;grid-template-columns:repeat(6,1fr);gap:var(--e1);margin-top:var(--e3)}
+@media(max-width:900px){.modulos{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:520px){.modulos{grid-template-columns:repeat(2,1fr)}}
+.mod{background:#fff;border:1px solid var(--linea);border-radius:var(--radio);padding:var(--e2) 6px;
+  text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px}
+.mod i{font-style:normal;font-size:26px;line-height:1}
+.mod b{font-size:12.5px;line-height:1.25;color:var(--tinta)}
+
+/* ── línea de tiempo: el "cómo trabajamos" con plazos ───────── */
+.linea-t{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--e2);margin-top:var(--e3);position:relative}
+@media(max-width:640px){.linea-t{grid-template-columns:1fr}}
+.hito{background:#fff;border:1px solid var(--linea);border-radius:var(--radio);padding:var(--caja-b);text-align:center}
+.hito .cuando{display:block;font-size:11px;font-weight:800;letter-spacing:.12em;color:var(--lima-osc);margin-bottom:10px}
+.hito .punto{display:grid;place-items:center;width:52px;height:52px;margin:0 auto 10px;border-radius:50%;
+  background:var(--papel-2);font-size:24px}
+.hito b{display:block;font-size:16.5px}
+.hito small{color:var(--gris);font-size:13px}
+
+/* ── perfil del trabajador: la reputación se VE ─────────────── */
+.perfil{background:#fff;border:1px solid var(--linea);border-radius:var(--radio);padding:var(--caja-b);text-align:left}
+.perfil-top{display:flex;align-items:center;gap:var(--gap-medallon);padding-bottom:12px;border-bottom:1px solid var(--linea)}
+.perfil-av{width:var(--medallon);height:var(--medallon);border-radius:50%;background:var(--lima);color:#1e2b06;
+  display:grid;place-items:center;font-weight:800;flex:0 0 var(--medallon)}
+.perfil-top b{display:block;font-size:16px;color:var(--tinta)}
+.perfil-top small{color:var(--gris);font-size:12.5px}
+.perfil-est{margin-left:auto;color:#e8a516;font-size:15px;letter-spacing:1px}
+.perfil-fila{display:flex;justify-content:space-between;align-items:center;gap:var(--e2);
+  padding:11px 0;border-bottom:1px dashed var(--linea);font-size:14px;color:var(--gris)}
+.perfil-fila:last-child{border-bottom:0;padding-bottom:0}
+.perfil-fila b{color:var(--tinta)}
+.perfil-fila b.ok{color:var(--lima-osc)}
+
+/* ── tira de logos (los que ya delegaron) ───────────────────── */
+/* logos REALES de los clientes (bajados de su ficha). Vienen con fondo
+   oscuro propio, así que se montan como tarjetas cuadradas: sobre la franja
+   clara quedan como sellos, no como manchas. */
+.logos{display:flex;flex-wrap:wrap;gap:var(--e2);justify-content:center;align-items:stretch;margin-top:var(--e3);text-align:center}
+.lg{width:132px;height:132px;border-radius:var(--radio);overflow:hidden;background:#231f1c;
+  display:grid;place-items:center;box-shadow:0 6px 18px rgba(15,42,74,.10)}
+.lg img{width:100%;height:100%;object-fit:cover;display:block}
+.lg-txt{color:#fff;font-size:19px;font-weight:800;letter-spacing:.22em;line-height:1.1;
+  background:linear-gradient(150deg,#1d3550,#2c4c6d);flex-direction:column}
+.lg-txt small{display:block;font-size:10px;letter-spacing:.3em;color:var(--gris-claro);margin-top:5px;font-weight:600}
+
+/* ── celulares con CAPTURAS REALES de producción ──────────────
+   Las imágenes salen de sacarle una foto al sistema andando (Edge
+   headless sobre aval.ar). El marco es CSS; la pantalla es real. */
+.celus{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--e3);align-items:stretch}
+@media(max-width:900px){.celus{grid-template-columns:repeat(2,1fr);gap:var(--e2)}}
+@media(max-width:520px){.celus{grid-template-columns:1fr}}
+/* columna flex: con el botón en margin-top:auto los cuatro quedan a la MISMA
+   altura aunque una descripción ocupe una línea y otra dos */
+.celu{margin:0;text-align:center;display:flex;flex-direction:column;height:100%}
+.celu-marco{background:#0a1c30;border-radius:26px;padding:9px 7px;box-shadow:0 12px 30px rgba(0,0,0,.28);position:relative}
+.celu-marco::before{content:"";position:absolute;top:4px;left:50%;transform:translateX(-50%);
+  width:32%;height:5px;border-radius:99px;background:rgba(255,255,255,.28)}
+.celu-marco img{display:block;width:100%;border-radius:19px;background:#fff}
+.celu-marco{position:relative}
+/* la de muestra va rotulada: las otras tres son negocios de verdad */
+.tag-ej{position:absolute;z-index:2;top:16px;right:14px;background:var(--lima);color:#1e2b06;
+  font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+  border-radius:999px;padding:3px 10px}
+.celu figcaption{color:var(--gris-claro);font-size:13.5px;margin-top:12px}
+.celu figcaption b{display:block;color:#fff;font-size:15.5px;margin-bottom:2px}
+.celu .btn{margin-top:auto;padding:9px 18px;font-size:13.5px;align-self:center}
+.celu figcaption{margin-bottom:12px}
+
+/* ── pantallas: los sistemas dibujados con marco de navegador ─
+   Todo el contenido interno va CENTRADO o en grillas propias: son
+   ilustraciones, no columnas de texto de la página. */
+.screen{margin:0;background:#fff;border:1px solid var(--linea);border-radius:var(--radio);overflow:hidden;color:var(--tinta)}
+.sc-top{display:flex;gap:6px;align-items:center;background:var(--papel-2);border-bottom:1px solid var(--linea);padding:10px var(--e2)}
+.sc-top i{width:10px;height:10px;border-radius:50%;background:#d3dde7}
+.sc-url{margin-left:var(--e1);background:#fff;border:1px solid var(--linea);border-radius:999px;font-size:11.5px;color:var(--gris);padding:3px 12px}
+.sc-body{padding:var(--e2);text-align:center}
+/* el pie va gris oscuro por defecto (fondo claro) y se aclara SOLO sobre
+   fondo oscuro: al revés, en la franja clara quedaba ilegible */
+.screen figcaption{font-size:13.5px;color:var(--gris);padding:12px var(--e2) var(--e2);text-align:center}
+.oscura .screen figcaption,.hero .screen figcaption{color:var(--gris-claro)}
+.sc-tabs{display:flex;gap:6px;justify-content:center;margin-bottom:10px;flex-wrap:wrap}
+.sc-tabs span{font-size:11px;font-weight:700;color:var(--gris);border:1px solid var(--linea);border-radius:999px;padding:3px 11px}
+.sc-tabs span.act{background:var(--tinta);border-color:var(--tinta);color:#fff}
+.sc-titulo{font-size:11.5px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--gris);margin-bottom:10px;text-align:center}
+.scp-of{position:absolute;top:5px;left:5px;background:var(--rojo);color:#fff;font-style:normal;
+  font-size:9px;font-weight:800;letter-spacing:.05em;border-radius:5px;padding:2px 6px}
+.scp-foto{position:relative}
+.sc-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--e1);margin-bottom:var(--e2)}
+.sck{background:var(--papel-2);border-radius:10px;padding:10px 6px;text-align:center}
+.sck small{display:block;font-size:9.5px;font-weight:800;letter-spacing:.06em;color:var(--gris)}
+.sck b{font-size:13.5px;letter-spacing:-.02em}
+.sck.verde b{color:var(--lima-osc)}
+.sck.roja b{color:var(--rojo)}
+/* ── el gráfico, legible ──────────────────────────────────────
+   Antes: 12 barras sin meses, sin leyenda y sin números: no se
+   entendía nada. Ahora cada mes tiene su par ventas/gastos, su
+   nombre abajo, leyenda arriba y el último mes cantado. */
+.graf{margin-top:var(--e2)}
+.graf-ley{display:flex;gap:var(--e2);justify-content:center;margin-bottom:10px;font-size:11px;font-weight:700;color:var(--gris)}
+.graf-ley span{display:flex;align-items:center;gap:5px}
+.graf-ley i{width:10px;height:10px;border-radius:3px;display:block}
+.graf-cuerpo{display:flex;gap:4%;align-items:flex-end;justify-content:center;height:96px;
+  border-bottom:1px solid var(--linea);padding-bottom:2px}
+.mes{flex:1;max-width:66px;display:flex;flex-direction:column;justify-content:flex-end;height:100%;position:relative}
+.mes-par{display:flex;gap:3px;align-items:flex-end;height:100%;justify-content:center}
+.mes-par i{width:14px;border-radius:4px 4px 0 0;display:block}
+.mes-par i.v{background:#9fc411}
+.mes-par i.g{background:#e5b3ae}
+.mes.hoy .mes-par i.v{background:#7ba00c;box-shadow:0 0 0 2px rgba(123,160,12,.18)}
+.graf-pie{display:flex;gap:4%;justify-content:center;margin-top:6px}
+.graf-pie span{flex:1;max-width:66px;text-align:center;font-size:10.5px;font-weight:700;color:var(--gris);letter-spacing:.04em}
+.graf-pie span.hoy{color:var(--tinta)}
+.globo{position:absolute;top:-4px;left:50%;transform:translateX(-50%);background:var(--tinta);color:#fff;
+  font-size:10px;font-weight:800;border-radius:6px;padding:2px 7px;white-space:nowrap}
+.sc-prods{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--e1)}
+.scp{background:var(--papel-2);border-radius:10px;padding:8px;text-align:center}
+/* fotos REALES de la tienda demo (miniaturas _th del storage, ~30 KB c/u);
+   el fondo gris queda de respaldo mientras carga */
+.scp-foto{display:block;height:96px;border-radius:8px;margin-bottom:6px;background:var(--papel-2);overflow:hidden}
+.scp-foto img{width:100%;height:100%;object-fit:cover;display:block}
+.scp b{display:block;font-size:12px}
+.scp small{display:block;color:var(--gris);font-size:11.5px;margin-bottom:5px}
+.scp-talles{display:flex;gap:4px;justify-content:center}
+.scp-talles em{font-style:normal;font-size:10px;font-weight:700;border:1px solid var(--linea);border-radius:5px;padding:1px 5px}
+.scp-talles em.no{color:var(--gris-claro);text-decoration:line-through;background:var(--papel-2)}
+.sc-mesas{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--e1);margin-bottom:var(--e2)}
+.scm{border-radius:10px;padding:13px 0;font-weight:800;font-size:13px;text-align:center}
+.scm.libre{background:var(--papel-2);color:var(--gris)}
+.scm.ok{background:#e7f5cf;color:var(--lima-osc)}
+.scm.pide{background:#fdeecb;color:#8a6d1a}
+.scm.cobra{background:#fbe4e1;color:var(--rojo)}
+.sc-lineas{display:grid;gap:var(--e1)}
+.scl{background:var(--papel-2);border-radius:9px;padding:9px 12px;font-size:12.5px;text-align:left}
+/* estados con color, como en el sistema real */
+.scl.ok{background:#e7f5cf}
+.scl.warn{background:#fdeecb}
+.scl.mal{background:#fbe4e1}
+.scb{border-radius:999px;padding:1px 9px;font-size:10.5px;margin-left:4px}
+.scb.ok{background:#e7f5cf;color:var(--lima-osc)}
+.scb.full{background:#fbe4e1;color:var(--rojo)}
+.scb.libre{background:#fff;border:1px solid var(--linea);color:var(--gris)}
+
+/* ── tarjetas de rubro: estampitas, no párrafos (menos es más) ── */
+.rub{text-align:center}
+.rub .rub-ico{display:block;font-size:34px;line-height:1;margin-bottom:var(--e1)}
+.rub b{display:block;font-size:16px;margin-bottom:2px}
+.rub p{text-align:center;font-size:14px;margin:0}
+
+/* ── pared de rubros (centrada: la lista es infinita a propósito) ── */
+.rubros{display:flex;flex-wrap:wrap;gap:var(--e1);justify-content:center;margin-top:var(--e3);text-align:center}
+.rchip{border:1px solid var(--linea);background:#fff;border-radius:999px;padding:8px 15px;font-size:14px;color:var(--gris)}
+.rchip.destacado{background:var(--lima);border-color:var(--lima);color:#1e2b06;font-weight:700}
+
+/* ── chat en vivo del cierre ────────────────────────────────── */
+.chatwrap{max-width:672px;margin:var(--e3) auto 0;text-align:left}
+.chat{background:#e7ecf2;border:1px solid var(--linea);border-radius:var(--radio);padding:var(--caja-b)}
+.chat-hilo{max-height:380px;overflow-y:auto;display:flex;flex-direction:column}
+.chat-chips{display:flex;flex-wrap:wrap;gap:var(--e1);margin-top:var(--e1)}
+.chat-chip{background:#fff;border:1px solid var(--linea);border-radius:999px;padding:8px 14px;font-size:13.5px;font-weight:700;color:var(--tinta);cursor:pointer}
+.chat-envio{display:flex;gap:var(--e1);margin-top:var(--e2)}
+.chat-envio input{flex:1;border:1px solid var(--linea);border-radius:999px;padding:12px 18px;font-size:15px;color:var(--tinta);min-width:0}
+.chat-envio button{background:var(--lima);color:#1e2b06;border:0;border-radius:999px;padding:12px 22px;font-weight:800;font-size:15px;cursor:pointer}
+.chat-envio button:disabled{background:var(--linea);color:var(--gris);cursor:wait}
+#chClip{background:#fff;border:1px solid var(--linea);padding:12px 15px;font-size:16px}
+/* el saludo cambia para invitar el adjunto */
+.chat-invita{font-size:12.5px;color:var(--gris);text-align:left;margin-top:6px}
+.chat-fin{display:none;background:#e7f5cf;color:#2c4a06;border-radius:var(--radio);padding:var(--caja);font-weight:700;margin-top:var(--e2);text-align:center}
+.pensando{display:flex;gap:5px;padding:12px 4px}
+.pensando i{width:8px;height:8px;border-radius:50%;background:var(--gris-claro);animation:pns 1s infinite}
+.pensando i:nth-child(2){animation-delay:.18s}
+.pensando i:nth-child(3){animation-delay:.36s}
+@keyframes pns{0%,100%{opacity:.35;transform:translateY(0)}50%{opacity:1;transform:translateY(-3px)}}
+.chat-nota{font-size:13.5px;color:var(--gris-claro);margin-top:var(--e2);text-align:center;line-height:1.9}
+.wa-directo{color:#fff;font-weight:700;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.45);padding-bottom:2px}
+.cupo{color:var(--lima)}
+
+/* ── cierre ─────────────────────────────────────────────────── */
+.cierre .intro{margin-bottom:0}
+
+/* ── EL CELULAR ─────────────────────────────────────────────────
+   Dos problemas medidos el 13/08 con una captura real a 390px:
+   (1) la página DESBORDABA a la derecha (el texto del hero salía
+   cortado) porque los grids de los mockups tienen contenido que no
+   se puede achicar y, con `min-width:auto` por defecto, empujaban
+   todo. Se arregla con min-width:0 en los hijos de grid.
+   (2) "mucho amontonamiento de texto": tipografía más chica, más
+   interlineado y menos aire perdido entre franjas. */
+.grid > *,.hero-grid > *,.celus > *{min-width:0}
+.screen,.wa,.snap{max-width:100%}
+@media(max-width:560px){
+  /* la barra no entra en un celular: se va el subtítulo del logo y el link
+     de demos (que igual está en el botón del hero). Sin esto los cuatro
+     elementos estiraban la barra y con ella TODA la página */
+  .marca-txt span{display:none}
+  .barra-der .lnk{display:none}
+  .marca svg{width:28px;height:28px}
+  .marca-txt b{font-size:18px}
+  h1{font-size:26px;line-height:1.2}
+  h2{font-size:23px;line-height:1.2}
+  .lead{font-size:16px}
+  section{padding-block:var(--e4)}
+  .hero{padding-block:var(--e4)}
+  .intro{margin-bottom:var(--e3)}
+  .sc-kpis{grid-template-columns:repeat(2,1fr)}
+  .sc-prods{grid-template-columns:repeat(2,1fr)}
+  .sc-tabs span:nth-child(n+4){display:none}
+  /* los mockups, más compactos: un importe no se parte en dos líneas, así que
+     con la letra grande le fijan al mockup un ancho mínimo incómodo */
+  .sck b{font-size:16px}
+  .sck small{font-size:9.5px;letter-spacing:.03em}
+  .sc-bars{gap:3px;height:62px}
+  .kpi b{font-size:22px}
+  .scl,.snap .b,.sc-titulo{font-size:12.5px}
+  .hero-nota{font-size:13.5px}
+  .acciones{gap:var(--e1)}
+  .btn{padding:12px var(--e2);font-size:14.5px}
+}
+
+footer{background:var(--tinta);color:var(--gris-claro);padding-block:var(--e4);font-size:14px}
+.pie{display:flex;flex-direction:column;align-items:center;gap:var(--e1);text-align:center}
+.pie p{margin:0;text-align:center}
+footer a{color:#e2ecf5}
+footer b{color:#fff}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap barra">
+    <a class="marca" href="#">
+      <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true">
+        <path d="M3 18.5 L11 26.5 L29 6.5" fill="none" stroke="#ffffff" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M20.5 6.5 L29 6.5 L29 15" fill="none" stroke="#c8ee3d" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="marca-txt">
+        <b>respald.ar</b>
+        <span>Soluciones informáticas</span>
+      </span>
+    </a>
+    <span class="barra-der">
+      <a class="lnk" href="#demos">Demos en vivo</a>
+      <a class="btn btn-lima btn-chico" href="#contacto">Hablemos</a>
+    </span>
+  </div>
+</header>
+
+<!-- 1 · HERO: el texto y la pantalla del tablero, lado a lado -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-txt">
+        <p class="eyebrow" style="color:var(--lima)">Sistemas a medida · San Juan</p>
+        <h1>Delegar no es perder el control.<br>Es <em>tenerlo por primera vez</em>.</h1>
+        <p class="lead">
+          Hacemos el sistema que tu negocio necesita: la carga, la cuenta y el
+          control los hace él. Vos, a vender.
+        </p>
+        <div class="acciones">
+          <a class="btn btn-lima" href="#contacto">Contame qué necesitás</a>
+          <a class="btn btn-borde" href="#demos">Tocá una demo en vivo</a>
+        </div>
+        <p class="hero-nota">Precio cerrado y fecha de entrega · <b class="cupo">tomamos 3 proyectos por mes</b></p>
+      </div>
+      <figure class="screen">
+        <div class="sc-top"><i></i><i></i><i></i><span class="sc-url">tunegocio.ar/tablero</span></div>
+        <div class="sc-body">
+          <div class="sc-kpis">
+            <span class="sck"><small>VENDISTE</small><b>$4.812.300</b></span>
+            <span class="sck"><small>GASTASTE</small><b>$3.107.900</b></span>
+            <span class="sck verde"><small>TE QUEDÓ</small><b>$1.704.400</b></span>
+            <span class="sck roja"><small>POR PAGAR</small><b>$486.200</b></span>
+          </div>
+          <div class="graf">
+            <div class="graf-ley"><span><i style="background:#9fc411"></i>Ventas</span><span><i style="background:#e5b3ae"></i>Gastos</span></div>
+            <div class="graf-cuerpo">
+              <div class="mes"><div class="mes-par"><i class="v" style="height:52%"></i><i class="g" style="height:41%"></i></div></div>
+              <div class="mes"><div class="mes-par"><i class="v" style="height:63%"></i><i class="g" style="height:44%"></i></div></div>
+              <div class="mes"><div class="mes-par"><i class="v" style="height:58%"></i><i class="g" style="height:47%"></i></div></div>
+              <div class="mes hoy"><span class="globo">+31%</span><div class="mes-par"><i class="v" style="height:86%"></i><i class="g" style="height:46%"></i></div></div>
+            </div>
+            <div class="graf-pie"><span>MAY</span><span>JUN</span><span>JUL</span><span class="hoy">AGO</span></div>
+          </div>
+          <div class="sc-lineas" style="margin-top:var(--e2)">
+            <span class="scl">📈 Ojo: la harina te subió 18% en la boleta de hoy</span>
+          </div>
+        </div>
+        <figcaption>Tu negocio, en una pantalla.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- 2 · EL ALIVIO -->
+<section>
+  <div class="wrap">
+    <div class="intro">
+      <p class="eyebrow">Primero, el alivio</p>
+      <h2>Todo esto lo podés dejar de hacer</h2>
+      <p class="lead">
+        Estás haciendo a mano cosas que una máquina hace sola.
+      </p>
+    </div>
+
+    <div class="grid g2">
+      <ul class="lista">
+        <li class="item">
+          <span class="medallon"><svg viewBox="0 0 20 20"><path d="M4 10.5 L8 14.5 L16 5.5" fill="none" stroke="#1e2b06" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <div><b>Cargar los gastos</b><p>Una foto a la boleta y listo.</p></div>
+        </li>
+        <li class="item">
+          <span class="medallon"><svg viewBox="0 0 20 20"><path d="M4 10.5 L8 14.5 L16 5.5" fill="none" stroke="#1e2b06" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <div><b>Llevar el stock en la cabeza</b><p>Se descuenta solo, en el local y en la web.</p></div>
+        </li>
+        <li class="item">
+          <span class="medallon"><svg viewBox="0 0 20 20"><path d="M4 10.5 L8 14.5 L16 5.5" fill="none" stroke="#1e2b06" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <div><b>Cerrar la caja con la calculadora</b><p>El cierre sale hecho.</p></div>
+        </li>
+        <li class="item">
+          <span class="medallon"><svg viewBox="0 0 20 20"><path d="M4 10.5 L8 14.5 L16 5.5" fill="none" stroke="#1e2b06" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <div><b>Sacar las horas y los sueldos</b><p>Cada uno ficha y se calcula solo.</p></div>
+        </li>
+        <li class="item">
+          <span class="medallon"><svg viewBox="0 0 20 20"><path d="M4 10.5 L8 14.5 L16 5.5" fill="none" stroke="#1e2b06" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <div><b>Buscar el papel que guardaste</b><p>Se lo pedís por WhatsApp.</p></div>
+        </li>
+      </ul>
+
+      <div class="wa">
+        <div class="wa-top">
+          <span class="medallon">🤖</span>
+          <span><b>El sistema</b><span>en línea</span></span>
+        </div>
+        <div class="burb mia">
+          <div class="foto-boleta">Factura A 0003-00184</div>
+          <p>Tomá, cargá esto</p>
+        </div>
+        <div class="burb suya">
+          <p><b>Gasto cargado</b><br>
+          Distribuidora del Sur<br>
+          $184.300 · IVA $31.900<br>
+          <small>Lo puse en Mercadería. ¿Está pago o queda a pagar?</small></p>
+        </div>
+        <div class="burb mia"><p>A pagar, vence el 20</p></div>
+        <div class="burb suya"><p>Listo. Te aviso el 18.</p></div>
+        <div class="burb mia"><p>¿Cuánto vendimos hoy?</p></div>
+        <div class="burb suya"><p>$347.500 en 12 ventas. Ayer a esta hora ibas $290.100.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 · LOS NÚMEROS -->
+<section class="oscura">
+  <div class="wrap">
+    <div class="intro">
+      <p class="eyebrow">Y lo más importante</p>
+      <h2>Cuando todo se carga solo, aparecen los números</h2>
+      <p class="lead">
+        Dejás de manejar el negocio por sensación: decidís con lo que pasó.
+      </p>
+    </div>
+
+    <div class="grid g4">
+      <div class="kpi"><span>Vendiste</span><b>$4.812.300</b></div>
+      <div class="kpi"><span>Gastaste</span><b>$3.107.900</b></div>
+      <div class="kpi verde"><span>Te quedó</span><b>$1.704.400</b></div>
+      <div class="kpi roja"><span>Por pagar</span><b>$486.200</b></div>
+    </div>
+
+    <div class="grid g3 mt-3">
+      <div class="tarj"><h3>Qué se vende y qué no</h3><p>Lo que vuela, lo que está frenado y lo que te está ocupando plata en el depósito.</p></div>
+      <div class="tarj"><h3>En qué se te va</h3><p>Los gastos ordenados por rubro y por proveedor, mes contra mes.</p></div>
+      <div class="tarj"><h3>Qué te deja cada cosa</h3><p>El margen real de lo que vendés, con el costo actualizado de la última compra.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 · LAS JOYAS -->
+<section class="clara">
+  <div class="wrap">
+    <div class="intro">
+      <p class="eyebrow">Acá está la diferencia</p>
+      <h2>Un sistema que no espera que le preguntes</h2>
+      <p class="lead">
+        Los demás programas guardan datos. El nuestro te avisa.
+      </p>
+    </div>
+
+    <div class="grid g2">
+      <div class="tarj joya">
+        <h3>Te avisa si te subieron un precio</h3>
+        <p>Cada boleta se acuerda de la anterior.</p>
+        <div class="snap">
+          <div class="b v">📷 <small>foto de la boleta de la distribuidora</small></div>
+          <div class="b w"><b>✅ Cargada: $214.600</b><br>
+          📈 <b>Ojo, te subieron 2 precios:</b><br>
+          Harina 000 · $18.500 → $21.900 el kg <b>(+18%)</b><br>
+          Queso tybo · $9.800 → $11.200 el kg <b>(+14%)</b></div>
+        </div>
+      </div>
+      <div class="tarj joya">
+        <h3>Se revisa solo de madrugada</h3>
+        <p>A la 1:30 audita el día. A las 9 te llega el parte.</p>
+        <div class="snap mail">
+          <div class="de">📬 El repaso de hoy · 9:30</div>
+          <div class="ml">🔍 <b>La auditoría de anoche encontró:</b></div>
+          <div class="ml">• 6 gastos por <b>$276.683</b> sin asignar a ningún viaje</div>
+          <div class="ml">• 2 gastos cargados dos veces</div>
+          <div class="ml">• 1 seguro que vence el viernes</div>
+        </div>
+      </div>
+      <div class="tarj joya">
+        <h3>Te saluda con el día ya resumido</h3>
+        <p>A las 9, sin que lo pidas. Los lunes, el repaso de la semana.</p>
+        <div class="snap">
+          <div class="b w">☀️ <b>¡Buen día!</b> Ayer: <b>$412.300</b> en 18 ventas.
+          Hoy vence la boleta de Secolian ($184.300). La semana viene 12% arriba
+          de la pasada 💪</div>
+        </div>
+      </div>
+      <div class="tarj joya">
+        <h3>Guarda los papeles y te los devuelve</h3>
+        <p>Se los mandás una vez y quedan. Después, pedilos donde estés.</p>
+        <div class="snap">
+          <div class="b v">mandame la póliza de la Sprinter</div>
+          <div class="b w">📄 <b>Póliza-Sprinter-2026.pdf</b><br><small>Acá va. Vence el 03/11, te aviso una semana antes.</small></div>
+        </div>
+      </div>
+      <div class="tarj joya">
+        <h3>Contesta tus redes</h3>
+        <p>Instagram y Facebook, con tus precios de verdad.</p>
+        <div class="snap">
+          <div class="b v"><small>DM de Instagram · 23:40</small><br>Hola! ¿Tenés la puffer en 42?</div>
+          <div class="b w">¡Sí! Quedan 2 en talle 42 💛 Te dejo el link para verla y pagarla: <b>tunegocio.ar/puffer</b>. ¿Te la mando o pasás por el local?</div>
+        </div>
+      </div>
+      <div class="tarj joya">
+        <h3>Y atiende aunque estés durmiendo</h3>
+        <p>El que pregunta a las 11 de la noche, compra a las 11 de la noche.</p>
+        <div class="snap">
+          <div class="b w">📋 <b>Mientras dormías:</b> contesté 7 consultas, tomé una reserva para el sábado y quedó una pregunta para vos: si hacés envíos a Caucete.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4b · DEMOS REALES: capturas de producción + link para tocarlas -->
+<section class="oscura" id="demos">
+  <div class="wrap">
+    <div class="intro">
+      <p class="eyebrow">Andando ahora mismo</p>
+      <h2>Esto no es una maqueta.</h2>
+      <p class="lead">
+        Abrilas desde tu celular. Son negocios reales vendiendo hoy.
+      </p>
+    </div>
+
+    <div class="celus">
+      <figure class="celu">
+        <div class="celu-marco"><img src="demos/diosas.jpg" alt="Tienda online de Diosas Odiosas" loading="lazy"></div>
+        <figcaption><b>Una tienda que vende</b>Talles, cuotas y descuento por transferencia.</figcaption>
+        <a class="btn btn-lima" href="https://aval.ar/tienda/diosas-odiosas" target="_blank" rel="noopener">Entrar a la tienda</a>
+      </figure>
+
+      <figure class="celu">
+        <div class="celu-marco"><img src="demos/local.jpg" alt="Web de Siciliano en su propio dominio" loading="lazy"></div>
+        <figcaption><b>La web de tu negocio</b>Tu dominio, tu marca y tus reseñas.</figcaption>
+        <a class="btn btn-lima" href="https://sicilianoresto.com.ar" target="_blank" rel="noopener">Ver la web</a>
+      </figure>
+
+      <figure class="celu">
+        <div class="celu-marco"><img src="demos/carta.jpg" alt="Carta digital de Siciliano en su propio dominio" loading="lazy"></div>
+        <figcaption><b>La carta con QR</b>En su dominio y con su diseño.</figcaption>
+        <a class="btn btn-lima" href="https://sicilianoresto.com.ar/carta.html" target="_blank" rel="noopener">Ver la carta</a>
+      </figure>
+
+      <figure class="celu">
+        <div class="celu-marco"><span class="tag-ej">Ejemplo</span><img src="demos/barberia.jpg" alt="Turnero de barbería con seña" loading="lazy"></div>
+        <figcaption><b>Turnos con seña</b>El que reserva paga, y no te deja el hueco.</figcaption>
+        <a class="btn btn-lima" href="#contacto">Quiero el mío</a>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- 4c · LAS PANTALLAS DE ADENTRO (el panel, que no es público) -->
+<section class="clara" id="pantallas">
+  <div class="wrap">
+    <div class="intro">
+      <p class="eyebrow">Y por dentro</p>
+      <h2>Lo que ves vos, el dueño</h2>
+      <p class="lead">
+        Eso era lo que ve tu cliente. Esto es tu lado del mostrador.
+      </p>
+    </div>
+    <div class="grid g2">
+
+      <figure class="screen">
+        <div class="sc-top"><i></i><i></i><i></i><span class="sc-url">tunegocio.ar/reportes</span></div>
+        <div class="sc-body">
+          <div class="sc-tabs"><span class="act">Ventas</span><span>Caja</span><span>Gastos</span><span>Stock</span><span>Personal</span></div>
+          <div class="sc-titulo">Agosto · del 1 al 13</div>
+          <div class="sc-kpis">
+            <span class="sck"><small>VENDISTE</small><b>$4.812.300</b></span>
+            <span class="sck"><small>GASTASTE</small><b>$3.107.900</b></span>
+            <span class="sck verde"><small>TE QUEDÓ</small><b>$1.704.400</b></span>
+            <span class="sck roja"><small>POR PAGAR</small><b>$486.200</b></span>
+          </div>
+          <div class="graf">
+            <div class="graf-ley"><span><i style="background:#9fc411"></i>Ventas</span><span><i style="background:#e5b3ae"></i>Gastos</span></div>
+            <div class="graf-cuerpo">
+              <div class="mes"><div class="mes-par"><i class="v" style="height:52%"></i><i class="g" style="height:41%"></i></div></div>
+              <div class="mes"><div class="mes-par"><i class="v" style="height:63%"></i><i class="g" style="height:44%"></i></div></div>
+              <div class="mes"><div class="mes-par"><i class="v" style="height:58%"></i><i class="g" style="height:47%"></i></div></div>
+              <div class="mes hoy"><span class="globo">+31%</span><div class="mes-par"><i class="v" style="height:86%"></i><i class="g" style="height:46%"></i></div></div>
+            </div>
+            <div class="graf-pie"><span>MAY</span><span>JUN</span><span>JUL</span><span class="hoy">AGO</span></div>
+          </div>
+        </div>
+        <figcaption>Agosto viene 31% arriba de julio.</figcaption>
+      </figure>
+
+      <figure class="screen">
+        <div class="sc-top"><i></i><i></i><i></i><span class="sc-url">tunegocio.ar/salon</span></div>
+        <div class="sc-body">
+          <div class="sc-mesas">
+            <span class="scm ok">M1</span><span class="scm pide">M2</span><span class="scm ok">M3</span><span class="scm cobra">M4</span>
+            <span class="scm libre">M5</span><span class="scm pide">M6</span><span class="scm libre">M7</span><span class="scm ok">M8</span>
+          </div>
+          <div class="sc-lineas">
+            <span class="scl ok">🍝 Mesa 2 → <b>cocina</b>: 2 sorrentinos</span>
+            <span class="scl ok">🥤 Mesa 2 → <b>barra</b>: 2 limonadas</span>
+            <span class="scl warn">💵 Mesa 4 · pre-cuenta <b>$38.500</b></span>
+          </div>
+        </div>
+        <figcaption>El pedido se parte solo: cocina y barra.</figcaption>
+      </figure>
+
+    </div>
+  </div>
+</section>
+
+<!-- 5 · POR RUBRO (a medida) -->
+<section class="clara">
+  <div class="wrap">
+    <div class="intro">
+      <p class="eyebrow">A medida, para tu rubro</p>
+      <h2>¿Sistema de qué? Del negocio que tengas.</h2>
+      <p class="lead">
+        Nada enlatado: escuchamos cómo trabajás y construimos eso. Con IA,
+        en semanas y a precio cerrado.
+      </p>
+    </div>
+    <div class="grid g3">
+      <div class="tarj rub"><span class="rub-ico">🏪</span><b>Kiosco</b><p>El lector cobra y te avisa qué vence.</p></div>
+      <div class="tarj rub"><span class="rub-ico">🐶</span><b>Veterinaria</b><p>Las vacunas le avisan solas al dueño.</p></div>
+      <div class="tarj rub"><span class="rub-ico">🔧</span><b>Taller</b><p>Historial por patente, presupuesto por WhatsApp.</p></div>
+      <div class="tarj rub"><span class="rub-ico">🏋️</span><b>Gimnasio y canchas</b><p>La cuota se cobra sola. El que debe, no entra.</p></div>
+      <div class="tarj rub"><span class="rub-ico">🥖</span><b>Panadería</b><p>Cuánto amasar mañana, según lo vendido.</p></div>
+      <div class="tarj rub"><span class="rub-ico">📦</span><b>Distribuidora</b><p>Precios por cliente y hoja de ruta armada sola.</p></div>
+    </div>
+    <div class="rubros">
+      <span class="rchip">Ferretería</span><span class="rchip">Farmacia</span><span class="rchip">Óptica</span><span class="rchip">Pet shop</span><span class="rchip">Vivero</span><span class="rchip">Librería</span><span class="rchip">Carnicería</span><span class="rchip">Verdulería</span><span class="rchip">Rotisería</span><span class="rchip">Heladería</span><span class="rchip">Lavadero</span><span class="rchip">Gomería</span><span class="rchip">Lubricentro</span><span class="rchip">Cochera</span><span class="rchip">Hotel y cabañas</span><span class="rchip">Inmobiliaria</span><span class="rchip">Estudio contable</span><span class="rchip">Consultorio</span><span class="rchip">Odontología</span><span class="rchip">Academia</span><span class="rchip">Cancha de pádel</span><span class="rchip">Barbería</span><span class="rchip">Centro de estética</span><span class="rchip">Servicio técnico</span><span class="rchip">Mayorista</span><span class="rchip">Reparto</span><span class="rchip destacado">El tuyo</span>
+    </div>
+    <div class="intro intro-fin">
+      <p class="lead">
+        ¿No está el tuyo? Mejor: los que nadie hizo son los que más nos gustan.
+      </p>
+      <div class="acciones">
+        <a class="btn btn-lima" href="#contacto">Quiero el mío</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 · ANDANDO HOY -->
+<section id="hicimos">
+  <div class="wrap">
+    <div class="intro">
+      <p class="eyebrow">Andando hoy, en negocios reales</p>
+      <h2>Lo que ya está funcionando</h2>
+      <p class="lead">
+        Si lo tuyo se parece a algo de esto, la mitad del camino ya está hecha.
+      </p>
+    </div>
+    <div class="modulos">
+      <span class="mod"><i>🛍️</i><b>Tienda online</b></span>
+      <span class="mod"><i>🍽️</i><b>Salón y comanda</b></span>
+      <span class="mod"><i>🚚</i><b>Flota y viajes</b></span>
+      <span class="mod"><i>📅</i><b>Turnos con seña</b></span>
+      <span class="mod"><i>⏰</i><b>Reloj y sueldos</b></span>
+      <span class="mod"><i>🧾</i><b>Facturación ARCA</b></span>
+      <span class="mod"><i>💸</i><b>Gastos por foto</b></span>
+      <span class="mod"><i>📦</i><b>Stock y depósito</b></span>
+      <span class="mod"><i>💳</i><b>Caja y cierres</b></span>
+      <span class="mod"><i>🤖</i><b>Bot de WhatsApp</b></span>
+      <span class="mod"><i>🌐</i><b>Tu página web</b></span>
+      <span class="mod"><i>⭐</i><b>Reputación</b></span>
+    </div>
+  </div>
+</section>
+
+<!-- 8 · CASOS -->
+<section class="clara">
+  <div class="wrap">
+    <div class="intro">
+      <p class="eyebrow">Funciona</p>
+      <h2>Negocios que ya delegaron</h2>
+    </div>
+    <div class="logos">
+      <span class="lg"><img src="demos/logo-diosas.jpg" alt="Diosas Odiosas" loading="lazy"></span>
+      <span class="lg"><img src="demos/logo-siciliano.jpg" alt="Siciliano Caffè & Pasta" loading="lazy"></span>
+      <span class="lg lg-txt">LORSAL<small>S.R.L.</small></span>
+      <span class="lg"><img src="demos/logo-valkiria.jpg" alt="Casa Valkiria" loading="lazy"></span>
+    </div>
+  </div>
+</section>
+
+<!-- 9 · LA PATA GRATIS -->
+<section class="oscura">
+  <div class="wrap">
+    <div class="intro">
+      <p class="eyebrow">Gratis, para siempre</p>
+      <h2>Y esto te lo damos sin cobrarte nada</h2>
+      <p class="lead">
+        El primer registro laboral con referencias del país. Lo usás aunque no
+        nos compres un sistema.
+      </p>
+    </div>
+    <div class="grid g2">
+      <div class="perfil">
+        <div class="perfil-top">
+          <span class="perfil-av">C</span>
+          <span><b>Caro Gómez</b><small>Moza · San Juan</small></span>
+          <span class="perfil-est">★★★★★</span>
+        </div>
+        <div class="perfil-fila"><span>🏪 Siciliano · 2 años</span><b class="ok">Avalada</b></div>
+        <div class="perfil-fila"><span>👋 128 clientes la calificaron</span><b>4,9</b></div>
+        <div class="perfil-fila"><span>📄 Historial verificado</span><b class="ok">✓</b></div>
+      </div>
+      <ul class="lista">
+        <li class="item"><span class="medallon">1</span><div><b>Registrás a tu equipo</b><p>Cada uno arma su historial.</p></div></li>
+        <li class="item"><span class="medallon">2</span><div><b>Les dejás tu aval</b><p>Revisado por abogados. No te compromete.</p></div></li>
+        <li class="item"><span class="medallon">3</span><div><b>Los clientes los califican</b><p>A la persona, no al local. Se la lleva a donde vaya.</p></div></li>
+      </ul>
+    </div>
+    <div class="intro intro-fin">
+      <div class="acciones">
+        <a class="btn btn-lima" href="https://aval.ar" target="_blank" rel="noopener">Conocé Aval.ar</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9b · LA PLATA, en su propio momento y con lo que incluye -->
+<section>
+  <div class="wrap">
+    <div class="intro">
+      <p class="eyebrow">Cuánto sale</p>
+      <h2>Un turnero suelto sale más que esto</h2>
+    </div>
+    <div class="precios">
+      <div class="pr">
+        <span class="pr-rot">Paquete listo</span>
+        <b class="pr-num">$40.000<small>/mes</small></b>
+        <span class="pr-sub">Andando esta semana</span>
+        <ul>
+          <li>Ventas, caja y stock</li>
+          <li>Turnos o comanda, según tu rubro</li>
+          <li>Reloj y sueldos</li>
+          <li>Gastos por foto con la IA</li>
+          <li>Tu página web</li>
+        </ul>
+        <span class="pr-nota">Primer mes bonificado · sin permanencia</span>
+      </div>
+      <div class="pr destacado">
+        <span class="pr-rot">A medida</span>
+        <b class="pr-num">Presupuesto<small> cerrado</small></b>
+        <span class="pr-sub">De 3 a 6 semanas</span>
+        <ul>
+          <li>Todo lo del paquete</li>
+          <li>Hecho para cómo trabajás vos</li>
+          <li>Lo que hoy hacés a mano, automático</li>
+          <li>Precio y fecha por escrito, antes de empezar</li>
+          <li>Instalación y capacitación incluidas</li>
+        </ul>
+        <span class="pr-nota">Se cotiza en la primera charla</span>
+      </div>
+      <div class="pr comparar">
+        <span class="pr-rot">Afuera</span>
+        <b class="pr-num afuera">~$50.000<small>/mes</small></b>
+        <span class="pr-sub">Y hace UNA cosa</span>
+        <p>Un turnero suelto, o un sistema de stock suelto, o el de sueldos
+        suelto. Cada uno con su abono y ninguno se habla con el otro.</p>
+      </div>
+    </div>
+    <p class="lead mt-3">Tener un sistema de este nivel dejó de ser caro. Eso también es la IA.</p>
+  </div>
+</section>
+
+<!-- 9c · LO QUE TE SACA EL MIEDO -->
+<section class="clara">
+  <div class="wrap">
+    <div class="intro">
+      <p class="eyebrow">Antes de que preguntes</p>
+      <h2>Lo que puede salir mal, por escrito</h2>
+    </div>
+    <div class="grid g3">
+      <div class="tarj rub"><span class="rub-ico">📅</span><b>Si nos pasamos de la fecha</b><p>El primer mes no lo pagás.</p></div>
+      <div class="tarj rub"><span class="rub-ico">🔓</span><b>Si te querés ir</b><p>Sin permanencia. Te vas cuando quieras.</p></div>
+      <div class="tarj rub"><span class="rub-ico">💾</span><b>Tus datos son tuyos</b><p>Te los llevás en Excel cuando los pidas.</p></div>
+      <div class="tarj rub"><span class="rub-ico">🎓</span><b>Si tu gente no sabe</b><p>Los capacitamos. Está incluido.</p></div>
+      <div class="tarj rub"><span class="rub-ico">🛠️</span><b>Si algo se rompe</b><p>Nos escribís y lo arreglamos nosotros.</p></div>
+      <div class="tarj rub"><span class="rub-ico">💬</span><b>Si tenés una duda</b><p>Hablás con quien lo hizo, no con un call center.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 9d · QUIÉN LO HACE -->
+<section class="oscura">
+  <div class="wrap">
+    <div class="firma">
+      <!-- Guardar la foto de estudio como demos/foto-pela.jpg (cuadrada o
+           apaisada, la recorta el CSS). Si no está, quedan las iniciales. -->
+      <span class="firma-foto"><img src="demos/foto-pela.jpg" alt="Víctor Pelá Martínez"
+        onerror="this.remove()"><em>VM</em></span>
+      <div class="firma-txt">
+        <p class="eyebrow">Quién te lo va a hacer</p>
+        <h2>Soy Víctor "Pelá" Martínez</h2>
+        <p class="lead">
+          Tengo un restaurante en San Juan y hace años uso inteligencia
+          artificial para producir. Primero fueron videos; hoy son los sistemas
+          que corren en mi propio negocio y en los de mis clientes.
+          <b>El que te va a atender soy yo.</b>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 · CÓMO TRABAJAMOS -->
+<section>
+  <div class="wrap">
+    <div class="intro">
+      <p class="eyebrow">Sin sorpresas</p>
+      <h2>Cómo trabajamos</h2>
+    </div>
+    <div class="linea-t">
+      <div class="hito"><span class="cuando">DÍA 1</span><span class="punto">💬</span><b>Charlamos</b><small>Gratis</small></div>
+      <div class="hito"><span class="cuando">DÍA 3</span><span class="punto">📝</span><b>Presupuesto cerrado</b><small>Con fecha</small></div>
+      <div class="hito"><span class="cuando">SEMANA 3</span><span class="punto">🚀</span><b>Andando</b><small>Y te enseñamos</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- 11 · CIERRE: el asistente entrevista y a nosotros nos llega el resumen -->
+<section class="oscura cierre" id="contacto">
+  <div class="wrap">
+    <div class="intro" style="margin-bottom:0">
+      <h2>Contale al asistente qué necesitás</h2>
+      <p class="lead">
+        Un par de preguntas, y te contactamos con el presupuesto en la mano.
+      </p>
+    </div>
+    <div class="chatwrap">
+      <div class="chat">
+        <div class="chat-hilo" id="chHilo"></div>
+        <div class="chat-chips" id="chChips"></div>
+        <div class="chat-envio" id="chEnvio">
+          <button id="chClip" title="Mandar fotos, planillas o PDFs">📎</button>
+          <input id="chTxt" placeholder="Contame de tu negocio…" autocomplete="off">
+          <button id="chBtn">Mandar</button>
+        </div>
+        <input type="file" id="chArchivos" multiple style="display:none"
+               accept=".jpg,.jpeg,.png,.webp,.pdf,.csv,.xls,.xlsx,.doc,.docx">
+        <div class="chat-fin" id="chFin">✔ Listo. Ya nos llegó tu resumen: te contactamos con el presupuesto armado.</div>
+      </div>
+      <p class="chat-nota">
+        Esta charla es la prueba de manejo: es la misma IA que va a trabajar adentro de tu sistema.<br>
+        <a class="wa-directo" href="https://wa.me/5492644123194">¿Preferís hablar conmigo? Escribime por WhatsApp →</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<script>
+/* El recepcionista: la MISMA edge function del entrevistador comercial
+   (entrevista-ia, tipo "sistemas") que ya entrevista prospectos, guarda la
+   charla y manda el resumen del analista por mail. Acá solo vive la cara. */
+(function(){
+  var FN  = "https://ysbqvxebkxwylmmzrsjj.supabase.co/functions/v1/entrevista-ia";
+  var ADJ = "https://ysbqvxebkxwylmmzrsjj.supabase.co/functions/v1/entrevista-adjunto";
+  var KEY = "sb_publishable_GsUGCK8H38vIRXUOP8WEpQ_qUFW8JVw";
+  var hilo = document.getElementById("chHilo"), chips = document.getElementById("chChips");
+  var txt = document.getElementById("chTxt"), btn = document.getElementById("chBtn");
+  var envio = document.getElementById("chEnvio"), fin = document.getElementById("chFin");
+  var clip = document.getElementById("chClip"), inputArch = document.getElementById("chArchivos");
+  var ocupado = false;
+  var MAX_MB = 15;
+
+  var sid;
+  try{
+    sid = localStorage.getItem("deleg_sid");
+    if(!sid){ sid = "deleg_" + Math.random().toString(36).slice(2) + Date.now().toString(36); localStorage.setItem("deleg_sid", sid); }
+  }catch(_){ sid = "deleg_" + Date.now(); }
+
+  var msjs = [];
+  try{ msjs = JSON.parse(sessionStorage.getItem("deleg_chat") || "[]"); }catch(_){}
+
+  function burb(quien, texto){
+    var d = document.createElement("div");
+    d.className = "burb " + (quien === "yo" ? "mia" : "suya");
+    var p = document.createElement("p"); p.textContent = texto; d.appendChild(p);
+    hilo.appendChild(d); hilo.scrollTop = hilo.scrollHeight;
+  }
+  function pensar(){
+    var d = document.createElement("div"); d.className = "pensando";
+    d.innerHTML = "<i></i><i></i><i></i>";
+    hilo.appendChild(d); hilo.scrollTop = hilo.scrollHeight; return d;
+  }
+  function ponerChips(sugs){
+    chips.innerHTML = "";
+    (sugs || []).slice(0,3).forEach(function(s){
+      var b = document.createElement("button");
+      b.className = "chat-chip"; b.textContent = s;
+      b.onclick = function(){ preguntar(s); };
+      chips.appendChild(b);
+    });
+  }
+  function guardar(){ try{ sessionStorage.setItem("deleg_chat", JSON.stringify(msjs)); }catch(_){} }
+  function terminar(){
+    envio.style.display = "none"; chips.innerHTML = ""; fin.style.display = "block";
+    try{ sessionStorage.setItem("deleg_chat_fin", "1"); }catch(_){}
+  }
+
+  function preguntar(texto, adjuntos){
+    texto = String(texto || "").trim();
+    if(ocupado || !texto) return;
+    ocupado = true; btn.disabled = true;
+    burb("yo", texto);
+    msjs.push({rol:"usuario", texto:texto});
+    guardar(); ponerChips([]);
+    var espera = pensar();
+    function listoTurno(){ ocupado = false; btn.disabled = false; txt.focus(); }
+    function intentar(n){
+      fetch(FN, {
+        method:"POST",
+        headers:{ "Content-Type":"application/json", "Authorization":"Bearer " + KEY, "apikey":KEY },
+        body: JSON.stringify({ sid:sid, tipo:"sistemas", nombre:"", puesto:"", marca:"respaldar", mensajes:msjs, adjuntos:(adjuntos || []) })
+      })
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if(d && d.reintentar && n < 3){ setTimeout(function(){ intentar(n+1); }, 1500); return; }
+        espera.remove();
+        var resp = (d && d.respuesta) ? d.respuesta : "Uy, me trabé un segundo. ¿Me repetís eso último?";
+        msjs.push({rol:"avi", texto:resp});
+        guardar(); burb("avi", resp);
+        if(d && d.listo){ terminar(); } else ponerChips(d && d.sugerencias);
+        listoTurno();
+      })
+      .catch(function(){
+        if(n < 3){ setTimeout(function(){ intentar(n+1); }, 1500); return; }
+        espera.remove();
+        burb("avi", "Se me cortó la conexión 😕 Probá de nuevo en un ratito, la charla queda guardada.");
+        listoTurno();
+      });
+    }
+    intentar(1);
+  }
+
+  btn.onclick = function(){ var v = txt.value; txt.value = ""; preguntar(v); };
+  txt.addEventListener("keydown", function(e){ if(e.key === "Enter"){ e.preventDefault(); btn.onclick(); } });
+
+  /* ── adjuntos: fotos, planillas, PDFs y Word. Se suben primero a la edge
+     entrevista-adjunto (bucket privado) y el turno viaja con los ids: las
+     fotos, PDFs y CSV la IA los mira en vivo. ── */
+  clip.onclick = function(){ if(!ocupado) inputArch.click(); };
+  inputArch.onchange = function(){
+    var lista = Array.prototype.slice.call(inputArch.files || []);
+    inputArch.value = "";
+    if(ocupado || !lista.length) return;
+    ocupado = true; btn.disabled = true; clip.disabled = true;
+    var aviso = document.createElement("div");
+    aviso.className = "burb suya";
+    aviso.innerHTML = "<p>⏳ Recibiendo " + (lista.length === 1 ? "el archivo…" : "los archivos…") + "</p>";
+    hilo.appendChild(aviso); hilo.scrollTop = hilo.scrollHeight;
+    var ids = [], nombres = [], fallaron = [], i = 0;
+    function fin_(){
+      aviso.remove();
+      ocupado = false; btn.disabled = false; clip.disabled = false;
+      if(fallaron.length) burb("avi", "No me llegó " + fallaron.join(", ") + " 😕 Probá de nuevo, o si pesa mucho sacale una foto a lo importante.");
+      if(!ids.length){ txt.focus(); return; }
+      var suyo = txt.value.trim(); txt.value = "";
+      preguntar("📎 " + nombres.join(", ") + (suyo ? "\n" + suyo : ""), ids);
+    }
+    function siguiente(){
+      if(i >= lista.length){ fin_(); return; }
+      var f = lista[i++];
+      if(!f.size || f.size > MAX_MB * 1024 * 1024){ fallaron.push(f.name + (f.size ? " (pesa más de " + MAX_MB + " MB)" : "")); siguiente(); return; }
+      var fd = new FormData();
+      fd.append("sid", sid); fd.append("file", f, f.name);
+      fetch(ADJ, { method:"POST", headers:{ "Authorization":"Bearer " + KEY, "apikey":KEY }, body:fd })
+        .then(function(r){ return r.json(); })
+        .then(function(d){
+          if(d && d.ok && d.id){ ids.push(d.id); nombres.push(d.archivo || f.name); }
+          else fallaron.push(f.name);
+          siguiente();
+        })
+        .catch(function(){ fallaron.push(f.name); siguiente(); });
+    }
+    siguiente();
+  };
+
+  // La apertura es enlatada (costo cero). Si había charla guardada, se repone.
+  if(msjs.length){
+    msjs.forEach(function(m){ burb(m.rol === "usuario" ? "yo" : "avi", m.texto); });
+    var listo = false;
+    try{ listo = sessionStorage.getItem("deleg_chat_fin") === "1"; }catch(_){}
+    if(listo) terminar();
+  } else {
+    burb("avi", "¡Hola! 👋 Contame qué negocio tenés y qué es lo que más tiempo te come todos los días. Y si tenés a mano la planilla que usás o una foto de tu cuaderno, mandámela con el clip 📎: con eso entiendo el doble.");
+    ponerChips(["Tengo un local y vendo", "Doy turnos o reservas", "Manejo gente o vehículos"]);
+  }
+})();
+</script>
+
+<footer>
+  <div class="wrap pie">
+    <p><b>respald.ar</b> · Soluciones informáticas</p>
+    <p>Por Víctor "Pelá" Martínez · <a href="https://aval.ar" target="_blank" rel="noopener">Creadores de Aval.ar</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

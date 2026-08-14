@@ -1,0 +1,19 @@
+# Reglas de caché de respald.ar
+# El HTML NO se cachea: así un cambio en la página se ve al instante,
+# igual que en aval.ar. Las imágenes SÍ, porque no cambian nunca y son
+# lo más pesado (las capturas de las demos y la foto).
+
+/*.html
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/demos/*
+  Cache-Control: public, max-age=2592000
+
+/marca/*
+  Cache-Control: public, max-age=2592000
+
+/og.png
+  Cache-Control: public, max-age=2592000

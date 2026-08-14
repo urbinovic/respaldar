@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Probá los sistemas · respald.ar</title>
+<meta name="description" content="Sistemas de verdad con datos de fantasía: stock, turnos con seña, reloj de fichaje y comanda. Tocalos, son de muestra.">
+<style>
+/* Mismo sistema que index.html: tokens, cajas con --caja-b (borde) o --caja
+   (sin borde), intros centradas, ejes en múltiplos de 24. */
+:root{
+  --tinta:#0f2a4a; --tinta-2:#16385f;
+  --lima:#c8ee3d; --lima-osc:#6f8c0e;
+  --papel:#ffffff; --papel-2:#eef2f7;
+  --gris:#586b7e; --gris-claro:#aabfd3; --linea:#dde5ed; --rojo:#c2453a;
+  --e1:8px; --e2:16px; --e3:24px; --e4:40px; --e5:72px;
+  --caja:24px; --caja-b:23px; --radio:16px;
+  --medallon:34px; --gap-medallon:14px;
+  --intro:76ch; --ancho:1120px;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--papel);color:var(--tinta);
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:var(--ancho);margin:0 auto;padding-inline:var(--e3)}
+h1,h2,h3{margin:0 0 var(--e2);line-height:1.14;letter-spacing:-.02em;text-wrap:balance}
+h1{font-size:clamp(28px,4vw,44px);font-weight:800}
+h3{font-size:17px;font-weight:700;margin-bottom:var(--e1)}
+p{margin:0 0 var(--e2);text-align:justify;hyphens:auto;text-wrap:pretty}
+p:last-child{margin-bottom:0}
+.eyebrow{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--lima);margin-bottom:var(--e2)}
+.lead{font-size:clamp(16px,1.8vw,19px);color:var(--gris-claro)}
+.intro{max-width:var(--intro);margin:0 auto;text-align:center}
+.intro p{text-align:center}
+
+header{position:sticky;top:0;z-index:50;background:var(--tinta);border-bottom:1px solid rgba(255,255,255,.12)}
+.barra{display:flex;align-items:center;justify-content:space-between;gap:var(--e2);height:64px}
+.marca{display:flex;align-items:center;gap:var(--gap-medallon);text-decoration:none;color:#fff}
+.marca-txt b{display:block;font-size:20px;font-weight:800;letter-spacing:-.03em;line-height:1.1}
+.marca-txt span{display:block;font-size:12px;color:var(--gris-claro);line-height:1.2}
+.btn{display:inline-block;background:var(--lima);color:#1e2b06;text-decoration:none;
+  padding:9px var(--e2);border-radius:999px;font-weight:700;font-size:14px;border:2px solid var(--lima);text-align:center;cursor:pointer}
+
+.hero{background:linear-gradient(180deg,var(--tinta) 0%,var(--tinta-2) 100%);color:#fff;padding-block:var(--e4)}
+.hero .intro{margin-bottom:0}
+
+/* pestañas */
+.tabs{display:flex;flex-wrap:wrap;gap:var(--e1);justify-content:center;margin-top:var(--e3)}
+.tab{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);color:#fff;
+  border-radius:999px;padding:11px var(--e3);font-weight:700;font-size:15px;cursor:pointer}
+.tab.act{background:var(--lima);border-color:var(--lima);color:#1e2b06}
+
+main{padding-block:var(--e4)}
+.panel{display:none}
+.panel.act{display:block}
+.panel-head{max-width:var(--intro);margin:0 auto var(--e3);text-align:center}
+.panel-head p{text-align:center;color:var(--gris)}
+
+.grid{display:grid;gap:var(--e2)}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+@media(max-width:900px){.g2,.g3{grid-template-columns:1fr}}
+
+.tarj{background:#fff;border:1px solid var(--linea);border-radius:var(--radio);padding:var(--caja-b);text-align:left}
+.tarj p{color:var(--gris);font-size:15px}
+
+/* controles compartidos */
+/* flex-wrap: en el celu el grupo de controles no entra al lado del nombre y,
+   sin wrap, desbordaba la tarjeta empujado por la palabra más larga de cada
+   fila (cuatro ejes distintos). Con wrap baja a su línea, al eje de la caja. */
+.fila{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--e1) var(--e2);
+  border-bottom:1px solid var(--linea);padding-block:10px}
+.fila:last-child{border-bottom:0}
+/* el grupo de controles de la derecha NO se encoge: si se encoge, cada fila
+   lo achica distinto según el largo del nombre y las etiquetas pierden columna */
+.fila > span:last-child{flex:0 0 auto}
+.fila b{font-size:15px}
+.fila small{display:block;color:var(--gris)}
+.mini{background:var(--tinta);color:#fff;border:0;border-radius:999px;padding:7px 14px;
+  font-weight:700;font-size:13px;cursor:pointer}
+.mini.lima{background:var(--lima);color:#1e2b06}
+.mini:disabled{background:var(--linea);color:var(--gris);cursor:not-allowed}
+/* ancho fijo: "5 en stock" y "Sin stock" miden distinto y cada etiqueta
+   arrancaba en su propio eje; fijas, forman columna con los botones */
+.pill{display:inline-block;border-radius:999px;padding:3px 10px;font-size:12.5px;font-weight:700;min-width:98px;text-align:center}
+.pill.ok{background:#e7f5cf;color:var(--lima-osc)}
+.pill.no{background:#fbe4e1;color:var(--rojo)}
+.aviso{background:var(--papel-2);border:1px solid var(--linea);border-radius:var(--radio);
+  padding:var(--caja-b);color:var(--gris);font-size:14.5px;margin-top:var(--e2);text-align:left}
+.aviso b{color:var(--tinta)}
+
+.chip{background:#fff;border:1px solid var(--linea);border-radius:999px;padding:9px var(--e2);
+  font-weight:700;font-size:14px;cursor:pointer}
+.chip.act{background:var(--tinta);border-color:var(--tinta);color:#fff}
+.chip:disabled{color:var(--gris-claro);text-decoration:line-through;cursor:not-allowed}
+.chips{display:flex;flex-wrap:wrap;gap:var(--e1);margin-bottom:var(--e2)}
+
+.reloj-num{font-size:clamp(38px,6vw,56px);font-weight:800;letter-spacing:-.02em;text-align:center;margin-bottom:var(--e2)}
+.pin{display:flex;gap:var(--e1);justify-content:center;margin-bottom:var(--e2)}
+.pin input{width:120px;text-align:center;font-size:22px;letter-spacing:.4em;font-weight:800;
+  border:1px solid var(--linea);border-radius:var(--radio);padding:10px 0 10px .4em;color:var(--tinta)}
+.centro{text-align:center}
+.centro p{text-align:center}
+
+.estrellas{font-size:26px;letter-spacing:.1em;cursor:pointer;user-select:none}
+.paso-tag{display:inline-block;background:var(--papel-2);border-radius:999px;padding:3px 12px;
+  font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--gris);margin-bottom:var(--e1)}
+.apagada{opacity:.45;pointer-events:none}
+
+footer{background:var(--tinta);color:var(--gris-claro);padding-block:var(--e4);font-size:14px}
+.pie{display:flex;flex-direction:column;align-items:center;gap:var(--e1);text-align:center}
+.pie p{margin:0;text-align:center}
+footer a{color:#e2ecf5}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap barra">
+    <a class="marca" href="index.html">
+      <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true">
+        <path d="M3 18.5 L11 26.5 L29 6.5" fill="none" stroke="#ffffff" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M20.5 6.5 L29 6.5 L29 15" fill="none" stroke="#c8ee3d" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="marca-txt"><b>respald.ar</b><span>Soluciones informáticas</span></span>
+    </a>
+    <a class="btn" href="index.html#contacto">Quiero el mío</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="intro">
+      <p class="eyebrow">Demos en vivo</p>
+      <h1>No te lo contamos. Tocalo.</h1>
+      <p class="lead">
+        Sistemas de verdad con datos de fantasía. Cargá, vendé, reservá y fichá
+        como si fueras el dueño. Nada de esto se guarda: es tu cancha de prueba.
+      </p>
+      <div class="tabs">
+        <button class="tab act" data-p="stock">🛍️ Stock</button>
+        <button class="tab" data-p="turnos">📅 Turnos con seña</button>
+        <button class="tab" data-p="reloj">⏰ Reloj de fichaje</button>
+        <button class="tab" data-p="comanda">🍝 Comanda</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main>
+  <div class="wrap">
+
+    <!-- ═══ STOCK ═══ -->
+    <div class="panel act" id="p-stock">
+      <div class="panel-head">
+        <h2>El stock que se cuida solo</h2>
+        <p>Vendé y recibí mercadería. Fijate lo que pasa cuando un talle llega a cero.</p>
+      </div>
+      <div class="grid g2">
+        <div class="tarj">
+          <h3>Depósito</h3>
+          <div id="stkFilas"></div>
+        </div>
+        <div>
+          <div class="tarj">
+            <h3>Lo que ve el negocio</h3>
+            <div class="fila"><b>Valor parado en depósito</b><b id="stkValor"></b></div>
+            <div class="fila"><b>Vendido en la demo</b><b id="stkVendido">$0</b></div>
+          </div>
+          <div class="aviso" id="stkAviso"><b>Probá:</b> vendé la última Remera talle L y mirá qué hace la web con ese talle.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ TURNOS ═══ -->
+    <div class="panel" id="p-turnos">
+      <div class="panel-head">
+        <h2>La reserva que se paga sola</h2>
+        <p>Elegí día y hora, pagá la seña de mentira y mirá lo que recibe el cliente.</p>
+      </div>
+      <div class="grid g2">
+        <div class="tarj" id="tnPaso1">
+          <span class="paso-tag">Paso 1 · Elegir</span>
+          <h3>Mesa para dos</h3>
+          <div class="chips" id="tnDias"></div>
+          <div class="chips" id="tnHoras"></div>
+          <div class="aviso" id="tnResumen">Elegí un día y una hora.</div>
+          <div class="centro" style="margin-top:var(--e2)">
+            <button class="mini lima" id="tnPagar" disabled>Pagar la seña · $5.000 (Mercado Pago)</button>
+          </div>
+        </div>
+        <div class="tarj apagada" id="tnPaso2">
+          <span class="paso-tag">Paso 2 · Lo que le llega al cliente</span>
+          <h3 id="tnOkTit">Esperando la seña…</h3>
+          <div id="tnOk"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ RELOJ ═══ -->
+    <div class="panel" id="p-reloj">
+      <div class="panel-head">
+        <h2>El reloj que arma los sueldos</h2>
+        <p>Cada uno marca desde su celular con su clave. Marcá la entrada, marcá la salida, y mirá la cuenta.</p>
+      </div>
+      <div class="grid g2">
+        <div class="tarj centro">
+          <span class="paso-tag">El celular del empleado</span>
+          <div class="reloj-num" id="rlHora">--:--</div>
+          <div class="pin"><input id="rlPin" inputmode="numeric" maxlength="4" placeholder="····" aria-label="Clave"></div>
+          <button class="mini lima" id="rlMarcar">Marcar</button>
+          <p style="color:var(--gris);font-size:13.5px;margin-top:var(--e2)">Probá con la clave <b>2024</b> (es Caro, de la demo)</p>
+        </div>
+        <div>
+          <div class="tarj">
+            <h3>Lo que ve el dueño</h3>
+            <div id="rlRegistros"><div class="fila"><small>Todavía no marcó nadie.</small></div></div>
+          </div>
+          <div class="aviso" id="rlAviso"><b>El truco:</b> con las horas marcadas, el sueldo de la semana se calcula solo. Nada de cuadernos.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ COMANDA ═══ -->
+    <div class="panel" id="p-comanda">
+      <div class="panel-head">
+        <h2>De la mesa a la cocina, y la propina es un puntaje</h2>
+        <p>Tomá el pedido como el mozo, despachalo como la cocina, y calificá como el cliente.</p>
+      </div>
+      <div class="grid g3">
+        <div class="tarj" id="cmPaso1">
+          <span class="paso-tag">1 · El mozo, en su celu</span>
+          <h3>Mesa 4</h3>
+          <div id="cmCarta"></div>
+          <div class="centro" style="margin-top:var(--e2)">
+            <button class="mini lima" id="cmMandar" disabled>Mandar a cocina</button>
+          </div>
+        </div>
+        <div class="tarj apagada" id="cmPaso2">
+          <span class="paso-tag">2 · La pantalla de cocina</span>
+          <h3 id="cmCocinaTit">Sin pedidos</h3>
+          <div id="cmCocina"></div>
+        </div>
+        <div class="tarj apagada" id="cmPaso3">
+          <span class="paso-tag">3 · El cliente, al pagar</span>
+          <h3 id="cmCalTit">Esperando el plato…</h3>
+          <div id="cmCal"></div>
+        </div>
+      </div>
+      <div class="aviso"><b>Fijate el detalle:</b> la calificación no va al restorán. Va al perfil del mozo y del cocinero, y se la llevan a donde vayan. Eso es Aval.ar, y es gratis.</div>
+    </div>
+
+    <div class="intro" style="margin-top:var(--e4)">
+      <p class="lead" style="color:var(--gris)">
+        ¿Te imaginaste el tuyo mientras jugabas? De eso vivimos.
+      </p>
+      <a class="btn" style="padding:13px var(--e3);font-size:15px" href="index.html#contacto">Quiero uno así para mi negocio</a>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap pie">
+    <p><b>respald.ar</b> · Soluciones informáticas</p>
+    <p>Todo lo que tocaste acá es de muestra. El de verdad se hace para vos.</p>
+  </div>
+</footer>
+
+<script>
+/* ── pestañas ── */
+document.querySelectorAll('.tab').forEach(t => t.onclick = () => {
+  document.querySelectorAll('.tab').forEach(x => x.classList.toggle('act', x === t));
+  document.querySelectorAll('.panel').forEach(p => p.classList.toggle('act', p.id === 'p-' + t.dataset.p));
+});
+const $ = id => document.getElementById(id);
+const plata = n => '$' + n.toLocaleString('es-AR');
+
+/* ── STOCK ── */
+const STK = [
+  {prod:'Remera básica', talle:'M', stock:5, precio:18000},
+  {prod:'Remera básica', talle:'L', stock:1, precio:18000},
+  {prod:'Buzo canguro',  talle:'M', stock:4, precio:42000},
+  {prod:'Pantalón cargo',talle:'40', stock:2, precio:39000},
+];
+let stkVendido = 0;
+function stkPintar(msj){
+  $('stkFilas').innerHTML = STK.map((f,i) => `
+    <div class="fila">
+      <span><b>${f.prod} · ${f.talle}</b><small>${plata(f.precio)}</small></span>
+      <span>${f.stock > 0
+        ? `<span class="pill ok">${f.stock} en stock</span>`
+        : `<span class="pill no">Sin stock</span>`}
+        <button class="mini" onclick="stkVender(${i})" ${f.stock === 0 ? 'disabled' : ''}>Vender</button>
+        <button class="mini" onclick="stkRecibir(${i})">+5</button>
+      </span>
+    </div>`).join('');
+  $('stkValor').textContent = plata(STK.reduce((a,f) => a + f.stock * f.precio, 0));
+  $('stkVendido').textContent = plata(stkVendido);
+  if (msj) $('stkAviso').innerHTML = msj;
+}
+window.stkVender = i => {
+  STK[i].stock--; stkVendido += STK[i].precio;
+  stkPintar(STK[i].stock === 0
+    ? `<b>${STK[i].prod} talle ${STK[i].talle} llegó a cero.</b> En la tienda online ese talle ya no se puede elegir: nadie compra lo que no tenés. Eso es no vender de más.`
+    : `Vendido. Quedan ${STK[i].stock} de ${STK[i].prod} ${STK[i].talle}, y la web ya lo descontó.`);
+};
+window.stkRecibir = i => {
+  STK[i].stock += 5;
+  stkPintar(`Entraron 5 de ${STK[i].prod} ${STK[i].talle}. Acá el sistema de verdad te pregunta el costo, para avisarte si el proveedor te subió el precio.`);
+};
+stkPintar();
+
+/* ── TURNOS ── */
+const TN = {dias:['Hoy','Mañana','Sábado'], horas:[{h:'20:00',c:2},{h:'20:30',c:1},{h:'21:00',c:0},{h:'21:30',c:3}], dia:null, hora:null};
+function tnPintar(){
+  $('tnDias').innerHTML = TN.dias.map(d =>
+    `<button class="chip ${TN.dia === d ? 'act' : ''}" onclick="tnDia('${d}')">${d}</button>`).join('');
+  $('tnHoras').innerHTML = TN.horas.map((o,i) =>
+    `<button class="chip ${TN.hora === i ? 'act' : ''}" onclick="tnHora(${i})" ${o.c === 0 ? 'disabled' : ''}>${o.h}</button>`).join('');
+  const listo = TN.dia !== null && TN.hora !== null;
+  $('tnResumen').innerHTML = listo
+    ? `Mesa para dos · <b>${TN.dia} ${TN.horas[TN.hora].h}</b> · quedan ${TN.horas[TN.hora].c} lugares. La seña frena al que reserva y no viene.`
+    : 'Elegí un día y una hora. El de las 21:00 ya está lleno: el sistema no sobrevende.';
+  $('tnPagar').disabled = !listo;
+}
+window.tnDia = d => { TN.dia = d; tnPintar(); };
+window.tnHora = i => { TN.hora = i; tnPintar(); };
+$('tnPagar').onclick = () => {
+  $('tnPagar').disabled = true;
+  $('tnPagar').textContent = 'Procesando en Mercado Pago…';
+  setTimeout(() => {
+    TN.horas[TN.hora].c--;
+    $('tnPaso2').classList.remove('apagada');
+    $('tnOkTit').textContent = '✅ Reserva confirmada';
+    $('tnOk').innerHTML = `
+      <div class="fila"><span><b>${TN.dia} · ${TN.horas[TN.hora].h} · 2 personas</b><small>Seña $5.000 pagada por Mercado Pago</small></span></div>
+      <div class="fila"><span><b>Código DLG-483</b><small>Le llegó por mail con un QR. En la puerta lo escanean y listo.</small></span></div>
+      <div class="fila"><span><small>Si cancela a tiempo, la seña se devuelve sola. Si no viene, queda para el local. Vos no perseguís a nadie.</small></span></div>`;
+    $('tnPagar').textContent = 'Seña pagada ✓';
+    tnPintar(); $('tnPagar').disabled = true;
+  }, 900);
+};
+tnPintar();
+
+/* ── RELOJ ── */
+let rlEntrada = null;
+setInterval(() => {
+  const d = new Date();
+  $('rlHora').textContent = String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0') + ':' + String(d.getSeconds()).padStart(2,'0');
+}, 500);
+$('rlMarcar').onclick = () => {
+  if ($('rlPin').value !== '2024'){
+    $('rlAviso').innerHTML = '<b>Clave incorrecta.</b> Cada empleado tiene la suya: nadie marca por otro. Probá con 2024.';
+    return;
+  }
+  const d = new Date();
+  const hhmm = String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0');
+  if (!rlEntrada){
+    rlEntrada = d;
+    $('rlRegistros').innerHTML = `<div class="fila"><span><b>Caro Gómez</b><small>🟢 Entrada ${hhmm}</small></span><span class="pill ok">Trabajando</span></div>`;
+    $('rlAviso').innerHTML = '<b>Entrada marcada.</b> Ahora volvé a marcar con la misma clave: esa va a ser la salida.';
+  } else {
+    const min = Math.max(1, Math.round((d - rlEntrada) / 60000));
+    const horas = 8 * 60 + 24;   /* la demo le acredita un turno completo */
+    const sueldo = Math.round(horas / 60 * 3500);
+    rlEntrada = null;
+    $('rlRegistros').innerHTML = `
+      <div class="fila"><span><b>Caro Gómez</b><small>🟢 Entrada 09:02 · 🔴 Salida 17:26</small></span><span class="pill ok">8 h 24 min</span></div>
+      <div class="fila"><span><b>Va sumando esta semana</b><small>a $3.500 la hora</small></span><b>${plata(sueldo)}</b></div>`;
+    $('rlAviso').innerHTML = `<b>Salida marcada${min < 3 ? ' (en la demo el turno vale 8 h 24 min)' : ''}.</b> Fin de semana: el cierre junta las horas de todos y el sueldo sale solo, con adelantos y feriados descontados.`;
+  }
+  $('rlPin').value = '';
+};
+
+/* ── COMANDA ── */
+const CM = {carta:[{n:'Sorrentinos',p:12500,c:0},{n:'Milanesa napolitana',p:11000,c:0},{n:'Agua con gas',p:2000,c:0}], estado:0};
+function cmPintar(){
+  $('cmCarta').innerHTML = CM.carta.map((it,i) => `
+    <div class="fila">
+      <span><b>${it.n}</b><small>${plata(it.p)}</small></span>
+      <span><button class="mini" onclick="cmMenos(${i})" ${it.c === 0 ? 'disabled' : ''}>−</button>
+      <b> ${it.c} </b>
+      <button class="mini" onclick="cmMas(${i})">+</button></span>
+    </div>`).join('');
+  $('cmMandar').disabled = CM.carta.every(it => it.c === 0) || CM.estado > 0;
+}
+window.cmMas = i => { if (CM.estado === 0){ CM.carta[i].c++; cmPintar(); } };
+window.cmMenos = i => { if (CM.estado === 0){ CM.carta[i].c--; cmPintar(); } };
+$('cmMandar').onclick = () => {
+  CM.estado = 1;
+  const items = CM.carta.filter(it => it.c > 0);
+  $('cmPaso2').classList.remove('apagada');
+  $('cmCocinaTit').textContent = '🔔 Mesa 4';
+  $('cmCocina').innerHTML = items.map(it => `<div class="fila"><b>${it.c} × ${it.n}</b></div>`).join('') +
+    `<div class="centro" style="margin-top:var(--e2)"><button class="mini lima" id="cmListo">✓ Listo, salió</button></div>`;
+  $('cmListo').onclick = () => {
+    CM.estado = 2;
+    $('cmCocinaTit').textContent = '✅ Despachado';
+    $('cmListo').disabled = true;
+    $('cmPaso3').classList.remove('apagada');
+    $('cmCalTit').textContent = 'Con la cuenta, llega esto';
+    $('cmCal').innerHTML = `
+      <div class="fila"><span><b>¿Cómo te atendió Caro?</b><small>moza</small></span></div>
+      <div class="estrellas centro" data-q="mozo">☆☆☆☆☆</div>
+      <div class="fila"><span><b>¿Qué tal la cocina de Tito?</b><small>cocinero</small></span></div>
+      <div class="estrellas centro" data-q="coci">☆☆☆☆☆</div>
+      <div id="cmGracias"></div>`;
+    document.querySelectorAll('.estrellas').forEach(e => e.onclick = ev => {
+      e.textContent = '★★★★★';
+      e.style.color = '#e8a516';
+      $('cmGracias').innerHTML = `<div class="aviso" style="margin-top:var(--e2)"><b>Y acá está la gracia:</b> esas estrellas van al historial de Caro y de Tito, no a una reseña del local. Su buen laburo queda registrado para siempre.</div>`;
+    });
+  };
+  cmPintar();
+};
+cmPintar();
+</script>
+</body>
+</html>

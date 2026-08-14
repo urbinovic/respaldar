@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Manual de marca · respald.ar</title>
+<style>
+:root{
+  --tinta:#0f2a4a; --tinta-2:#16385f;
+  --lima:#c8ee3d; --lima-osc:#6f8c0e;
+  --papel:#ffffff; --papel-2:#eef2f7;
+  --gris:#586b7e; --gris-claro:#aabfd3; --linea:#dde5ed; --rojo:#c2453a;
+  --e1:8px; --e2:16px; --e3:24px; --e4:40px; --e5:72px;
+  --caja:24px; --caja-b:23px; --radio:16px;
+  --intro:76ch; --ancho:960px;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--papel);color:var(--tinta);
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:var(--ancho);margin:0 auto;padding-inline:var(--e3)}
+h1,h2,h3{margin:0 0 var(--e2);line-height:1.14;letter-spacing:-.02em;text-wrap:balance}
+h1{font-size:clamp(28px,4vw,44px);font-weight:800}
+h2{font-size:clamp(22px,3vw,30px);font-weight:800}
+h3{font-size:17px;font-weight:700;margin-bottom:var(--e1)}
+p{margin:0 0 var(--e2);text-align:justify;hyphens:auto;text-wrap:pretty}
+p:last-child{margin-bottom:0}
+.intro{max-width:var(--intro);margin:0 auto;text-align:center}
+.intro p{text-align:center}
+.hero{background:linear-gradient(180deg,var(--tinta),var(--tinta-2));color:#fff;padding-block:var(--e4)}
+.hero p{color:var(--gris-claro)}
+section{padding-block:var(--e4)}
+section:nth-child(even){background:var(--papel-2)}
+.grid{display:grid;gap:var(--e2)}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:800px){.g2,.g3,.g4{grid-template-columns:1fr}}
+.tarj{background:#fff;border:1px solid var(--linea);border-radius:var(--radio);padding:var(--caja-b);text-align:left}
+.tarj p{color:var(--gris);font-size:15px}
+.muestra{border:1px solid var(--linea);border-radius:var(--radio);padding:var(--e4);display:grid;place-items:center}
+.muestra.oscura{background:var(--tinta)}
+.sw{border-radius:var(--radio);padding:var(--caja);color:#fff;min-height:110px;display:flex;flex-direction:column;justify-content:space-between}
+.sw b{font-size:15px}
+.sw code{font-size:13px;opacity:.85}
+.si{color:var(--lima-osc);font-weight:800}
+.no{color:var(--rojo);font-weight:800}
+ul{margin:0 0 var(--e2);padding-left:20px;text-align:left}
+li{margin-bottom:6px}
+code{background:var(--papel-2);border-radius:6px;padding:1px 6px}
+.frase{background:var(--tinta);color:#fff;border-radius:var(--radio);padding:var(--caja);text-align:center;font-size:19px;font-weight:700}
+.frase small{display:block;color:var(--gris-claro);font-weight:400;font-size:14px;margin-top:var(--e1)}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap intro">
+    <h1>Manual de marca</h1>
+    <p>respald.ar · Soluciones informáticas. Cómo se ve, cómo habla y cómo se arma cualquier cosa que lleve la marca.</p>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <h2>1 · El logo</h2>
+    <p>El símbolo es <b>un tilde que sigue de largo y se convierte en flecha hacia
+    arriba</b>: la tarea quedó hecha y el negocio sube. Delegar y crecer en un
+    solo trazo. Se dibuja siempre con dos colores: el trazo principal en tinta
+    (o blanco sobre fondo oscuro) y la flecha SIEMPRE en lima.</p>
+    <div class="grid g2">
+      <div class="muestra"><img src="logo-horizontal.svg" alt="Logo sobre claro" style="max-width:300px;width:100%"></div>
+      <div class="muestra oscura"><img src="logo-horizontal-oscuro.svg" alt="Logo sobre oscuro" style="max-width:300px;width:100%"></div>
+    </div>
+    <div class="grid g2" style="margin-top:var(--e2)">
+      <div class="tarj">
+        <h3><span class="si">Sí</span></h3>
+        <ul>
+          <li>Isotipo solo para favicon, foto de perfil de WhatsApp y redes.</li>
+          <li>Versión horizontal para la web, mails y facturas.</li>
+          <li>Aire alrededor: como mínimo, el alto del tilde.</li>
+        </ul>
+      </div>
+      <div class="tarj">
+        <h3><span class="no">No</span></h3>
+        <ul>
+          <li>No rotarlo, estirarlo ni ponerle sombra.</li>
+          <li>No cambiar el lima de la flecha por otro color.</li>
+          <li>No apoyarlo sobre fotos con ruido: siempre sobre tinta o blanco.</li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin-top:var(--e2)">Archivos: <code>marca/isotipo.svg</code> ·
+    <code>marca/logo-horizontal.svg</code> · <code>marca/logo-horizontal-oscuro.svg</code>.
+    Son SVG: se agrandan a cualquier tamaño sin perder calidad, y de ahí se
+    exportan los PNG que hagan falta.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>2 · Los colores</h2>
+    <p>Dos protagonistas y sus acompañantes. La regla: <b>el lima es un acento,
+    nunca un fondo de página</b>. Va en botones, la flecha del logo y detalles.
+    Las páginas abren con tinta, nunca pálidas.</p>
+    <div class="grid g4">
+      <div class="sw" style="background:#0f2a4a"><b>Tinta</b><code>#0F2A4A</code></div>
+      <div class="sw" style="background:#16385f"><b>Tinta 2 (degradé)</b><code>#16385F</code></div>
+      <div class="sw" style="background:#c8ee3d;color:#1e2b06"><b>Lima</b><code>#C8EE3D</code></div>
+      <div class="sw" style="background:#6f8c0e"><b>Lima oscuro (texto)</b><code>#6F8C0E</code></div>
+      <div class="sw" style="background:#eef2f7;color:#0f2a4a;border:1px solid #dde5ed"><b>Papel 2 (franjas)</b><code>#EEF2F7</code></div>
+      <div class="sw" style="background:#586b7e"><b>Gris (texto)</b><code>#586B7E</code></div>
+      <div class="sw" style="background:#aabfd3;color:#0f2a4a"><b>Gris claro (s/ oscuro)</b><code>#AABFD3</code></div>
+      <div class="sw" style="background:#c2453a"><b>Rojo (solo alertas)</b><code>#C2453A</code></div>
+    </div>
+    <p style="margin-top:var(--e2)">Sobre tinta: texto blanco o gris claro, botón lima.
+    Sobre blanco: texto tinta, gris para lo secundario. El texto sobre lima es
+    siempre <code>#1E2B06</code>, nunca blanco.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>3 · La letra</h2>
+    <p>Tipografía del sistema (<code>system-ui</code>): carga al instante y se ve
+    nativa en cada aparato. Títulos en <b>peso 800</b> con espaciado apretado
+    (−0.02em). Texto corrido en peso normal.</p>
+    <ul>
+      <li><b>Párrafos justificados</b>, con <code>hyphens:auto</code>. Los <b>títulos nunca</b> se justifican.</li>
+      <li>Los bloques de presentación (título + bajada) van <b>centrados</b> y anchos.</li>
+      <li>Lo alineado a la izquierda vive solo adentro de tarjetas y listas.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>4 · La voz</h2>
+    <div class="grid g2">
+      <div class="tarj">
+        <h3><span class="si">Así habla Respaldar</span></h3>
+        <ul>
+          <li>Voseo, directo, argentino: "contanos", "mirá", "tocalo".</li>
+          <li>Frases cortas. El dato concreto antes que el adjetivo.</li>
+          <li>Le habla al dueño en su idioma, nunca en jerga técnica.</li>
+          <li>La IA se nota en lo que hace, no se declama.</li>
+        </ul>
+      </div>
+      <div class="tarj">
+        <h3><span class="no">Así no</span></h3>
+        <ul>
+          <li>Nada de guiones largos en ningún texto.</li>
+          <li>Nada de "soluciones integrales", "sinergia", "líder en".</li>
+          <li>No prometer como hecho lo que no corre: lo construible se vende como "te lo armamos".</li>
+          <li>El cliente califica a la persona que lo atendió, nunca al local.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="grid g2" style="margin-top:var(--e2)">
+      <div class="frase">Delegar no es perder el control. Es tenerlo por primera vez.<small>La frase madre. Va en el hero y en los anuncios.</small></div>
+      <div class="frase">Menos tareas. Más decisiones.<small>La firma corta. Va bajo el logo y en la papelería.</small></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>5 · La composición</h2>
+    <ul>
+      <li><b>La página abre con color</b> (tinta en degradé). Nunca una portada pálida toda blanca.</li>
+      <li><b>Franjas alternadas</b>: tinta, blanco, gris papel. El lima solo como acento.</li>
+      <li><b>Escala de espacios cerrada</b>: 8 · 16 · 24 · 40 · 72. Ningún número inventado.</li>
+      <li><b>Un solo padding de caja</b> (24), y 23 en las cajas con borde de 1px para compensarlo.</li>
+      <li><b>Verificación</b>: se miden los ejes izquierdos en el DOM a 1280 y 375 de ancho. Dos ejes a menos de 10px son un error. Bien hecho, caen en múltiplos de 24.</li>
+    </ul>
+  </div>
+</section>
+
+</body>
+</html>
