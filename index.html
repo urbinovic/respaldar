@@ -18,7 +18,13 @@
      carácter, no es la letra de Windows) y Manrope en el texto (redonda y
      legible). Si Google Fonts no responde, cae a la del sistema y la página
      sigue viéndose bien. -->
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<!-- El isotipo de marca. El PNG va PRIMERO y el .svg viejo ya no se
+     referencia: dejarlo declarado hacía que el navegador prefiriera el
+     vectorial y siguiera mostrando el logo anterior. -->
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon-180x180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -106,12 +112,14 @@ p:last-child{margin-bottom:0}
 .mt-4{margin-top:var(--e4)}
 
 /* ── barra: oscura, atada al hero ───────────────────────────── */
-header{position:sticky;top:0;z-index:50;background:var(--tinta);border-bottom:1px solid rgba(255,255,255,.12)}
+/* Header CLARO: el logo de marca lleva el nombre en azul noche, así que
+   sobre el tinta no se veía. Es además para lo que está hecho (el manual
+   de los assets manda la versión transparente a encabezados). */
+header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--linea)}
 .barra{display:flex;align-items:center;justify-content:space-between;gap:var(--e2);height:64px}
-.marca{display:flex;align-items:center;gap:var(--gap-medallon);text-decoration:none;color:#fff}
-.marca-txt b{display:block;font-size:21px;font-weight:800;letter-spacing:-.035em;line-height:1.1;
-  font-family:'Bricolage Grotesque',Manrope,system-ui,sans-serif}
-.marca-txt span{display:block;font-size:12px;color:var(--gris-claro);line-height:1.2}
+.marca{display:flex;align-items:center;text-decoration:none;color:var(--tinta)}
+.marca img{display:block;height:34px;width:auto}
+@media(max-width:520px){.marca img{height:28px}}
 
 .btn{
   display:inline-block;background:#fff;color:var(--tinta);text-decoration:none;
@@ -127,7 +135,8 @@ header{position:sticky;top:0;z-index:50;background:var(--tinta);border-bottom:1p
 .btn-borde-t{background:transparent;color:var(--tinta);border-color:var(--tinta)}
 .btn-chico{padding:9px var(--e2);font-size:14px}
 .barra-der{display:flex;gap:var(--e2);align-items:center}
-.lnk{color:#fff;font-weight:700;font-size:14.5px;text-decoration:none;opacity:.92}
+.lnk{color:var(--tinta);font-weight:700;font-size:14.5px;text-decoration:none}
+.lnk:hover{color:var(--calido-osc)}
 .acciones{display:flex;flex-wrap:wrap;gap:var(--e2);margin-top:var(--e3);align-items:center}
 
 /* ── franjas ────────────────────────────────────────────────── */
@@ -668,16 +677,10 @@ footer b{color:#fff}
 
 <header>
   <div class="wrap barra">
-    <a class="marca" href="#">
-      <!-- las dos capas: la de atrás respalda a la de adelante -->
-      <svg width="36" height="36" viewBox="0 0 100 100" aria-hidden="true">
-        <rect x="17" y="14" width="55" height="55" rx="12" fill="#ffffff" transform="rotate(-7 44.5 41.5)"/>
-        <rect x="29" y="31" width="55" height="55" rx="12" fill="#ff8a3d" transform="rotate(-3 56.5 58.5)"/>
-      </svg>
-      <span class="marca-txt">
-        <b>respald.ar</b>
-        <span>Soluciones informáticas</span>
-      </span>
+    <a class="marca" href="#" aria-label="respald.ar, soluciones informáticas">
+      <img src="marca/logo-horizontal-transparent.png"
+           srcset="marca/logo-horizontal-300w.png 300w, marca/logo-horizontal-600w.png 600w"
+           sizes="200px" width="600" height="117" alt="respald.ar">
     </a>
     <span class="barra-der">
       <a class="lnk" href="#demos">Demos en vivo</a>
