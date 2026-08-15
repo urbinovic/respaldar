@@ -59,6 +59,14 @@
   --gris-claro:#aabfd3;
   --linea:#dde5ed;
   --rojo:#c2453a;
+  /* Los fondos suaves y el texto sobre lima estaban sueltos por todo el
+     archivo (un verde acá, un rosa allá, un dorado en las estrellas) y de
+     lejos la página parecía de cinco colores. Son DERIVADOS de los tres
+     de arriba, nada nuevo: si no sale de acá, no va. */
+  --lima-txt:#1e2b06;
+  --lima-suave:#e7f5cf;
+  --calido-suave:#ffe8d6;
+  --rojo-suave:#fbe4e1;
 
   --e1:8px;
   --e2:16px;
@@ -183,7 +191,7 @@ section{padding-block:var(--e5)}
 .item{display:flex;gap:var(--gap-medallon);align-items:flex-start;text-align:left}
 .medallon{
   flex:0 0 var(--medallon);width:var(--medallon);height:var(--medallon);border-radius:50%;
-  display:grid;place-items:center;background:var(--lima);color:#1e2b06;font-weight:800;font-size:15px
+  display:grid;place-items:center;background:var(--lima);color:var(--lima-txt);font-weight:800;font-size:15px
 }
 .medallon svg{width:16px;height:16px}
 .item b{display:block;font-size:16px;line-height:1.35}
@@ -213,7 +221,7 @@ ul.lista li,ul.lista li b,.mod,.mod b,.hito,.hito b,.perfil,.perfil b,
       box-shadow:0 1px 1px rgba(0,0,0,.06);color:var(--tinta)}
 @media(max-width:900px){.burb{width:100%}}
 .burb p{text-align:left;font-size:14.5px}
-.mia{background:#dcf3c8;margin-left:auto;border-bottom-right-radius:4px}
+.mia{background:var(--lima-suave);margin-left:auto;border-bottom-right-radius:4px}
 .suya{background:#fff;border-bottom-left-radius:4px}
 .suya small{color:var(--gris)}
 .foto-boleta{background:linear-gradient(160deg,#c9d4e0,#eef2f6);border-radius:10px;height:96px;
@@ -239,7 +247,7 @@ ul.lista li,ul.lista li b,.mod,.mod b,.hito,.hito b,.perfil,.perfil b,
 .snap .b{border-radius:10px;padding:10px var(--caja);font-size:13.5px;line-height:1.45;margin-bottom:6px;
   box-shadow:0 1px 1px rgba(0,0,0,.05);color:var(--tinta);text-align:left;width:88%}
 .snap .b:last-child{margin-bottom:0}
-.snap .b.v{background:#dcf3c8;margin-left:auto;border-bottom-right-radius:3px}
+.snap .b.v{background:var(--lima-suave);margin-left:auto;border-bottom-right-radius:3px}
 .snap .b.w{background:#fff;margin-right:auto;border-bottom-left-radius:3px}
 .snap .b small{color:var(--gris)}
 .snap.mail{background:#fff}
@@ -282,7 +290,7 @@ ul.lista li,ul.lista li b,.mod,.mod b,.hito,.hito b,.perfil,.perfil b,
 @media(max-width:760px){.firma{flex-direction:column;gap:var(--e3);text-align:center}
   .firma-txt p{text-align:center}}
 .firma-foto{flex:0 0 156px;width:156px;height:156px;border-radius:50%;background:var(--lima);
-  color:#1e2b06;display:grid;place-items:center;font-size:50px;font-weight:800;letter-spacing:-.02em;
+  color:var(--lima-txt);display:grid;place-items:center;font-size:50px;font-weight:800;letter-spacing:-.02em;
   overflow:hidden;position:relative}
 /* la foto tapa las iniciales cuando existe. El archivo ya viene recortado en
    cuadrado sobre la cara (440x440), así que acá va centrada y nada más. */
@@ -410,11 +418,11 @@ ul.lista li,ul.lista li b,.mod,.mod b,.hito,.hito b,.perfil,.perfil b,
 /* ── perfil del trabajador: la reputación se VE ─────────────── */
 .perfil{background:#fff;border:1px solid var(--linea);border-radius:var(--radio);padding:var(--caja-b);text-align:left}
 .perfil-top{display:flex;align-items:center;gap:var(--gap-medallon);padding-bottom:12px;border-bottom:1px solid var(--linea)}
-.perfil-av{width:var(--medallon);height:var(--medallon);border-radius:50%;background:var(--lima);color:#1e2b06;
+.perfil-av{width:var(--medallon);height:var(--medallon);border-radius:50%;background:var(--lima);color:var(--lima-txt);
   display:grid;place-items:center;font-weight:800;flex:0 0 var(--medallon)}
 .perfil-top b{display:block;font-size:16px;color:var(--tinta)}
 .perfil-top small{color:var(--gris);font-size:12.5px}
-.perfil-est{margin-left:auto;color:#e8a516;font-size:15px;letter-spacing:1px}
+.perfil-est{margin-left:auto;color:var(--calido);font-size:15px;letter-spacing:1px}
 .perfil-fila{display:flex;justify-content:space-between;align-items:center;gap:var(--e2);
   padding:11px 0;border-bottom:1px dashed var(--linea);font-size:14px;color:var(--gris)}
 .perfil-fila:last-child{border-bottom:0;padding-bottom:0}
@@ -426,7 +434,7 @@ ul.lista li,ul.lista li b,.mod,.mod b,.hito,.hito b,.perfil,.perfil b,
    oscuro propio, así que se montan como tarjetas cuadradas: sobre la franja
    clara quedan como sellos, no como manchas. */
 .logos{display:flex;flex-wrap:wrap;gap:var(--e2);justify-content:center;align-items:stretch;margin-top:var(--e3);text-align:center}
-.lg{width:132px;height:132px;border-radius:var(--radio);overflow:hidden;background:#231f1c;
+.lg{width:132px;height:132px;border-radius:var(--radio);overflow:hidden;background:var(--papel-2);
   display:grid;place-items:center;box-shadow:0 6px 18px rgba(15,42,74,.10)}
 .lg img{width:100%;height:100%;object-fit:cover;display:block}
 .lg-txt{color:#fff;font-size:19px;font-weight:800;letter-spacing:.22em;line-height:1.1;
@@ -448,7 +456,7 @@ ul.lista li,ul.lista li b,.mod,.mod b,.hito,.hito b,.perfil,.perfil b,
 .celu-marco img{display:block;width:100%;border-radius:19px;background:#fff}
 .celu-marco{position:relative}
 /* la de muestra va rotulada: las otras tres son negocios de verdad */
-.tag-ej{position:absolute;z-index:2;top:16px;right:14px;background:var(--lima);color:#1e2b06;
+.tag-ej{position:absolute;z-index:2;top:16px;right:14px;background:var(--lima);color:var(--lima-txt);
   font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
   border-radius:999px;padding:3px 10px}
 .celu figcaption{color:var(--gris-claro);font-size:13.5px;margin-top:12px}
@@ -512,7 +520,7 @@ ul.lista li,ul.lista li b,.mod,.mod b,.hito,.hito b,.perfil,.perfil b,
 .mqp-chat{background:#e7ecf2;flex:1;padding:13px;display:flex;flex-direction:column;gap:8px}
 .mqp-burb{background:#fff;border-radius:12px;border-bottom-left-radius:4px;padding:11px 13px;
   font-size:12.5px;line-height:1.45;text-align:left;box-shadow:0 1px 1px rgba(0,0,0,.06)}
-.mqp-burb.mia{background:#dcf3c8;margin-left:16%;border-radius:12px;border-bottom-right-radius:4px}
+.mqp-burb.mia{background:var(--lima-suave);margin-left:16%;border-radius:12px;border-bottom-right-radius:4px}
 .mqp-nota{font-size:10.5px;color:var(--gris);text-align:center;margin-top:auto;padding-top:8px}
 
 /* ── pantallas: los sistemas dibujados con marco de navegador ─
@@ -553,9 +561,14 @@ ul.lista li,ul.lista li b,.mod,.mod b,.hito,.hito b,.perfil,.perfil b,
 .mes{flex:1;max-width:66px;display:flex;flex-direction:column;justify-content:flex-end;height:100%;position:relative}
 .mes-par{display:flex;gap:3px;align-items:flex-end;height:100%;justify-content:center}
 .mes-par i{width:14px;border-radius:4px 4px 0 0;display:block}
-.mes-par i.v{background:#9fc411}
-.mes-par i.g{background:#e5b3ae}
-.mes.hoy .mes-par i.v{background:#7ba00c;box-shadow:0 0 0 2px rgba(123,160,12,.18)}
+/* El gráfico tenía verde manzana contra ROSA, dos colores que no existen
+   en ningún otro lado de la marca, y era lo primero que se veía al entrar.
+   Ahora: la venta en el lima de la casa y el gasto en el azul de la
+   escala. Los meses pasados van apagados y el actual pleno, así que el
+   mes destacado se lee sin agregar un cuarto color. */
+.mes-par i.v{background:var(--lima-osc);opacity:.42}
+.mes-par i.g{background:var(--gris-claro);opacity:.5}
+.mes.hoy .mes-par i.v,.mes.hoy .mes-par i.g{opacity:1}
 .graf-pie{display:flex;gap:4%;justify-content:center;margin-top:6px}
 .graf-pie span{flex:1;max-width:66px;text-align:center;font-size:10.5px;font-weight:700;color:var(--gris);letter-spacing:.04em}
 .graf-pie span.hoy{color:var(--tinta)}
@@ -575,18 +588,18 @@ ul.lista li,ul.lista li b,.mod,.mod b,.hito,.hito b,.perfil,.perfil b,
 .sc-mesas{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--e1);margin-bottom:var(--e2)}
 .scm{border-radius:10px;padding:13px 0;font-weight:800;font-size:13px;text-align:center}
 .scm.libre{background:var(--papel-2);color:var(--gris)}
-.scm.ok{background:#e7f5cf;color:var(--lima-osc)}
-.scm.pide{background:#fdeecb;color:#8a6d1a}
-.scm.cobra{background:#fbe4e1;color:var(--rojo)}
+.scm.ok{background:var(--lima-suave);color:var(--lima-osc)}
+.scm.pide{background:var(--calido-suave);color:var(--calido-osc)}
+.scm.cobra{background:var(--rojo-suave);color:var(--rojo)}
 .sc-lineas{display:grid;gap:var(--e1)}
 .scl{background:var(--papel-2);border-radius:9px;padding:9px 12px;font-size:12.5px;text-align:left}
 /* estados con color, como en el sistema real */
-.scl.ok{background:#e7f5cf}
-.scl.warn{background:#fdeecb}
-.scl.mal{background:#fbe4e1}
+.scl.ok{background:var(--lima-suave)}
+.scl.warn{background:var(--calido-suave)}
+.scl.mal{background:var(--rojo-suave)}
 .scb{border-radius:999px;padding:1px 9px;font-size:10.5px;margin-left:4px}
-.scb.ok{background:#e7f5cf;color:var(--lima-osc)}
-.scb.full{background:#fbe4e1;color:var(--rojo)}
+.scb.ok{background:var(--lima-suave);color:var(--lima-osc)}
+.scb.full{background:var(--rojo-suave);color:var(--rojo)}
 .scb.libre{background:#fff;border:1px solid var(--linea);color:var(--gris)}
 
 /* ── tarjetas de rubro: estampitas, no párrafos (menos es más) ── */
@@ -598,7 +611,7 @@ ul.lista li,ul.lista li b,.mod,.mod b,.hito,.hito b,.perfil,.perfil b,
 /* ── pared de rubros (centrada: la lista es infinita a propósito) ── */
 .rubros{display:flex;flex-wrap:wrap;gap:var(--e1);justify-content:center;margin-top:var(--e3);text-align:center}
 .rchip{border:1px solid var(--linea);background:#fff;border-radius:999px;padding:8px 15px;font-size:14px;color:var(--gris)}
-.rchip.destacado{background:var(--lima);border-color:var(--lima);color:#1e2b06;font-weight:700}
+.rchip.destacado{background:var(--lima);border-color:var(--lima);color:var(--lima-txt);font-weight:700}
 
 /* ── chat en vivo del cierre ────────────────────────────────── */
 .chatwrap{max-width:672px;margin:var(--e3) auto 0;text-align:left}
@@ -614,7 +627,7 @@ ul.lista li,ul.lista li b,.mod,.mod b,.hito,.hito b,.perfil,.perfil b,
 #chClip{background:#fff;border:1px solid var(--linea);padding:12px 15px;font-size:16px}
 /* el saludo cambia para invitar el adjunto */
 .chat-invita{font-size:12.5px;color:var(--gris);text-align:left;margin-top:6px}
-.chat-fin{display:none;background:#e7f5cf;color:#2c4a06;border-radius:var(--radio);padding:var(--caja);font-weight:700;margin-top:var(--e2);text-align:center}
+.chat-fin{display:none;background:var(--lima-suave);color:var(--lima-txt);border-radius:var(--radio);padding:var(--caja);font-weight:700;margin-top:var(--e2);text-align:center}
 .pensando{display:flex;gap:5px;padding:12px 4px}
 .pensando i{width:8px;height:8px;border-radius:50%;background:var(--gris-claro);animation:pns 1s infinite}
 .pensando i:nth-child(2){animation-delay:.18s}
@@ -716,7 +729,7 @@ footer b{color:#fff}
             <span class="sck roja"><small>POR PAGAR</small><b>$486.200</b></span>
           </div>
           <div class="graf">
-            <div class="graf-ley"><span><i style="background:#9fc411"></i>Ventas</span><span><i style="background:#e5b3ae"></i>Gastos</span></div>
+            <div class="graf-ley"><span><i style="background:var(--lima-osc)"></i>Ventas</span><span><i style="background:var(--gris-claro)"></i>Gastos</span></div>
             <div class="graf-cuerpo">
               <div class="mes"><div class="mes-par"><i class="v" style="height:52%"></i><i class="g" style="height:41%"></i></div></div>
               <div class="mes"><div class="mes-par"><i class="v" style="height:63%"></i><i class="g" style="height:44%"></i></div></div>
@@ -866,6 +879,18 @@ footer b{color:#fff}
         </div>
       </div>
 
+      <div class="mom solo">
+        <span class="hora">18:00</span>
+        <div>
+          <b>Salen solos los mails a los que no vuelven.</b>
+          <p>A los que comieron y hace tres meses que no aparecen les
+          llega un mail tuyo. No lo escribiste hoy: se arma con la lista
+          que el sistema ya tiene, lleva el link para darse de baja y
+          después <b>sabés quién lo abrió</b>. Los mensajes que te entran
+          por Instagram y Facebook los contesta la misma IA.</p>
+        </div>
+      </div>
+
       <div class="mom vos">
         <span class="hora">20:30</span>
         <div>
@@ -972,6 +997,18 @@ footer b{color:#fff}
         <b>Preguntar cómo viene el mes</b>
         <span class="hoy"><i>Hoy</i>Prendés la compu y buscás el reporte</span>
         <span class="nos"><i>Con nosotros</i>Se lo preguntás por WhatsApp y te contesta</span>
+      </div>
+
+      <div class="vs-f">
+        <b>La lista de tus clientes</b>
+        <span class="hoy"><i>Hoy</i>Está en tu celular y en la cabeza del que atiende</span>
+        <span class="nos"><i>Con nosotros</i>Es una base tuya, y de ahí salen los mails a los que hace rato no vuelven</span>
+      </div>
+
+      <div class="vs-f">
+        <b>Instagram y Facebook</b>
+        <span class="hoy"><i>Hoy</i>Contestás vos, cuando podés, y a veces al otro día</span>
+        <span class="nos"><i>Con nosotros</i>Los contesta la misma IA que atiende tu web</span>
       </div>
 
       <div class="vs-f">
@@ -1091,23 +1128,23 @@ footer b{color:#fff}
     <div class="grid g2">
       <ul class="lista">
         <li class="item">
-          <span class="medallon"><svg viewBox="0 0 20 20"><path d="M4 10.5 L8 14.5 L16 5.5" fill="none" stroke="#1e2b06" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="medallon"><svg viewBox="0 0 20 20"><path d="M4 10.5 L8 14.5 L16 5.5" fill="none" stroke="var(--lima-txt)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           <div><b>Cargar los gastos</b><p>Una foto a la boleta y listo.</p></div>
         </li>
         <li class="item">
-          <span class="medallon"><svg viewBox="0 0 20 20"><path d="M4 10.5 L8 14.5 L16 5.5" fill="none" stroke="#1e2b06" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="medallon"><svg viewBox="0 0 20 20"><path d="M4 10.5 L8 14.5 L16 5.5" fill="none" stroke="var(--lima-txt)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           <div><b>Llevar el stock en la cabeza</b><p>Se descuenta solo, en el local y en la web.</p></div>
         </li>
         <li class="item">
-          <span class="medallon"><svg viewBox="0 0 20 20"><path d="M4 10.5 L8 14.5 L16 5.5" fill="none" stroke="#1e2b06" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="medallon"><svg viewBox="0 0 20 20"><path d="M4 10.5 L8 14.5 L16 5.5" fill="none" stroke="var(--lima-txt)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           <div><b>Cerrar la caja con la calculadora</b><p>El cierre sale hecho.</p></div>
         </li>
         <li class="item">
-          <span class="medallon"><svg viewBox="0 0 20 20"><path d="M4 10.5 L8 14.5 L16 5.5" fill="none" stroke="#1e2b06" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="medallon"><svg viewBox="0 0 20 20"><path d="M4 10.5 L8 14.5 L16 5.5" fill="none" stroke="var(--lima-txt)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           <div><b>Sacar las horas y los sueldos</b><p>Cada uno ficha y se calcula solo.</p></div>
         </li>
         <li class="item">
-          <span class="medallon"><svg viewBox="0 0 20 20"><path d="M4 10.5 L8 14.5 L16 5.5" fill="none" stroke="#1e2b06" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="medallon"><svg viewBox="0 0 20 20"><path d="M4 10.5 L8 14.5 L16 5.5" fill="none" stroke="var(--lima-txt)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           <div><b>Buscar el papel que guardaste</b><p>Se lo pedís por WhatsApp.</p></div>
         </li>
       </ul>
@@ -1295,7 +1332,7 @@ footer b{color:#fff}
             <span class="sck roja"><small>POR PAGAR</small><b>$486.200</b></span>
           </div>
           <div class="graf">
-            <div class="graf-ley"><span><i style="background:#9fc411"></i>Ventas</span><span><i style="background:#e5b3ae"></i>Gastos</span></div>
+            <div class="graf-ley"><span><i style="background:var(--lima-osc)"></i>Ventas</span><span><i style="background:var(--gris-claro)"></i>Gastos</span></div>
             <div class="graf-cuerpo">
               <div class="mes"><div class="mes-par"><i class="v" style="height:52%"></i><i class="g" style="height:41%"></i></div></div>
               <div class="mes"><div class="mes-par"><i class="v" style="height:63%"></i><i class="g" style="height:44%"></i></div></div>
@@ -1596,6 +1633,7 @@ footer b{color:#fff}
         ["11:00","solo","Entra el personal.","Fichan con el celular. Esas horas son las mismas con las que después se arma el sueldo, así que nadie las vuelve a escribir."],
         ["13:00","vos","Mostrador lleno.","Cobrás y el stock baja solo. Si el que compra tiene cuenta corriente, se lo anotás a su nombre y queda en su ficha."],
         ["16:30","cliente","Alguien compra desde tu tienda online.","Elige, paga y le llega el aviso. Sale del <b>mismo stock</b> que el del mostrador, así que no vendés dos veces lo que tenés una sola vez."],
+        ["18:00","solo","Al que compró una vez le llega un mail tuyo.","A los que compraron y hace tres meses que no vuelven les sale un mail con lo que entró nuevo. Se manda solo, con el link de baja, y <b>después sabés quién lo abrió</b>. Los mensajes de Instagram y Facebook los contesta la misma IA."],
         ["20:30","vos","Cerrás la caja.","El sistema te dice cuánto tendría que haber, contás y confirmás. Si falta, sabés de cuánto es la diferencia esta misma noche."],
         ["01:30","solo","Ya te fuiste a tu casa.","El sistema repasa el día: un producto se vendió por debajo de lo que te cuesta, quedan tres unidades de algo que se vende todas las semanas y el seguro del local vence el jueves."],
         ["Fin<br>de mes","solo","Los sueldos.","Salen de las horas que ya fichó cada uno, con los adelantos que se llevaron durante el mes ya descontados. No hay un Excel aparte."]
@@ -1612,6 +1650,7 @@ footer b{color:#fff}
         ["11:00","solo","Entra el personal.","Fichan con el celular, y esas horas son las que después arman el sueldo."],
         ["13:00","vos","Vendés en el local.","Cobrás, elegís talle y color, y el stock de esa combinación baja solo."],
         ["16:30","cliente","Entra una venta por la web.","Elige talle y color, paga y le llega el aviso. Sale del mismo stock, así que <b>no le vendés algo que ya no está</b>."],
+        ["18:00","solo","A las clientas les llega la temporada nueva.","A las que compraron y hace tres meses que no vuelven les sale un mail con lo que entró. Se manda solo, con el link de baja, y <b>después sabés quién lo abrió</b>. Los mensajes de Instagram y Facebook los contesta la misma IA."],
         ["19:00","vos","Vienen a cambiar un talle.","Lo cambiás en la pantalla: vuelve el que entregó y sale el que se lleva. Los dos quedan bien contados."],
         ["21:00","vos","Cerrás la caja.","El sistema te dice cuánto tendría que haber, contás y confirmás. Si falta, sabés de cuánto es la diferencia hoy."],
         ["01:30","solo","Ya te fuiste a tu casa.","El sistema repasa el día: una prenda se vendió con menos margen del que pusiste y hay tres talles a punto de quedarse sin nada."],
@@ -1629,6 +1668,7 @@ footer b{color:#fff}
         ["11:00","solo","Entra el personal.","Fichan con el celular. Esas horas son las mismas con las que después se arma el sueldo."],
         ["14:00","solo","Al que viene mañana le llega el recordatorio.","Sin que nadie se acuerde de mandarlo. El que no viene y no avisa es <b>el agujero más caro</b> que tiene una agenda."],
         ["17:00","vos","Atendés y cobrás.","La sesión queda en la ficha de la clienta: qué se hizo, quién la atendió y <b>cuántas le quedan del pack</b> que ya pagó."],
+        ["19:00","solo","A la que le toca volver, le llega el mensaje.","A las que hace más de cuarenta días que no vienen les sale un mail para que retomen. Se manda solo, con el link de baja, y <b>después sabés quién lo abrió</b>. Los mensajes de Instagram y Facebook los contesta la misma IA."],
         ["20:30","vos","Cerrás la caja.","El sistema te dice cuánto tendría que haber entre efectivo, transferencias y señas. Contás y confirmás."],
         ["01:30","solo","Ya te fuiste.","El sistema repasa el día: quedaron dos turnos sin confirmar para mañana y hay un hueco de dos horas a la tarde que se puede ofrecer."],
         ["Fin<br>de mes","solo","Los sueldos y las comisiones.","Salen de las horas fichadas y de lo que atendió cada una, con los adelantos ya descontados."]
@@ -1645,6 +1685,7 @@ footer b{color:#fff}
         ["12:00","vos","Cargás un viaje nuevo.","Desde el celular, con el cliente, la carga y la tarifa. Queda listo para facturar."],
         ["15:00","solo","La factura sale del viaje.","Con los datos que ya están cargados. No la escribís de nuevo, y <b>no se te escapa ningún viaje sin facturar</b>."],
         ["18:00","vos","Entra un cheque a 60 días.","Queda anotado con <b>las dos fechas</b>: cuándo te lo dieron y cuándo se cobra. Así sabés con qué plata contás y para cuándo."],
+        ["19:00","solo","El cliente que dejó de darte carga.","El sistema te marca a los que hace dos meses que no te llaman y les manda un mail tuyo. Se arma con la lista que ya tenés cargada y <b>después sabés quién lo abrió</b>."],
         ["20:00","solo","Aviso de mantenimiento.","A la camioneta le faltan 800 kilómetros para el service. El sistema lo sabe porque los kilómetros salen de los viajes que ya cargaste."],
         ["01:30","solo","Ya te fuiste a tu casa.","El sistema repasa el día: un viaje quedó sin factura y hay un gasto sin camión asignado."],
         ["Fin<br>de mes","solo","Los sueldos de los choferes.","Salen de las horas y de los viajes que hizo cada uno, con los adicionales por viaje ya sumados."]
