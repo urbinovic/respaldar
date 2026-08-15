@@ -448,7 +448,12 @@ ul.lista li,ul.lista li b,.mod,.mod b,.hito,.hito b,.perfil,.perfil b,
    headless sobre aval.ar). El marco es CSS; la pantalla es real. */
 .celus{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--e3);align-items:stretch}
 @media(max-width:900px){.celus{grid-template-columns:repeat(2,1fr);gap:var(--e2)}}
-@media(max-width:520px){.celus{grid-template-columns:1fr}}
+/* En celular NO se pasa a una sola columna: cuatro capturas apiladas se
+   comían cuatro pantallas de scroll para mostrar cuatro fotos. De a dos
+   se ven igual de bien y la sección mide la mitad. */
+@media(max-width:520px){.celus{grid-template-columns:repeat(2,1fr);gap:12px}
+  .celu figcaption{font-size:12.5px}
+  .celu .btn{padding:9px 12px;font-size:13px}}
 /* columna flex: con el botón en margin-top:auto los cuatro quedan a la MISMA
    altura aunque una descripción ocupe una línea y otra dos */
 .celu{margin:0;text-align:center;display:flex;flex-direction:column;height:100%}
@@ -1017,166 +1022,6 @@ footer b{color:#fff}
   </div>
 </section>
 
-<!-- 1d · TU SISTEMA EN VIVO — el corazón de la página -->
-<section class="clara" id="tuyo">
-  <div class="wrap">
-    <div class="intro">
-      <p class="eyebrow">Una vuelta más</p>
-      <h2>¿Y en tu negocio cómo se vería?</h2>
-      <p class="lead">
-        Escribí a qué te dedicás y te lo dibujamos con <b>tus</b> productos
-        y <b>tus</b> números. Es una aproximación que arma una IA en
-        segundos: el de verdad se hace escuchándote.
-      </p>
-      <form class="mq-form" id="mqForm" autocomplete="off">
-        <input id="mqTxt" placeholder="Ej: Panadería El Trigo, facturas y pan casero" maxlength="120">
-        <button class="btn btn-lima" id="mqBtn" type="submit">Armar el mío</button>
-      </form>
-      <p class="mq-ideas">
-        Probá con:
-        <button type="button" class="mq-idea">Ferretería del Centro, tornillos y pinturas</button>
-        <button type="button" class="mq-idea">Veterinaria Huellas, consultas y vacunas</button>
-        <button type="button" class="mq-idea">Kiosco 24hs, bebidas y golosinas</button>
-      </p>
-    </div>
-
-    <!-- mientras piensa -->
-    <div class="mq-cargando" id="mqCargando">
-      <div class="mq-pasos">
-        <span class="mq-paso" data-p="1">Entendiendo tu negocio</span>
-        <span class="mq-paso" data-p="2">Cargando tus productos</span>
-        <span class="mq-paso" data-p="3">Calculando tus números</span>
-        <span class="mq-paso" data-p="4">Poniendo a trabajar al bot</span>
-      </div>
-    </div>
-
-    <!-- el resultado -->
-    <div class="mq-listo" id="mqListo">
-      <p class="mq-titulo" id="mqTitulo"></p>
-      <div class="celus mq-celus">
-
-        <figure class="celu">
-          <div class="celu-marco mq-pant">
-            <div class="mqp" id="mqPant1"></div>
-          </div>
-          <figcaption><b id="mqCap1">Tu pantalla</b><span id="mqSub1"></span></figcaption>
-        </figure>
-
-        <figure class="celu">
-          <div class="celu-marco mq-pant">
-            <div class="mqp" id="mqPant2"></div>
-          </div>
-          <figcaption><b>Tus números</b><span>Lo que entró, lo que salió, lo que te quedó.</span></figcaption>
-        </figure>
-
-        <figure class="celu">
-          <div class="celu-marco mq-pant">
-            <div class="mqp" id="mqPant3"></div>
-          </div>
-          <figcaption><b>Tu bot</b><span>Te escribe con los datos de tu negocio.</span></figcaption>
-        </figure>
-
-      </div>
-      <div class="intro intro-fin">
-        <p class="lead" id="mqCierre"></p>
-        <div class="acciones">
-          <a class="btn btn-lima" href="#contacto">Quiero el mío de verdad</a>
-          <button class="btn btn-borde-t" id="mqOtro" type="button">Probar con otro negocio</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 3 · LOS NÚMEROS -->
-<section class="oscura">
-  <div class="wrap">
-    <div class="intro">
-      <p class="eyebrow">Y lo más importante</p>
-      <h2>Las tres preguntas que hoy contestás de memoria</h2>
-      <p class="lead">
-        Dejás de manejar el negocio por sensación: decidís con lo que pasó.
-      </p>
-    </div>
-
-    <div class="grid g3">
-      <div class="tarj"><h3>Qué se vende y qué no</h3><p>Lo que vuela, lo que está frenado y lo que te está ocupando plata en el depósito.</p></div>
-      <div class="tarj"><h3>En qué se te va</h3><p>Los gastos ordenados por rubro y por proveedor, mes contra mes.</p></div>
-      <div class="tarj"><h3>Qué te deja cada cosa</h3><p>El margen real de lo que vendés, con el costo actualizado de la última compra.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- 4 · LAS JOYAS -->
-<section class="clara">
-  <div class="wrap">
-    <div class="intro">
-      <p class="eyebrow">Acá está la diferencia</p>
-      <h2>Un sistema que no espera que le preguntes</h2>
-      <p class="lead">
-        Los demás programas guardan datos. El nuestro te avisa.
-      </p>
-    </div>
-
-    <div class="grid g2">
-      <div class="tarj joya">
-        <h3>Te avisa si te subieron un precio</h3>
-        <p>Cada boleta se acuerda de la anterior.</p>
-        <div class="snap">
-          <div class="b v">📷 <small>foto de la boleta de la distribuidora</small></div>
-          <div class="b w"><b>✅ Cargada: $214.600</b><br>
-          📈 <b>Ojo, te subieron 2 precios:</b><br>
-          Harina 000 · $18.500 → $21.900 el kg <b>(+18%)</b><br>
-          Queso tybo · $9.800 → $11.200 el kg <b>(+14%)</b></div>
-        </div>
-      </div>
-      <div class="tarj joya">
-        <h3>Se revisa solo de madrugada</h3>
-        <p>A la 1:30 audita el día. A las 9 te llega el parte.</p>
-        <div class="snap mail">
-          <div class="de">📬 El repaso de hoy · 9:30</div>
-          <div class="ml">🔍 <b>La auditoría de anoche encontró:</b></div>
-          <div class="ml">• 6 gastos por <b>$276.683</b> sin asignar a ningún viaje</div>
-          <div class="ml">• 2 gastos cargados dos veces</div>
-          <div class="ml">• 1 seguro que vence el viernes</div>
-        </div>
-      </div>
-      <div class="tarj joya">
-        <h3>Te saluda con el día ya resumido</h3>
-        <p>A las 9, sin que lo pidas. Los lunes, el repaso de la semana.</p>
-        <div class="snap">
-          <div class="b w">☀️ <b>¡Buen día!</b> Ayer: <b>$412.300</b> en 18 ventas.
-          Hoy vence la boleta de Secolian ($184.300). La semana viene 12% arriba
-          de la pasada 💪</div>
-        </div>
-      </div>
-      <div class="tarj joya">
-        <h3>Guarda los papeles y te los devuelve</h3>
-        <p>Se los mandás una vez y quedan. Después, pedilos donde estés.</p>
-        <div class="snap">
-          <div class="b v">mandame la póliza de la Sprinter</div>
-          <div class="b w">📄 <b>Póliza-Sprinter-2026.pdf</b><br><small>Acá va. Vence el 03/11, te aviso una semana antes.</small></div>
-        </div>
-      </div>
-      <div class="tarj joya">
-        <h3>Contesta tus redes</h3>
-        <p>Instagram y Facebook, con tus precios de verdad.</p>
-        <div class="snap">
-          <div class="b v"><small>DM de Instagram · 23:40</small><br>Hola! ¿Tenés la puffer en 42?</div>
-          <div class="b w">¡Sí! Quedan 2 en talle 42 💛 Te dejo el link para verla y pagarla: <b>tunegocio.ar/puffer</b>. ¿Te la mando o pasás por el local?</div>
-        </div>
-      </div>
-      <div class="tarj joya">
-        <h3>Y atiende aunque estés durmiendo</h3>
-        <p>El que pregunta a las 11 de la noche, compra a las 11 de la noche.</p>
-        <div class="snap">
-          <div class="b w">📋 <b>Mientras dormías:</b> contesté 7 consultas, tomé una reserva para el sábado y quedó una pregunta para vos: si hacés envíos a Caucete.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- 4b · DEMOS REALES: capturas de producción + link para tocarlas -->
 <section class="oscura" id="demos">
   <div class="wrap">
@@ -1212,96 +1057,6 @@ footer b{color:#fff}
         <figcaption><b>Turnos con seña</b>El que reserva paga, y no te deja el hueco.</figcaption>
         <a class="btn btn-lima" href="#contacto">Quiero el mío</a>
       </figure>
-    </div>
-  </div>
-</section>
-
-<!-- 4c · LAS PANTALLAS DE ADENTRO (el panel, que no es público) -->
-<section class="clara" id="pantallas">
-  <div class="wrap">
-    <div class="intro">
-      <p class="eyebrow">Y por dentro</p>
-      <h2>Lo que ves vos, el dueño</h2>
-      <p class="lead">
-        Eso era lo que ve tu cliente. Esto es tu lado del mostrador.
-      </p>
-    </div>
-    <div class="grid g2">
-
-      <figure class="screen">
-        <div class="sc-top"><i></i><i></i><i></i><span class="sc-url">tunegocio.ar/reportes</span></div>
-        <div class="sc-body">
-          <div class="sc-tabs"><span class="act">Ventas</span><span>Caja</span><span>Gastos</span><span>Stock</span><span>Personal</span></div>
-          <div class="sc-titulo">Agosto · del 1 al 13</div>
-          <div class="sc-kpis">
-            <span class="sck"><small>VENDISTE</small><b>$4.812.300</b></span>
-            <span class="sck"><small>GASTASTE</small><b>$3.107.900</b></span>
-            <span class="sck verde"><small>TE QUEDÓ</small><b>$1.704.400</b></span>
-            <span class="sck roja"><small>POR PAGAR</small><b>$486.200</b></span>
-          </div>
-          <div class="graf">
-            <div class="graf-ley"><span><i style="background:var(--lima-osc)"></i>Ventas</span><span><i style="background:var(--gris-claro)"></i>Gastos</span></div>
-            <div class="graf-cuerpo">
-              <div class="mes"><div class="mes-par"><i class="v" style="height:52%"></i><i class="g" style="height:41%"></i></div></div>
-              <div class="mes"><div class="mes-par"><i class="v" style="height:63%"></i><i class="g" style="height:44%"></i></div></div>
-              <div class="mes"><div class="mes-par"><i class="v" style="height:58%"></i><i class="g" style="height:47%"></i></div></div>
-              <div class="mes hoy"><span class="globo">+31%</span><div class="mes-par"><i class="v" style="height:86%"></i><i class="g" style="height:46%"></i></div></div>
-            </div>
-            <div class="graf-pie"><span>MAY</span><span>JUN</span><span>JUL</span><span class="hoy">AGO</span></div>
-          </div>
-        </div>
-        <figcaption>Agosto viene 31% arriba de julio.</figcaption>
-      </figure>
-
-      <figure class="screen">
-        <div class="sc-top"><i></i><i></i><i></i><span class="sc-url">tunegocio.ar/salon</span></div>
-        <div class="sc-body">
-          <div class="sc-mesas">
-            <span class="scm ok">M1</span><span class="scm pide">M2</span><span class="scm ok">M3</span><span class="scm cobra">M4</span>
-            <span class="scm libre">M5</span><span class="scm pide">M6</span><span class="scm libre">M7</span><span class="scm ok">M8</span>
-          </div>
-          <div class="sc-lineas">
-            <span class="scl ok">🍝 Mesa 2 → <b>cocina</b>: 2 sorrentinos</span>
-            <span class="scl ok">🥤 Mesa 2 → <b>barra</b>: 2 limonadas</span>
-            <span class="scl warn">💵 Mesa 4 · pre-cuenta <b>$38.500</b></span>
-          </div>
-        </div>
-        <figcaption>El pedido se parte solo: cocina y barra.</figcaption>
-      </figure>
-
-    </div>
-  </div>
-</section>
-
-<!-- 5 · POR RUBRO (a medida) -->
-<section class="clara">
-  <div class="wrap">
-    <div class="intro">
-      <p class="eyebrow">A medida, para tu rubro</p>
-      <h2>¿Sistema de qué? Del negocio que tengas.</h2>
-      <p class="lead">
-        Nada enlatado: escuchamos cómo trabajás y construimos eso. Con IA,
-        en semanas y a precio cerrado.
-      </p>
-    </div>
-    <div class="grid g3">
-      <div class="tarj rub"><span class="rub-ico">🏪</span><b>Kiosco</b><p>El lector cobra y te avisa qué vence.</p></div>
-      <div class="tarj rub"><span class="rub-ico">🐶</span><b>Veterinaria</b><p>Las vacunas le avisan solas al dueño.</p></div>
-      <div class="tarj rub"><span class="rub-ico">🔧</span><b>Taller</b><p>Historial por patente, presupuesto por WhatsApp.</p></div>
-      <div class="tarj rub"><span class="rub-ico">🏋️</span><b>Gimnasio y canchas</b><p>La cuota se cobra sola. El que debe, no entra.</p></div>
-      <div class="tarj rub"><span class="rub-ico">🥖</span><b>Panadería</b><p>Cuánto amasar mañana, según lo vendido.</p></div>
-      <div class="tarj rub"><span class="rub-ico">📦</span><b>Distribuidora</b><p>Precios por cliente y hoja de ruta armada sola.</p></div>
-    </div>
-    <div class="rubros">
-      <span class="rchip">Ferretería</span><span class="rchip">Farmacia</span><span class="rchip">Óptica</span><span class="rchip">Pet shop</span><span class="rchip">Vivero</span><span class="rchip">Librería</span><span class="rchip">Carnicería</span><span class="rchip">Verdulería</span><span class="rchip">Rotisería</span><span class="rchip">Heladería</span><span class="rchip">Lavadero</span><span class="rchip">Gomería</span><span class="rchip">Lubricentro</span><span class="rchip">Cochera</span><span class="rchip">Hotel y cabañas</span><span class="rchip">Inmobiliaria</span><span class="rchip">Estudio contable</span><span class="rchip">Consultorio</span><span class="rchip">Odontología</span><span class="rchip">Academia</span><span class="rchip">Cancha de pádel</span><span class="rchip">Barbería</span><span class="rchip">Centro de estética</span><span class="rchip">Servicio técnico</span><span class="rchip">Mayorista</span><span class="rchip">Reparto</span><span class="rchip destacado">El tuyo</span>
-    </div>
-    <div class="intro intro-fin">
-      <p class="lead">
-        ¿No está el tuyo? Mejor: los que nadie hizo son los que más nos gustan.
-      </p>
-      <div class="acciones">
-        <a class="btn btn-lima" href="#contacto">Quiero el mío</a>
-      </div>
     </div>
   </div>
 </section>
@@ -1349,48 +1104,20 @@ footer b{color:#fff}
   </div>
 </section>
 
-<!-- 9 · LA PATA GRATIS -->
-<section class="oscura">
-  <div class="wrap">
-    <div class="intro">
-      <p class="eyebrow">Gratis, para siempre</p>
-      <h2>Y esto te lo damos sin cobrarte nada</h2>
-      <p class="lead">
-        El primer registro laboral con referencias del país. Lo usás aunque no
-        nos compres un sistema.
-      </p>
-    </div>
-    <div class="grid g2">
-      <div class="perfil">
-        <div class="perfil-top">
-          <span class="perfil-av">C</span>
-          <span><b>Caro Gómez</b><small>Moza · San Juan</small></span>
-          <span class="perfil-est">★★★★★</span>
-        </div>
-        <div class="perfil-fila"><span>🏪 Siciliano · 2 años</span><b class="ok">Avalada</b></div>
-        <div class="perfil-fila"><span>👋 128 clientes la calificaron</span><b>4,9</b></div>
-        <div class="perfil-fila"><span>📄 Historial verificado</span><b class="ok">✓</b></div>
-      </div>
-      <ul class="lista">
-        <li class="item"><span class="medallon">1</span><div><b>Registrás a tu equipo</b><p>Cada uno arma su historial.</p></div></li>
-        <li class="item"><span class="medallon">2</span><div><b>Les dejás tu aval</b><p>Revisado por abogados. No te compromete.</p></div></li>
-        <li class="item"><span class="medallon">3</span><div><b>Los clientes los califican</b><p>A la persona, no al local. Se la lleva a donde vaya.</p></div></li>
-      </ul>
-    </div>
-    <div class="intro intro-fin">
-      <div class="acciones">
-        <a class="btn btn-lima" href="https://aval.ar" target="_blank" rel="noopener">Conocé Aval.ar</a>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- 9b · LA PLATA, en su propio momento y con lo que incluye -->
 <section>
   <div class="wrap">
     <div class="intro">
       <p class="eyebrow">Cuánto sale</p>
       <h2>Un turnero suelto sale más que esto</h2>
+      <!-- La franja entera de Aval.ar gratis ocupaba una pantalla y media
+           y mandaba al visitante a OTRO producto justo antes del precio.
+           Queda como una línea: se dice, y no desvía el embudo. -->
+      <p class="lead">
+        Y si querés arrancar sin gastar: el registro laboral de
+        <a href="https://aval.ar" target="_blank" rel="noopener">Aval.ar</a>
+        es nuestro y lo usás gratis, nos compres o no.
+      </p>
     </div>
     <div class="precios">
       <div class="pr">
@@ -1668,127 +1395,6 @@ footer b{color:#fff}
   if(inicial && R[inicial] && inicial!=="gastro") pintar(inicial);
 })();
 
-/* ══════════════════════════════════════════════════════════════════
-   TU SISTEMA EN VIVO
-   El visitante escribe su negocio y la edge `maqueta-ia` devuelve SUS
-   productos, SUS números y lo que le diría el bot. Acá solo se pinta.
-   Los pasos de carga no son decorativos: la IA tarda entre 5 y 8
-   segundos y sin ellos la espera se siente rota.
-   ══════════════════════════════════════════════════════════════════ */
-(function(){
-  var FN  = "https://ysbqvxebkxwylmmzrsjj.supabase.co/functions/v1/maqueta-ia";
-  var KEY = "sb_publishable_GsUGCK8H38vIRXUOP8WEpQ_qUFW8JVw";
-  var form = document.getElementById("mqForm"), txt = document.getElementById("mqTxt");
-  var btn = document.getElementById("mqBtn");
-  var cargando = document.getElementById("mqCargando"), listo = document.getElementById("mqListo");
-  var pasos = [].slice.call(document.querySelectorAll(".mq-paso"));
-  var timers = [];
-
-  function plata(n){ return "$" + (Number(n)||0).toLocaleString("es-AR"); }
-  function esc(s){ var d=document.createElement("div"); d.textContent=String(s==null?"":s); return d.innerHTML; }
-
-  function pasosArrancar(){
-    pasos.forEach(function(p){ p.className="mq-paso"; });
-    pasos[0].classList.add("yendo");
-    timers.forEach(clearTimeout); timers=[];
-    [1400,3000,4600].forEach(function(ms,i){
-      timers.push(setTimeout(function(){
-        pasos[i].className="mq-paso hecho";
-        if(pasos[i+1]) pasos[i+1].classList.add("yendo");
-      }, ms));
-    });
-  }
-  function pasosFrenar(){ timers.forEach(clearTimeout); timers=[]; }
-
-  // ── las tres pantallas, según el rubro que devolvió la IA ──
-  var TITULOS = {
-    tienda: ["Tu tienda online", "Tus productos, con precio y stock."],
-    salon:  ["Tu salón", "Lo que se pide en cada mesa."],
-    turnos: ["Tu agenda", "Los turnos del día, con su seña."],
-    flota:  ["Tu flota", "Cada viaje con sus gastos."]
-  };
-
-  function pantallaProductos(m){
-    var t = TITULOS[m.pantalla] || TITULOS.tienda;
-    var filas = (m.productos||[]).map(function(p){
-      return '<span class="mqp-item"><span><b>'+esc(p.nombre)+'</b><small>'+esc(p.detalle)+'</small></span><i>'+plata(p.precio)+'</i></span>';
-    }).join("");
-    return '<div class="mqp-top"><b>'+esc(m.negocio)+'</b><span>'+esc(t[0])+'</span></div>'+
-           '<div class="mqp-cuerpo">'+filas+'</div>';
-  }
-  function pantallaNumeros(m){
-    var n = m.numeros||{};
-    return '<div class="mqp-top"><b>'+esc(m.negocio)+'</b><span>Tu mes, hasta hoy</span></div>'+
-      '<div class="mqp-cuerpo">'+
-        '<div class="mqp-kpis">'+
-          '<span class="mqp-kpi"><small>VENDISTE</small><b>'+plata(n.vendiste)+'</b></span>'+
-          '<span class="mqp-kpi"><small>GASTASTE</small><b>'+plata(n.gastaste)+'</b></span>'+
-          '<span class="mqp-kpi verde"><small>TE QUEDÓ</small><b>'+plata(n.quedo)+'</b></span>'+
-          '<span class="mqp-kpi roja"><small>POR PAGAR</small><b>'+plata(n.porpagar)+'</b></span>'+
-        '</div>'+
-        '<span class="mqp-item"><span><b>'+esc(m.alivio||"Todo cargado solo")+'</b><small>Sin planillas ni cuaderno</small></span></span>'+
-      '</div>';
-  }
-  function pantallaBot(m){
-    return '<div class="mqp-top"><b>El sistema</b><span>en línea</span></div>'+
-      '<div class="mqp-chat">'+
-        '<div class="mqp-burb">'+esc(m.bot)+'</div>'+
-        '<div class="mqp-burb mia">¿Cuánto vendimos hoy?</div>'+
-        '<div class="mqp-burb">'+plata(Math.round((m.numeros&&m.numeros.vendiste||0)/26))+' hasta ahora. Vas mejor que ayer.</div>'+
-        '<div class="mqp-nota">Te contesta con los datos de '+esc(m.negocio)+'</div>'+
-      '</div>';
-  }
-
-  function pintar(m){
-    var t = TITULOS[m.pantalla] || TITULOS.tienda;
-    document.getElementById("mqTitulo").innerHTML = 'Así se vería el sistema de <em>'+esc(m.negocio)+'</em>';
-    document.getElementById("mqPant1").innerHTML = pantallaProductos(m);
-    document.getElementById("mqPant2").innerHTML = pantallaNumeros(m);
-    document.getElementById("mqPant3").innerHTML = pantallaBot(m);
-    document.getElementById("mqCap1").textContent = t[0];
-    document.getElementById("mqSub1").textContent = t[1];
-    document.getElementById("mqCierre").innerHTML =
-      'Esto lo armó una IA en segundos y con lo poco que escribiste. El de verdad se hace escuchándote, y lo tenés andando en tres semanas.';
-    cargando.classList.remove("on");
-    listo.classList.add("on");
-    listo.scrollIntoView({block:"start"});
-  }
-
-  function pedir(texto){
-    if(!texto || texto.trim().length < 4){ txt.focus(); return; }
-    btn.disabled = true; btn.textContent = "Armando…";
-    listo.classList.remove("on");
-    cargando.classList.add("on");
-    pasosArrancar();
-    cargando.scrollIntoView({block:"center"});
-
-    fetch(FN, {
-      method:"POST",
-      headers:{ "Content-Type":"application/json", "Authorization":"Bearer "+KEY, "apikey":KEY },
-      body: JSON.stringify({ texto: texto })
-    })
-    .then(function(r){ return r.json(); })
-    .then(function(d){
-      pasosFrenar();
-      if(d && d.ok && d.maqueta){ pasos.forEach(function(p){ p.className="mq-paso hecho"; }); setTimeout(function(){ pintar(d.maqueta); }, 350); }
-      else { cargando.classList.remove("on"); alert("Se me trabó armando la maqueta. Probá de nuevo en un ratito."); }
-    })
-    .catch(function(){
-      pasosFrenar(); cargando.classList.remove("on");
-      alert("Se cortó la conexión. Probá de nuevo.");
-    })
-    .then(function(){ btn.disabled=false; btn.textContent="Armar el mío"; });
-  }
-
-  form.addEventListener("submit", function(e){ e.preventDefault(); pedir(txt.value); });
-  [].slice.call(document.querySelectorAll(".mq-idea")).forEach(function(b){
-    b.addEventListener("click", function(){ txt.value = b.textContent.trim(); pedir(txt.value); });
-  });
-  document.getElementById("mqOtro").addEventListener("click", function(){
-    listo.classList.remove("on"); txt.value=""; txt.focus();
-    document.getElementById("tuyo").scrollIntoView({block:"start"});
-  });
-})();
 
 /* El recepcionista: la MISMA edge function del entrevistador comercial
    (entrevista-ia, tipo "sistemas") que ya entrevista prospectos, guarda la
