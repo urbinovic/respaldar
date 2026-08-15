@@ -316,11 +316,14 @@ ul.lista li,ul.lista li b,.mod,.mod b,.hito,.hito b,.perfil,.perfil b,
 .rubros{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:12px}
 /* el que no se ve en la lista se cae del embudo, y son la mayoría */
 .rubros-otro{font-size:13.5px;color:var(--gris);margin-bottom:0}
-.rubro{background:#fff;border:2px solid var(--linea);color:var(--tinta);border-radius:999px;
+/* ⚠️ SIEMPRE anidado en .rubros: `.caso .rubro` ya existe (el rubro del
+   cliente en la sección de casos) y un `.rubro` suelto le pinta borde y
+   fondo a esos textos */
+.rubros .rubro{background:#fff;border:2px solid var(--linea);color:var(--tinta);border-radius:999px;
   padding:10px 18px;font-weight:800;font-size:14.5px;cursor:pointer;font-family:inherit;
   line-height:1.2;transition:border-color .15s ease,background .15s ease,color .15s ease}
-.rubro:hover{border-color:var(--calido)}
-.rubro[aria-pressed="true"]{background:var(--tinta);border-color:var(--tinta);color:#fff}
+.rubros .rubro:hover{border-color:var(--calido)}
+.rubros .rubro[aria-pressed="true"]{background:var(--tinta);border-color:var(--tinta);color:#fff}
 /* el cambio se avisa con un parpadeo corto: sin eso, en celular no se
    nota que media pantalla se reescribió */
 .dia.cambiando .mom,.dia.cambiando .cuenta{opacity:.25;transition:opacity .12s ease}
@@ -331,6 +334,7 @@ ul.lista li,ul.lista li b,.mod,.mod b,.hito,.hito b,.perfil,.perfil b,
 .dia-ref .ref::before{content:"";width:13px;height:13px;border-radius:50%;flex:0 0 auto}
 .dia-ref .vos::before{background:var(--tinta)}
 .dia-ref .solo::before{background:var(--calido)}
+.dia-ref .cliente::before{background:var(--lima-osc)}
 
 .dia{max-width:720px;margin:0 auto}
 /* La guía vertical la dibuja CADA momento, de su punto al de abajo, y el
@@ -344,6 +348,9 @@ ul.lista li,ul.lista li b,.mod,.mod b,.hito,.hito b,.perfil,.perfil b,
 .mom:last-of-type::after{content:none}
 .mom.vos::before{background:var(--tinta)}
 .mom.solo::before{background:var(--calido)}
+/* el tercero es el que más vende: lo hizo el CLIENTE y a vos no te costó
+   nada (el QR de la mesa, la compra online, el turno) */
+.mom.cliente::before{background:var(--lima-osc)}
 .mom .hora{font-size:13px;font-weight:800;color:var(--tinta);letter-spacing:-.01em;padding-top:1px;
   text-align:right;white-space:nowrap}
 .mom b{display:block;font-size:17px;color:var(--tinta);margin-bottom:5px;line-height:1.3}
@@ -736,8 +743,8 @@ footer b{color:#fff}
       <h2>Un martes cualquiera</h2>
       <p class="lead">
         No te vamos a listar funciones. Te contamos un día entero de tu
-        negocio, de punta a punta. Mirá los puntos naranjas: eso pasó
-        <b>sin que nadie se acordara de hacerlo</b>.
+        negocio, de punta a punta. Fijate el color de los puntos: los
+        azules son <b>las pocas veces que tuviste que hacer algo vos</b>.
       </p>
 
       <p class="rubros-tit">¿Cuál es tu rubro?</p>
@@ -756,6 +763,7 @@ footer b{color:#fff}
       <p class="dia-ref">
         <span class="ref vos">Lo hacés vos</span>
         <span class="ref solo">Lo hace el sistema</span>
+        <span class="ref cliente">Lo hace tu cliente</span>
       </p>
     </div>
 
@@ -766,8 +774,9 @@ footer b{color:#fff}
         <div>
           <b>Todavía estás durmiendo.</b>
           <p>En el mail ya tenés el cierre de ayer: lo que entró, lo que
-          salió y lo que te quedó. Con un aviso abajo:
-          <b>la harina te subió 18%</b> en las últimas tres compras.</p>
+          salió y lo que te quedó. Con la comparación que nunca te
+          sentás a hacer: <b>el martes pasado habías vendido 18%
+          menos</b>.</p>
         </div>
       </div>
 
@@ -775,9 +784,11 @@ footer b{color:#fff}
         <span class="hora">09:00</span>
         <div>
           <b>Llega el proveedor.</b>
-          <p>Le sacás una foto a la boleta y la mandás por WhatsApp. Eso
-          es todo lo que hacés. El gasto queda cargado con el proveedor,
-          el monto y <b>la fecha en que vence</b>.</p>
+          <p>Le sacás una foto a la boleta, la mandás por WhatsApp y
+          <b>te contesta ahí mismo</b>: "cargado, $184.500, vence el 20.
+          Ojo: la harina te subió 18% contra la compra de hace veinte
+          días". No te enterás a fin de mes: te enterás con el tipo
+          todavía parado en la puerta.</p>
         </div>
       </div>
 
@@ -791,17 +802,58 @@ footer b{color:#fff}
         </div>
       </div>
 
-      <div class="mom vos">
-        <span class="hora">13:00</span>
+      <div class="mom cliente">
+        <span class="hora">12:30</span>
         <div>
-          <b>Mediodía lleno.</b>
-          <p>El mozo toma el pedido en el celular y se parte solo: los
-          platos salen en la cocina, las bebidas en la barra. Nadie grita
-          nada ni pierde una comanda.</p>
+          <b>Se sienta la primera mesa y escanea el QR.</b>
+          <p>Ve tu carta con fotos y precios de hoy, con los platos que
+          querés empujar marcados como recomendados. <b>Lo que se acabó
+          no aparece</b>, así que nadie pide algo que no tenés.</p>
         </div>
       </div>
 
-      <div class="mom solo">
+      <div class="mom cliente">
+        <span class="hora">12:45</span>
+        <div>
+          <b>Piden desde el celular, sin esperar a nadie.</b>
+          <p>El pedido entra derecho y se parte solo: los platos salen en
+          la cocina y las bebidas en la barra. Sin que el mozo tenga que
+          venir, anotar, caminar y cargarlo.</p>
+        </div>
+      </div>
+
+      <div class="mom cliente">
+        <span class="hora">13:10</span>
+        <div>
+          <b>Necesitan algo y llaman al mozo desde el celular.</b>
+          <p>Le llega el aviso al que atiende esa mesa. Nadie levanta la
+          mano ni se queda mirando al salón esperando que alguien lo
+          mire.</p>
+        </div>
+      </div>
+
+      <div class="mom vos">
+        <span class="hora">13:40</span>
+        <div>
+          <b>Mediodía lleno.</b>
+          <p>Los que no quieren usar el celular le piden al mozo de toda
+          la vida, y él lo carga en el suyo. Las dos formas caen en la
+          misma comanda, así que la cuenta de esa mesa es una sola.</p>
+        </div>
+      </div>
+
+      <div class="mom cliente">
+        <span class="hora">14:20</span>
+        <div>
+          <b>Piden la cuenta y califican a Nacho, el mozo.</b>
+          <p>La calificación es <b>de él, no del local</b>: se la lleva a
+          donde vaya a trabajar. Después le aparece tu alias para dejar
+          propina y el link para calificarte en Google, justo cuando
+          acaban de comer bien.</p>
+        </div>
+      </div>
+
+      <div class="mom cliente">
         <span class="hora">16:30</span>
         <div>
           <b>Alguien reserva desde tu web.</b>
@@ -855,8 +907,9 @@ footer b{color:#fff}
       <div class="dia-fin">
         <div class="cuenta">
           <b>En todo el día, vos tocaste el sistema cuatro veces.</b>
-          <span>Una foto, un pedido, un cobro y el cierre de caja. Lo
-          demás pasó mientras atendías el negocio.</span>
+          <span>Una foto, un mediodía de mozo, un cobro y el cierre de
+          caja. El resto lo hizo el sistema, o lo hicieron tus propios
+          clientes desde su celular.</span>
         </div>
       </div>
 
@@ -1539,7 +1592,7 @@ footer b{color:#fff}
         ["10:30","solo","Entra la mercadería.","Cargás lo que llegó y el sistema te pregunta a cuánto lo compraste. Con eso ya sabe <b>cuánto ganás en cada venta</b>, sin que hagas la cuenta."],
         ["11:00","solo","Entra el personal.","Fichan con el celular. Esas horas son las mismas con las que después se arma el sueldo, así que nadie las vuelve a escribir."],
         ["13:00","vos","Mostrador lleno.","Cobrás y el stock baja solo. Si el que compra tiene cuenta corriente, se lo anotás a su nombre y queda en su ficha."],
-        ["16:30","solo","Alguien compra desde tu tienda online.","Elige, paga y le llega el aviso. Sale del <b>mismo stock</b> que el del mostrador, así que no vendés dos veces lo que tenés una sola vez."],
+        ["16:30","cliente","Alguien compra desde tu tienda online.","Elige, paga y le llega el aviso. Sale del <b>mismo stock</b> que el del mostrador, así que no vendés dos veces lo que tenés una sola vez."],
         ["20:30","vos","Cerrás la caja.","El sistema te dice cuánto tendría que haber, contás y confirmás. Si falta, sabés de cuánto es la diferencia esta misma noche."],
         ["01:30","solo","Ya te fuiste a tu casa.","El sistema repasa el día: un producto se vendió por debajo de lo que te cuesta, quedan tres unidades de algo que se vende todas las semanas y el seguro del local vence el jueves."],
         ["Fin<br>de mes","solo","Los sueldos.","Salen de las horas que ya fichó cada uno, con los adelantos que se llevaron durante el mes ya descontados. No hay un Excel aparte."]
@@ -1555,7 +1608,7 @@ footer b{color:#fff}
         ["10:30","solo","La cargás una sola vez.","Ponés la prenda con sus talles y sus colores, y esa misma carga sirve para <b>el local y para la tienda online</b>. No la subís dos veces."],
         ["11:00","solo","Entra el personal.","Fichan con el celular, y esas horas son las que después arman el sueldo."],
         ["13:00","vos","Vendés en el local.","Cobrás, elegís talle y color, y el stock de esa combinación baja solo."],
-        ["16:30","solo","Entra una venta por la web.","Elige talle y color, paga y le llega el aviso. Sale del mismo stock, así que <b>no le vendés algo que ya no está</b>."],
+        ["16:30","cliente","Entra una venta por la web.","Elige talle y color, paga y le llega el aviso. Sale del mismo stock, así que <b>no le vendés algo que ya no está</b>."],
         ["19:00","vos","Vienen a cambiar un talle.","Lo cambiás en la pantalla: vuelve el que entregó y sale el que se lleva. Los dos quedan bien contados."],
         ["21:00","vos","Cerrás la caja.","El sistema te dice cuánto tendría que haber, contás y confirmás. Si falta, sabés de cuánto es la diferencia hoy."],
         ["01:30","solo","Ya te fuiste a tu casa.","El sistema repasa el día: una prenda se vendió con menos margen del que pusiste y hay tres talles a punto de quedarse sin nada."],
@@ -1569,7 +1622,7 @@ footer b{color:#fff}
       dia:[
         ["07:30","solo","Todavía estás durmiendo.","En el mail está el cierre de ayer y cómo viene el mes: <b>12% arriba del anterior</b>."],
         ["09:00","vos","Llega el pedido de insumos.","Le sacás una foto a la boleta y la mandás por WhatsApp. Queda el gasto cargado, con el proveedor y el vencimiento."],
-        ["10:00","solo","Alguien saca turno desde tu web.","Elige entre los horarios que tenés libres de verdad, deja la seña y <b>la plata entra a tu cuenta</b>. La agenda se ocupa sola."],
+        ["10:00","cliente","Alguien saca turno desde tu web.","Elige entre los horarios que tenés libres de verdad, deja la seña y <b>la plata entra a tu cuenta</b>. La agenda se ocupa sola."],
         ["11:00","solo","Entra el personal.","Fichan con el celular. Esas horas son las mismas con las que después se arma el sueldo."],
         ["14:00","solo","Al que viene mañana le llega el recordatorio.","Sin que nadie se acuerde de mandarlo. El que no viene y no avisa es <b>el agujero más caro</b> que tiene una agenda."],
         ["17:00","vos","Atendés y cobrás.","La sesión queda en la ficha de la clienta: qué se hizo, quién la atendió y <b>cuántas le quedan del pack</b> que ya pagó."],
@@ -1597,7 +1650,8 @@ footer b{color:#fff}
   };
 
   var cont = document.querySelector("#dia .dia");
-  var botones = [].slice.call(document.querySelectorAll(".rubro"));
+  /* ⚠️ anclado a #rubros: hay otros `.rubro` en la sección de casos */
+  var botones = [].slice.call(document.querySelectorAll("#rubros .rubro"));
   if(!cont || !botones.length) return;
 
   var cuadro = cont.querySelector(".dia-fin");
@@ -1610,7 +1664,9 @@ footer b{color:#fff}
     vsLead: vsLead.innerHTML,
     vsGasto: vsGasto.innerHTML,
     dia: [].slice.call(cont.querySelectorAll(".mom")).map(function(m){
-      return [m.querySelector(".hora").innerHTML, m.classList.contains("solo")?"solo":"vos",
+      var quien = m.classList.contains("solo") ? "solo"
+                : m.classList.contains("cliente") ? "cliente" : "vos";
+      return [m.querySelector(".hora").innerHTML, quien,
               m.querySelector("b").innerHTML, m.querySelector("p").innerHTML];
     })
   };
