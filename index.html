@@ -307,6 +307,25 @@ ul.lista li,ul.lista li b,.mod,.mod b,.hito,.hito b,.perfil,.perfil b,
    como un martes real. El COLOR DEL PUNTO es el argumento: naranja
    = lo hizo el sistema, tinta = lo hiciste vos. De un vistazo se
    ve cuántos naranjas hay. */
+/* ── el selector de rubro ───────────────────────────────────────
+   El que entra elige a qué se dedica y el día se reescribe en SU
+   vocabulario. Además queda en la URL (?rubro=ferreteria), así el
+   vendedor manda un link que ya le habla al cliente. */
+.rubros-tit{font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--gris);margin-top:var(--e4);margin-bottom:12px}
+.rubros{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:12px}
+/* el que no se ve en la lista se cae del embudo, y son la mayoría */
+.rubros-otro{font-size:13.5px;color:var(--gris);margin-bottom:0}
+.rubro{background:#fff;border:2px solid var(--linea);color:var(--tinta);border-radius:999px;
+  padding:10px 18px;font-weight:800;font-size:14.5px;cursor:pointer;font-family:inherit;
+  line-height:1.2;transition:border-color .15s ease,background .15s ease,color .15s ease}
+.rubro:hover{border-color:var(--calido)}
+.rubro[aria-pressed="true"]{background:var(--tinta);border-color:var(--tinta);color:#fff}
+/* el cambio se avisa con un parpadeo corto: sin eso, en celular no se
+   nota que media pantalla se reescribió */
+.dia.cambiando .mom,.dia.cambiando .cuenta{opacity:.25;transition:opacity .12s ease}
+.dia .mom,.dia .cuenta{transition:opacity .25s ease}
+
 .dia-ref{display:flex;gap:var(--e3);justify-content:center;flex-wrap:wrap;margin-top:var(--e3)}
 .dia-ref .ref{display:inline-flex;align-items:center;gap:9px;font-size:13.5px;font-weight:700;color:var(--gris)}
 .dia-ref .ref::before{content:"";width:13px;height:13px;border-radius:50%;flex:0 0 auto}
@@ -720,6 +739,20 @@ footer b{color:#fff}
         negocio, de punta a punta. Mirá los puntos naranjas: eso pasó
         <b>sin que nadie se acordara de hacerlo</b>.
       </p>
+
+      <p class="rubros-tit">¿Cuál es tu rubro?</p>
+      <div class="rubros" id="rubros" role="group" aria-label="Elegí tu rubro">
+        <button type="button" class="rubro" data-rubro="gastro"     aria-pressed="true">Gastronomía</button>
+        <button type="button" class="rubro" data-rubro="ferreteria" aria-pressed="false">Ferretería</button>
+        <button type="button" class="rubro" data-rubro="ropa"       aria-pressed="false">Ropa</button>
+        <button type="button" class="rubro" data-rubro="turnos"     aria-pressed="false">Estética</button>
+        <button type="button" class="rubro" data-rubro="transporte" aria-pressed="false">Transporte</button>
+      </div>
+      <p class="rubros-otro">
+        ¿El tuyo no está? Se arma igual: lo que cambia es el vocabulario,
+        no el sistema.
+      </p>
+
       <p class="dia-ref">
         <span class="ref vos">Lo hacés vos</span>
         <span class="ref solo">Lo hace el sistema</span>
@@ -841,7 +874,7 @@ footer b{color:#fff}
     <div class="intro">
       <p class="eyebrow">La diferencia</p>
       <h2>Anotar, anotan todos</h2>
-      <p class="lead">
+      <p class="lead" id="vsLead">
         Fudo es muy bueno en lo suyo, y lo suyo es el salón: la comanda,
         la cocina, el cobro. No venimos a discutirle eso. Venimos por las
         otras veinte horas del día, las que igual terminás haciendo vos.
@@ -856,7 +889,7 @@ footer b{color:#fff}
       </div>
 
       <div class="vs-f">
-        <b>El gasto del proveedor</b>
+        <b id="vsGasto">El gasto del proveedor</b>
         <span class="hoy"><i>Hoy</i>Lo cargás vos, uno por uno, cuando te acordás</span>
         <span class="nos"><i>Con nosotros</i>Le sacás una foto a la boleta y queda cargado, con vencimiento</span>
       </div>
@@ -1483,6 +1516,151 @@ footer b{color:#fff}
 </section>
 
 <script>
+/* ══════════════════════════════════════════════════════════════════
+   LA PÁGINA HABLA EL IDIOMA DEL QUE ENTRA
+   El visitante elige su rubro y el día se reescribe con SU vocabulario.
+   Textos escritos, no generados: es instantáneo, no falla y no cuesta
+   por visita. El rubro queda en la URL (?rubro=ferreteria), así el
+   vendedor manda un link que ya le habla al cliente.
+   El de gastronomía NO está acá: se lee del HTML al arrancar, para que
+   exista un solo original y no haya dos versiones que se desincronicen.
+   ══════════════════════════════════════════════════════════════════ */
+(function(){
+  var NUM = {1:"una vez",2:"dos veces",3:"tres veces",4:"cuatro veces",5:"cinco veces",6:"seis veces"};
+
+  var R = {
+    ferreteria:{
+      cierre:"Una foto, las ventas del mostrador y el cierre de caja.",
+      vsGasto:"El gasto del proveedor",
+      vsLead:"El sistema de la caja anota lo que vendés, y está bien que lo haga. El problema empieza después: el remito del proveedor, el vencimiento, el stock que no cierra y las horas del que atiende el mostrador.",
+      dia:[
+        ["07:30","solo","Todavía estás durmiendo.","En el mail ya tenés el cierre de ayer: lo que entró, lo que salió y lo que te quedó. Con un aviso abajo: <b>la pintura te subió 22%</b> en las últimas tres compras."],
+        ["09:00","vos","Llega el proveedor.","Le sacás una foto al remito y lo mandás por WhatsApp. Eso es todo lo que hacés. El gasto queda cargado con el proveedor, el monto y <b>la fecha en que vence</b>."],
+        ["10:30","solo","Entra la mercadería.","Cargás lo que llegó y el sistema te pregunta a cuánto lo compraste. Con eso ya sabe <b>cuánto ganás en cada venta</b>, sin que hagas la cuenta."],
+        ["11:00","solo","Entra el personal.","Fichan con el celular. Esas horas son las mismas con las que después se arma el sueldo, así que nadie las vuelve a escribir."],
+        ["13:00","vos","Mostrador lleno.","Cobrás y el stock baja solo. Si el que compra tiene cuenta corriente, se lo anotás a su nombre y queda en su ficha."],
+        ["16:30","solo","Alguien compra desde tu tienda online.","Elige, paga y le llega el aviso. Sale del <b>mismo stock</b> que el del mostrador, así que no vendés dos veces lo que tenés una sola vez."],
+        ["20:30","vos","Cerrás la caja.","El sistema te dice cuánto tendría que haber, contás y confirmás. Si falta, sabés de cuánto es la diferencia esta misma noche."],
+        ["01:30","solo","Ya te fuiste a tu casa.","El sistema repasa el día: un producto se vendió por debajo de lo que te cuesta, quedan tres unidades de algo que se vende todas las semanas y el seguro del local vence el jueves."],
+        ["Fin<br>de mes","solo","Los sueldos.","Salen de las horas que ya fichó cada uno, con los adelantos que se llevaron durante el mes ya descontados. No hay un Excel aparte."]
+      ]
+    },
+    ropa:{
+      cierre:"Una foto, las ventas del local, un cambio de talle y el cierre de caja.",
+      vsGasto:"El remito del proveedor",
+      vsLead:"Contar la ropa es lo fácil. Lo que cansa es que el talle que vendiste recién en el local siga figurando disponible en la web, y que a fin de mes las cuentas las termines haciendo vos.",
+      dia:[
+        ["07:30","solo","Todavía estás durmiendo.","En el mail está el cierre de ayer y un aviso: del jean que más vendés <b>te quedan dos del talle M</b>."],
+        ["09:00","vos","Llega mercadería nueva.","Le sacás una foto al remito y lo mandás por WhatsApp. El gasto queda cargado con el proveedor y el vencimiento."],
+        ["10:30","solo","La cargás una sola vez.","Ponés la prenda con sus talles y sus colores, y esa misma carga sirve para <b>el local y para la tienda online</b>. No la subís dos veces."],
+        ["11:00","solo","Entra el personal.","Fichan con el celular, y esas horas son las que después arman el sueldo."],
+        ["13:00","vos","Vendés en el local.","Cobrás, elegís talle y color, y el stock de esa combinación baja solo."],
+        ["16:30","solo","Entra una venta por la web.","Elige talle y color, paga y le llega el aviso. Sale del mismo stock, así que <b>no le vendés algo que ya no está</b>."],
+        ["19:00","vos","Vienen a cambiar un talle.","Lo cambiás en la pantalla: vuelve el que entregó y sale el que se lleva. Los dos quedan bien contados."],
+        ["21:00","vos","Cerrás la caja.","El sistema te dice cuánto tendría que haber, contás y confirmás. Si falta, sabés de cuánto es la diferencia hoy."],
+        ["01:30","solo","Ya te fuiste a tu casa.","El sistema repasa el día: una prenda se vendió con menos margen del que pusiste y hay tres talles a punto de quedarse sin nada."],
+        ["Fin<br>de mes","solo","Los sueldos.","Salen de las horas fichadas y de lo que vendió cada una, con las comisiones y los adelantos ya calculados."]
+      ]
+    },
+    turnos:{
+      cierre:"Una foto, la atención del día y el cierre de caja.",
+      vsGasto:"El gasto de insumos",
+      vsLead:"Una agenda te muestra los turnos, y está bien. Pero la seña, la ficha de la clienta, los insumos y el sueldo de las chicas terminan viviendo en otro lado. Casi siempre, en tu cabeza.",
+      dia:[
+        ["07:30","solo","Todavía estás durmiendo.","En el mail está el cierre de ayer y cómo viene el mes: <b>12% arriba del anterior</b>."],
+        ["09:00","vos","Llega el pedido de insumos.","Le sacás una foto a la boleta y la mandás por WhatsApp. Queda el gasto cargado, con el proveedor y el vencimiento."],
+        ["10:00","solo","Alguien saca turno desde tu web.","Elige entre los horarios que tenés libres de verdad, deja la seña y <b>la plata entra a tu cuenta</b>. La agenda se ocupa sola."],
+        ["11:00","solo","Entra el personal.","Fichan con el celular. Esas horas son las mismas con las que después se arma el sueldo."],
+        ["14:00","solo","Al que viene mañana le llega el recordatorio.","Sin que nadie se acuerde de mandarlo. El que no viene y no avisa es <b>el agujero más caro</b> que tiene una agenda."],
+        ["17:00","vos","Atendés y cobrás.","La sesión queda en la ficha de la clienta: qué se hizo, quién la atendió y <b>cuántas le quedan del pack</b> que ya pagó."],
+        ["20:30","vos","Cerrás la caja.","El sistema te dice cuánto tendría que haber entre efectivo, transferencias y señas. Contás y confirmás."],
+        ["01:30","solo","Ya te fuiste.","El sistema repasa el día: quedaron dos turnos sin confirmar para mañana y hay un hueco de dos horas a la tarde que se puede ofrecer."],
+        ["Fin<br>de mes","solo","Los sueldos y las comisiones.","Salen de las horas fichadas y de lo que atendió cada una, con los adelantos ya descontados."]
+      ]
+    },
+    transporte:{
+      cierre:"Una foto del ticket, un viaje cargado y un cheque anotado.",
+      vsGasto:"El gasto del camión",
+      vsLead:"Acá casi no hay sistema que reemplazar: esto vive en un cuaderno, un Excel y tres grupos de WhatsApp. Los viajes se facturan de memoria y los gastos del camión aparecen cuando ya los pagaste.",
+      dia:[
+        ["07:30","solo","Todavía estás durmiendo.","En el mail están los viajes de ayer, lo que facturaste y lo que te falta cobrar. Con un aviso: <b>el seguro del acoplado vence el jueves</b>."],
+        ["08:00","vos","El chofer carga combustible.","Te manda la foto del ticket por WhatsApp y el gasto queda cargado <b>al camión que lo gastó</b>, no a una bolsa general."],
+        ["10:00","solo","Sale un viaje a Mendoza.","Los kilómetros los pone el sistema, que ya conoce esa ruta. Nadie los adivina ni los escribe de memoria."],
+        ["12:00","vos","Cargás un viaje nuevo.","Desde el celular, con el cliente, la carga y la tarifa. Queda listo para facturar."],
+        ["15:00","solo","La factura sale del viaje.","Con los datos que ya están cargados. No la escribís de nuevo, y <b>no se te escapa ningún viaje sin facturar</b>."],
+        ["18:00","vos","Entra un cheque a 60 días.","Queda anotado con <b>las dos fechas</b>: cuándo te lo dieron y cuándo se cobra. Así sabés con qué plata contás y para cuándo."],
+        ["20:00","solo","Aviso de mantenimiento.","A la camioneta le faltan 800 kilómetros para el service. El sistema lo sabe porque los kilómetros salen de los viajes que ya cargaste."],
+        ["01:30","solo","Ya te fuiste a tu casa.","El sistema repasa el día: un viaje quedó sin factura y hay un gasto sin camión asignado."],
+        ["Fin<br>de mes","solo","Los sueldos de los choferes.","Salen de las horas y de los viajes que hizo cada uno, con los adicionales por viaje ya sumados."]
+      ]
+    }
+  };
+
+  var cont = document.querySelector("#dia .dia");
+  var botones = [].slice.call(document.querySelectorAll(".rubro"));
+  if(!cont || !botones.length) return;
+
+  var cuadro = cont.querySelector(".dia-fin");
+  var vsLead = document.getElementById("vsLead");
+  var vsGasto = document.getElementById("vsGasto");
+
+  /* el original del HTML es el rubro de gastronomía */
+  R.gastro = {
+    cierre: cuadro.querySelector("span").innerHTML,
+    vsLead: vsLead.innerHTML,
+    vsGasto: vsGasto.innerHTML,
+    dia: [].slice.call(cont.querySelectorAll(".mom")).map(function(m){
+      return [m.querySelector(".hora").innerHTML, m.classList.contains("solo")?"solo":"vos",
+              m.querySelector("b").innerHTML, m.querySelector("p").innerHTML];
+    })
+  };
+
+  function pintar(clave){
+    var r = R[clave]; if(!r) return;
+    var html = r.dia.map(function(m){
+      return '<div class="mom '+m[1]+'"><span class="hora">'+m[0]+'</span>'+
+             '<div><b>'+m[2]+'</b><p>'+m[3]+'</p></div></div>';
+    }).join("");
+    cont.innerHTML = html;
+    cont.appendChild(cuadro);
+
+    /* el número del cierre se CUENTA, no se escribe: si mañana se suma o
+       se saca un momento, el texto no puede quedar mintiendo */
+    var veces = r.dia.filter(function(m){ return m[1]==="vos"; }).length;
+    cuadro.querySelector("b").innerHTML = "En todo el día, vos tocaste el sistema "+(NUM[veces]||veces+" veces")+".";
+    cuadro.querySelector("span").innerHTML = r.cierre;
+
+    vsLead.innerHTML = r.vsLead;
+    vsGasto.innerHTML = r.vsGasto;
+
+    botones.forEach(function(b){ b.setAttribute("aria-pressed", b.dataset.rubro===clave ? "true":"false"); });
+  }
+
+  function elegir(clave, mover){
+    if(!R[clave]) return;
+    cont.classList.add("cambiando");
+    setTimeout(function(){ pintar(clave); cont.classList.remove("cambiando"); }, 120);
+    try{
+      localStorage.setItem("respaldar_rubro", clave);
+      var u = new URL(location.href);
+      if(clave==="gastro") u.searchParams.delete("rubro"); else u.searchParams.set("rubro", clave);
+      history.replaceState(null,"",u);
+    }catch(e){}
+    if(mover) document.getElementById("dia").scrollIntoView({behavior:"smooth",block:"start"});
+  }
+
+  botones.forEach(function(b){
+    b.addEventListener("click", function(){ elegir(b.dataset.rubro, false); });
+  });
+
+  /* al entrar: manda el link (?rubro=), después lo que eligió la vez pasada */
+  var inicial = null;
+  try{
+    inicial = new URLSearchParams(location.search).get("rubro") || localStorage.getItem("respaldar_rubro");
+  }catch(e){}
+  if(inicial && R[inicial] && inicial!=="gastro") pintar(inicial);
+})();
+
 /* ══════════════════════════════════════════════════════════════════
    TU SISTEMA EN VIVO
    El visitante escribe su negocio y la edge `maqueta-ia` devuelve SUS
