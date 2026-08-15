@@ -14,10 +14,12 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<!-- La voz visual de la marca: Bricolage Grotesque en los títulos (tiene
-     carácter, no es la letra de Windows) y Manrope en el texto (redonda y
-     legible). Si Google Fonts no responde, cae a la del sistema y la página
-     sigue viéndose bien. -->
+<!-- La voz visual de la marca: los títulos van con la MISMA letra del
+     logo (Poppins: geométrica, la "a" de un solo piso, remates rectos),
+     así la página suena a la marca en lo que más se ve. El texto queda en
+     Manrope: esa letra tan circular cansa en párrafos largos, porque
+     todas las formas se parecen y el ojo pierde el renglón. Si Google
+     Fonts no responde, cae a la del sistema y la página sigue en pie. -->
 <!-- El isotipo de marca. El PNG va PRIMERO y el .svg viejo ya no se
      referencia: dejarlo declarado hacía que el navegador prefiriera el
      vectorial y siguiera mostrando el logo anterior. -->
@@ -27,7 +29,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="favicon-180x180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
 /* ═══════════════════════════════════════════════════════════════
    SISTEMA. Todo valor de espacio sale de acá; ningún número suelto.
@@ -98,7 +100,7 @@ body{
 /* ── tipografía ─────────────────────────────────────────────── */
 /* los títulos llevan la letra con carácter; el texto va en Manrope */
 h1,h2,h3{margin:0 0 var(--e2);line-height:1.14;letter-spacing:-.02em;text-wrap:balance;
-  font-family:'Bricolage Grotesque',Manrope,system-ui,sans-serif}
+  font-family:'Poppins',Manrope,system-ui,sans-serif}
 h1{font-size:clamp(30px,4.6vw,50px);font-weight:800}
 h2{font-size:clamp(24px,3.2vw,36px);font-weight:800}
 h3{font-size:18px;font-weight:700;margin-bottom:var(--e1)}
@@ -377,7 +379,7 @@ ul.lista li,ul.lista li b,.mod,.mod b,.hito,.hito b,.perfil,.perfil b,
 .dia-fin{display:grid;grid-template-columns:64px 1fr;gap:var(--e3);margin-top:var(--e1)}
 .dia-fin .cuenta{grid-column:2;background:var(--tinta);color:#fff;border-radius:var(--radio);
   padding:var(--caja);text-align:left}
-.dia-fin .cuenta b{display:block;font-family:'Bricolage Grotesque',Manrope,system-ui,sans-serif;
+.dia-fin .cuenta b{display:block;font-family:'Poppins',Manrope,system-ui,sans-serif;
   font-size:clamp(19px,2.4vw,24px);line-height:1.25;margin-bottom:6px}
 .dia-fin .cuenta span{font-size:15px;color:var(--gris-claro)}
 /* En celular el punto entero (12px + 3 de borde a cada lado = 18) no
@@ -494,7 +496,7 @@ ul.lista li,ul.lista li b,.mod,.mod b,.hito,.hito b,.perfil,.perfil b,
 .mq-listo{display:none}
 .mq-listo.on{display:block;animation:aparece .5s ease}
 @keyframes aparece{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-.mq-titulo{text-align:center;font-family:'Bricolage Grotesque',Manrope,sans-serif;font-weight:800;
+.mq-titulo{text-align:center;font-family:'Poppins',Manrope,sans-serif;font-weight:800;
   font-size:clamp(21px,2.6vw,29px);letter-spacing:-.02em;margin-bottom:var(--e3)}
 .mq-titulo em{font-style:normal;color:var(--calido-osc)}
 .mq-celus{grid-template-columns:repeat(3,1fr)}
@@ -503,7 +505,7 @@ ul.lista li,ul.lista li b,.mod,.mod b,.hito,.hito b,.perfil,.perfil b,
 .mqp{background:#fff;border-radius:19px;overflow:hidden;min-height:330px;color:var(--tinta);
   display:flex;flex-direction:column}
 .mqp-top{background:var(--tinta);color:#fff;padding:13px 15px}
-.mqp-top b{display:block;font-family:'Bricolage Grotesque',Manrope,sans-serif;font-size:15px;line-height:1.2}
+.mqp-top b{display:block;font-family:'Poppins',Manrope,sans-serif;font-size:15px;line-height:1.2}
 .mqp-top span{display:block;font-size:11px;color:var(--gris-claro);margin-top:2px}
 .mqp-cuerpo{padding:12px 13px;display:grid;gap:7px;align-content:start;flex:1}
 .mqp-item{display:flex;justify-content:space-between;align-items:baseline;gap:8px;
@@ -970,39 +972,9 @@ footer b{color:#fff}
       </div>
 
       <div class="vs-f">
-        <b id="vsGasto">El gasto del proveedor</b>
-        <span class="hoy"><i>Hoy</i>Lo cargás vos, uno por uno, cuando te acordás</span>
-        <span class="nos"><i>Con nosotros</i>Le sacás una foto a la boleta y queda cargado, con vencimiento</span>
-      </div>
-
-      <div class="vs-f">
-        <b>Saber si ganaste plata</b>
-        <span class="hoy"><i>Hoy</i>Entrás, elegís las fechas y sacás la cuenta</span>
-        <span class="nos"><i>Con nosotros</i>A las 9:30 lo tenés en el mail, sin entrar a ningún lado</span>
-      </div>
-
-      <div class="vs-f">
-        <b>Las horas del personal</b>
-        <span class="hoy"><i>Hoy</i>En un cuaderno, o de memoria</span>
-        <span class="nos"><i>Con nosotros</i>Fichan con el celular y las horas quedan solas</span>
-      </div>
-
-      <div class="vs-f">
-        <b>El sueldo de fin de mes</b>
-        <span class="hoy"><i>Hoy</i>Lo armás aparte, en una planilla</span>
-        <span class="nos"><i>Con nosotros</i>Sale de esas mismas horas, con los adelantos descontados</span>
-      </div>
-
-      <div class="vs-f">
         <b>Preguntar cómo viene el mes</b>
         <span class="hoy"><i>Hoy</i>Prendés la compu y buscás el reporte</span>
         <span class="nos"><i>Con nosotros</i>Se lo preguntás por WhatsApp y te contesta</span>
-      </div>
-
-      <div class="vs-f">
-        <b>La lista de tus clientes</b>
-        <span class="hoy"><i>Hoy</i>Está en tu celular y en la cabeza del que atiende</span>
-        <span class="nos"><i>Con nosotros</i>Es una base tuya, y de ahí salen los mails a los que hace rato no vuelven</span>
       </div>
 
       <div class="vs-f">
@@ -1114,84 +1086,18 @@ footer b{color:#fff}
   </div>
 </section>
 
-<!-- 2 · EL ALIVIO -->
-<section>
-  <div class="wrap">
-    <div class="intro">
-      <p class="eyebrow">Primero, el alivio</p>
-      <h2>Todo esto lo podés dejar de hacer</h2>
-      <p class="lead">
-        Estás haciendo a mano cosas que una máquina hace sola.
-      </p>
-    </div>
-
-    <div class="grid g2">
-      <ul class="lista">
-        <li class="item">
-          <span class="medallon"><svg viewBox="0 0 20 20"><path d="M4 10.5 L8 14.5 L16 5.5" fill="none" stroke="var(--lima-txt)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <div><b>Cargar los gastos</b><p>Una foto a la boleta y listo.</p></div>
-        </li>
-        <li class="item">
-          <span class="medallon"><svg viewBox="0 0 20 20"><path d="M4 10.5 L8 14.5 L16 5.5" fill="none" stroke="var(--lima-txt)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <div><b>Llevar el stock en la cabeza</b><p>Se descuenta solo, en el local y en la web.</p></div>
-        </li>
-        <li class="item">
-          <span class="medallon"><svg viewBox="0 0 20 20"><path d="M4 10.5 L8 14.5 L16 5.5" fill="none" stroke="var(--lima-txt)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <div><b>Cerrar la caja con la calculadora</b><p>El cierre sale hecho.</p></div>
-        </li>
-        <li class="item">
-          <span class="medallon"><svg viewBox="0 0 20 20"><path d="M4 10.5 L8 14.5 L16 5.5" fill="none" stroke="var(--lima-txt)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <div><b>Sacar las horas y los sueldos</b><p>Cada uno ficha y se calcula solo.</p></div>
-        </li>
-        <li class="item">
-          <span class="medallon"><svg viewBox="0 0 20 20"><path d="M4 10.5 L8 14.5 L16 5.5" fill="none" stroke="var(--lima-txt)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          <div><b>Buscar el papel que guardaste</b><p>Se lo pedís por WhatsApp.</p></div>
-        </li>
-      </ul>
-
-      <div class="wa">
-        <div class="wa-top">
-          <span class="medallon">🤖</span>
-          <span><b>El sistema</b><span>en línea</span></span>
-        </div>
-        <div class="burb mia">
-          <div class="foto-boleta">Factura A 0003-00184</div>
-          <p>Tomá, cargá esto</p>
-        </div>
-        <div class="burb suya">
-          <p><b>Gasto cargado</b><br>
-          Distribuidora del Sur<br>
-          $184.300 · IVA $31.900<br>
-          <small>Lo puse en Mercadería. ¿Está pago o queda a pagar?</small></p>
-        </div>
-        <div class="burb mia"><p>A pagar, vence el 20</p></div>
-        <div class="burb suya"><p>Listo. Te aviso el 18.</p></div>
-        <div class="burb mia"><p>¿Cuánto vendimos hoy?</p></div>
-        <div class="burb suya"><p>$347.500 en 12 ventas. Ayer a esta hora ibas $290.100.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- 3 · LOS NÚMEROS -->
 <section class="oscura">
   <div class="wrap">
     <div class="intro">
       <p class="eyebrow">Y lo más importante</p>
-      <h2>Cuando todo se carga solo, aparecen los números</h2>
+      <h2>Las tres preguntas que hoy contestás de memoria</h2>
       <p class="lead">
         Dejás de manejar el negocio por sensación: decidís con lo que pasó.
       </p>
     </div>
 
-    <div class="grid g4">
-      <div class="kpi"><span>Vendiste</span><b>$4.812.300</b></div>
-      <div class="kpi"><span>Gastaste</span><b>$3.107.900</b></div>
-      <div class="kpi verde"><span>Te quedó</span><b>$1.704.400</b></div>
-      <div class="kpi roja"><span>Por pagar</span><b>$486.200</b></div>
-    </div>
-
-    <div class="grid g3 mt-3">
+    <div class="grid g3">
       <div class="tarj"><h3>Qué se vende y qué no</h3><p>Lo que vuela, lo que está frenado y lo que te está ocupando plata en el depósito.</p></div>
       <div class="tarj"><h3>En qué se te va</h3><p>Los gastos ordenados por rubro y por proveedor, mes contra mes.</p></div>
       <div class="tarj"><h3>Qué te deja cada cosa</h3><p>El margen real de lo que vendés, con el costo actualizado de la última compra.</p></div>
@@ -1624,7 +1530,6 @@ footer b{color:#fff}
   var R = {
     ferreteria:{
       cierre:"Una foto, la mercadería que entró, las ventas del mostrador y el cierre de caja.",
-      vsGasto:"El gasto del proveedor",
       vsLead:"El sistema de la caja anota lo que vendés, y está bien que lo haga. El problema empieza después: el remito del proveedor, el vencimiento, el stock que no cierra y las horas del que atiende el mostrador.",
       dia:[
         ["07:30","solo","Todavía estás durmiendo.","En el mail ya tenés el cierre de ayer: lo que entró, lo que salió y lo que te quedó. Con un aviso abajo: <b>la pintura te subió 22%</b> en las últimas tres compras."],
@@ -1641,7 +1546,6 @@ footer b{color:#fff}
     },
     ropa:{
       cierre:"Una foto, la ropa nueva cargada, las ventas del local, un cambio de talle y el cierre de caja.",
-      vsGasto:"El remito del proveedor",
       vsLead:"Contar la ropa es lo fácil. Lo que cansa es que el talle que vendiste recién en el local siga figurando disponible en la web, y que a fin de mes las cuentas las termines haciendo vos.",
       dia:[
         ["07:30","solo","Todavía estás durmiendo.","En el mail está el cierre de ayer y un aviso: del jean que más vendés <b>te quedan dos del talle M</b>."],
@@ -1658,16 +1562,18 @@ footer b{color:#fff}
       ]
     },
     turnos:{
-      cierre:"Una foto, la atención del día y el cierre de caja.",
-      vsGasto:"El gasto de insumos",
+      cierre:"Una foto de la boleta, la atención del día, un cobro y el cierre de caja.",
       vsLead:"Una agenda te muestra los turnos, y está bien. Pero la seña, la ficha de la clienta, los insumos y el sueldo de las chicas terminan viviendo en otro lado. Casi siempre, en tu cabeza.",
       dia:[
         ["07:30","solo","Todavía estás durmiendo.","En el mail está el cierre de ayer y cómo viene el mes: <b>12% arriba del anterior</b>."],
         ["09:00","vos","Llega el pedido de insumos.","Le sacás una foto a la boleta y la mandás por WhatsApp. Queda el gasto cargado, con el proveedor y el vencimiento."],
         ["10:00","cliente","Alguien saca turno desde tu web.","Elige entre los horarios que tenés libres de verdad, deja la seña y <b>la plata entra a tu cuenta</b>. La agenda se ocupa sola."],
+        ["10:30","solo","Se cayó el turno de las cuatro.","El sistema le avisa a las que estaban anotadas esperando ese horario, de a dos y por orden de llegada. <b>El hueco se llena sin que llames a nadie</b>, que es la plata que se pierde todos los días sin que la veas."],
         ["11:00","solo","Entra el personal.","Fichan con el celular. Esas horas son las mismas con las que después se arma el sueldo."],
-        ["14:00","solo","Al que viene mañana le llega el recordatorio.","Sin que nadie se acuerde de mandarlo. El que no viene y no avisa es <b>el agujero más caro</b> que tiene una agenda."],
-        ["17:00","vos","Atendés y cobrás.","La sesión queda en la ficha de la clienta: qué se hizo, quién la atendió y <b>cuántas le quedan del pack</b> que ya pagó."],
+        ["14:00","solo","A la que viene mañana le llega el recordatorio.","Sin que nadie se acuerde de mandarlo. La que no viene y no avisa es <b>el agujero más caro</b> que tiene una agenda."],
+        ["16:00","vos","Atendés, y le sacás la foto.","El antes y el después quedan guardados <b>en la ficha de ella</b>, junto con qué se le hizo, con qué producto y quién la atendió. La próxima sesión no depende de tu memoria, y cuando quiere ver cómo viene, se lo mostrás."],
+        ["16:40","solo","Le descuenta la sesión del combo.","Había comprado el combo de cuatro peelings por la web. Al cerrar el turno se descuenta sola y <b>le quedan dos</b>. Si después cancela, la sesión le vuelve: nadie lleva esa cuenta a mano."],
+        ["17:00","vos","Cobrás lo que no entra en un combo.","Y si te pagan con una gift card que le regalaron, el saldo se descuenta y queda registrado de dónde salió esa plata."],
         ["19:00","solo","A la que le toca volver, le llega el mensaje.","A las que hace más de cuarenta días que no vienen les sale un mail para que retomen. Se manda solo, con el link de baja, y <b>después sabés quién lo abrió</b>. Los mensajes de Instagram y Facebook los contesta la misma IA."],
         ["20:30","vos","Cerrás la caja.","El sistema te dice cuánto tendría que haber entre efectivo, transferencias y señas. Contás y confirmás."],
         ["01:30","solo","Ya te fuiste.","El sistema repasa el día: quedaron dos turnos sin confirmar para mañana y hay un hueco de dos horas a la tarde que se puede ofrecer."],
@@ -1676,7 +1582,6 @@ footer b{color:#fff}
     },
     transporte:{
       cierre:"Una foto del ticket, un viaje cargado y un cheque anotado.",
-      vsGasto:"El gasto del camión",
       vsLead:"Acá casi no hay sistema que reemplazar: esto vive en un cuaderno, un Excel y tres grupos de WhatsApp. Los viajes se facturan de memoria y los gastos del camión aparecen cuando ya los pagaste.",
       dia:[
         ["07:30","solo","Todavía estás durmiendo.","En el mail están los viajes de ayer, lo que facturaste y lo que te falta cobrar. Con un aviso: <b>el seguro del acoplado vence el jueves</b>."],
@@ -1700,13 +1605,11 @@ footer b{color:#fff}
 
   var cuadro = cont.querySelector(".dia-fin");
   var vsLead = document.getElementById("vsLead");
-  var vsGasto = document.getElementById("vsGasto");
 
   /* el original del HTML es el rubro de gastronomía */
   R.gastro = {
     cierre: cuadro.querySelector("span").innerHTML,
     vsLead: vsLead.innerHTML,
-    vsGasto: vsGasto.innerHTML,
     dia: [].slice.call(cont.querySelectorAll(".mom")).map(function(m){
       var quien = m.classList.contains("solo") ? "solo"
                 : m.classList.contains("cliente") ? "cliente" : "vos";
@@ -1731,7 +1634,6 @@ footer b{color:#fff}
     cuadro.querySelector("span").innerHTML = r.cierre;
 
     vsLead.innerHTML = r.vsLead;
-    vsGasto.innerHTML = r.vsGasto;
 
     botones.forEach(function(b){ b.setAttribute("aria-pressed", b.dataset.rubro===clave ? "true":"false"); });
   }
