@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plan comercial · respald.ar</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --tinta:#0f2a4a; --tinta-2:#16385f;
+  --calido:#ff8a3d; --calido-osc:#c2540b;
+  --lima:#c8ee3d; --lima-osc:#6f8c0e;
+  --papel:#fff; --papel-2:#eef2f7;
+  --gris:#586b7e; --gris-claro:#aabfd3; --linea:#dde5ed; --rojo:#c2453a;
+  --e1:8px; --e2:16px; --e3:24px; --e4:40px; --e5:72px;
+  --caja:24px; --caja-b:23px; --radio:16px; --ancho:1000px;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--papel);color:var(--tinta);line-height:1.6;
+  font-family:Manrope,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:var(--ancho);margin:0 auto;padding-inline:var(--e3)}
+h1,h2,h3{font-family:'Bricolage Grotesque',Manrope,sans-serif;margin:0 0 var(--e2);
+  line-height:1.14;letter-spacing:-.025em;text-wrap:balance}
+h1{font-size:clamp(32px,5vw,52px);font-weight:800}
+h2{font-size:clamp(23px,3vw,33px);font-weight:800}
+h3{font-size:18px;font-weight:800;margin-bottom:var(--e1)}
+p{margin:0 0 var(--e2);text-wrap:pretty}
+p:last-child{margin-bottom:0}
+.lead{font-size:18px;color:var(--gris)}
+.eyebrow{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--gris);margin-bottom:var(--e2)}
+section{padding-block:var(--e5);border-top:1px solid var(--linea)}
+.hero{background:linear-gradient(155deg,var(--tinta),var(--tinta-2));color:#fff;border:0}
+.hero .lead{color:var(--gris-claro)}
+.hero .eyebrow{color:var(--calido)}
+.intro{max-width:70ch;margin:0 auto var(--e4);text-align:center}
+.intro p{text-align:center}
+.franja{background:var(--papel-2)}
+.grid{display:grid;gap:var(--e2)}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+@media(max-width:860px){.g2,.g3{grid-template-columns:1fr}}
+.tarj{background:#fff;border:1px solid var(--linea);border-radius:var(--radio);padding:var(--caja-b);color:var(--tinta)}
+.tarj p{font-size:15px;color:var(--gris)}
+.tarj.dest{background:var(--tinta);border-color:var(--tinta);color:#fff}
+.tarj.dest p{color:var(--gris-claro)}
+.tarj.dest h3{color:var(--lima)}
+ul{margin:0 0 var(--e2);padding-left:20px}
+ul:last-child{margin-bottom:0}
+li{margin-bottom:7px;font-size:15.5px}
+.frase{background:var(--tinta);color:#fff;border-radius:var(--radio);padding:var(--e3);text-align:center;
+  font-family:'Bricolage Grotesque',Manrope,sans-serif;font-weight:800;font-size:22px;line-height:1.25}
+.frase small{display:block;color:var(--gris-claro);font-weight:400;font-size:14px;margin-top:10px;font-family:Manrope}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--linea);vertical-align:top}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--gris)}
+.num{font-family:'Bricolage Grotesque',Manrope,sans-serif;font-weight:800;font-size:34px;line-height:1;color:var(--calido-osc)}
+.tarj.dest .num{color:var(--lima)}
+.pill{display:inline-block;background:var(--lima);color:#1e2b06;font-weight:800;font-size:13px;
+  padding:4px 12px;border-radius:999px}
+.paso{display:flex;gap:14px;align-items:flex-start}
+.paso b.n{flex:none;width:34px;height:34px;border-radius:50%;background:var(--calido);color:#2a1503;
+  display:grid;place-items:center;font-size:16px;font-weight:800}
+.dato{font-size:13px;color:var(--gris)}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="wrap intro" style="margin-bottom:0">
+    <p class="eyebrow">respald.ar · plan comercial</p>
+    <h1>El producto es la demo</h1>
+    <p class="lead">
+      Un comerciante no compra software por lo que le cuentan: compra lo que tocó.
+      Todo este plan empuja a una sola cosa: que el prospecto tenga el sistema
+      andando en SU celular antes de hablar de precio. Ahí la venta ya está hecha a medias.
+    </p>
+  </div>
+</section>
+
+<!-- 1 · LA VENTAJA -->
+<section>
+  <div class="wrap">
+    <div class="intro">
+      <p class="eyebrow">1 · La ventaja injusta</p>
+      <h2>Tenés lo que ninguna agencia puede fingir</h2>
+      <p class="lead">El plan no inventa nada: ordena y explota tres activos que ya existen.</p>
+    </div>
+    <div class="grid g3">
+      <div class="tarj">
+        <h3>Clientes reales pagando</h3>
+        <p>Diosas vende con la tienda, LORSAL factura con el transporte, Siciliano
+        atiende con la comanda. No son promesas: son links que se abren en la mesa
+        del prospecto.</p>
+      </div>
+      <div class="tarj">
+        <h3>El vendedor que no duerme</h3>
+        <p>El bot de la web contesta, muestra pantallas y lee archivos adjuntos.
+        Ningún competidor local tiene un vendedor así trabajando 24 horas.</p>
+      </div>
+      <div class="tarj">
+        <h3>Competencia que cobra en dólares</h3>
+        <p>simplific.ar vende el bot desde 500 USD y la app en 1.350 USD.
+        mostrador.ar cobra $49.000 UN diagnóstico. Tu precio en pesos, cerrado y
+        con fecha, es una ganga presentada al lado de eso.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2 · POSICIONAMIENTO -->
+<section class="franja">
+  <div class="wrap">
+    <div class="intro">
+      <p class="eyebrow">2 · El posicionamiento</p>
+      <h2>No vendemos software. Sacamos tareas de encima.</h2>
+      <p class="lead">
+        Contra la agencia que vende "soluciones integrales" y contra el sistema
+        enlatado que te obliga a adaptarte vos, respald.ar se para en otro lado:
+        te lo armamos a tu medida, en tu idioma, y lo ves andando antes de firmar.
+      </p>
+    </div>
+    <div class="grid g2">
+      <div class="frase">Delegar no es perder el control. Es tenerlo por primera vez.<small>La frase madre. Hero y anuncios de marca.</small></div>
+      <div class="frase">Precio cerrado y fecha de entrega.<small>La promesa corta. Cierra cualquier objeción de desconfianza.</small></div>
+    </div>
+    <div class="tarj" style="margin-top:var(--e2)">
+      <h3>La regla de todos los mensajes</h3>
+      <p>Se habla del dolor del rubro en el idioma del rubro, nunca del nuestro.
+      No se le diagnostica un dolor que no sabemos si tiene: se le muestra lo que
+      otro igual a él ya resolvió, y se deja que se reconozca solo.
+      "La comanda llega sola a la cocina" vende más que cualquier "digitalizá tu negocio".</p>
+    </div>
+  </div>
+</section>
+
+<!-- 3 · LA ESCALERA -->
+<section>
+  <div class="wrap">
+    <div class="intro">
+      <p class="eyebrow">3 · La escalera de ofertas</p>
+      <h2>Gratis para entrar, paquete para quedarse, a medida para crecer</h2>
+      <p class="lead">Cada escalón existe para subir al siguiente. Nadie compra a medida de entrada: primero toca, después paga poco, después pide más.</p>
+    </div>
+    <div class="grid g3">
+      <div class="tarj">
+        <div class="num">$0</div>
+        <h3>La demo viva</h3>
+        <p><b>"Mandanos tu lista de precios y en 10 minutos el bot atiende con ella."</b>
+        Es el anzuelo perfecto: no pide plata, pide un archivo que todo comerciante
+        tiene, y devuelve la experiencia de SU negocio atendido solo.</p>
+      </div>
+      <div class="tarj dest">
+        <div class="num">$40.000/mes</div>
+        <h3>El paquete de entrada</h3>
+        <p>Bot que contesta WhatsApp, Instagram y Facebook + su página. Precio
+        ancla público. Es el escalón que paga las cuentas y el que se anuncia.</p>
+      </div>
+      <div class="tarj">
+        <div class="num">A medida</div>
+        <h3>El sistema completo</h3>
+        <p>Por rubro: comanda, tienda, transporte, turnos, sueldos. Presupuesto
+        cerrado por escrito, fecha de entrega, seña del 50%. Acá está el margen.</p>
+      </div>
+    </div>
+    <p class="dato" style="text-align:center;margin-top:var(--e2)">
+      Regla de precio: nunca competir por barato. La referencia pública en USD de la
+      competencia se usa EN la conversación: "esto afuera lo cobran 1.350 dólares".
+    </p>
+  </div>
+</section>
+
+<!-- 4 · LOS CANALES -->
+<section class="franja">
+  <div class="wrap">
+    <div class="intro">
+      <p class="eyebrow">4 · Los canales, en orden</p>
+      <h2>Primero lo gratis que cierra, después la plata</h2>
+      <p class="lead">El orden importa: cada canal de arriba alimenta y abarata al de abajo. No se prende Meta Ads hasta que el circuito orgánico demuestre que la demo cierra ventas.</p>
+    </div>
+
+    <div class="grid" style="gap:var(--e2)">
+      <div class="tarj">
+        <div class="paso"><b class="n">1</b><div>
+          <h3>Referidos con nombre y apellido</h3>
+          <p>Cada cliente feliz presenta a uno del mismo rubro. Se le pide en persona,
+          con incentivo concreto (un mes bonificado por referido que firma). El que
+          llega referido ya viene medio vendido y no regatea. Meta: que de cada
+          cliente salgan dos charlas nuevas.</p>
+        </div></div>
+      </div>
+      <div class="tarj">
+        <div class="paso"><b class="n">2</b><div>
+          <h3>La mesa del prospecto</h3>
+          <p>La venta local se cierra cara a cara: el celular sobre la mesa, la
+          tienda de Diosas o la carta de Siciliano abierta, y el bot contestando en
+          vivo. La sección demos de la web existe para eso. Es el canal con mejor
+          tasa de cierre y cuesta cero.</p>
+        </div></div>
+      </div>
+      <div class="tarj">
+        <div class="paso"><b class="n">3</b><div>
+          <h3>Contenido: tu cuenta es la credencial</h3>
+          <p>Videos cortos con la fórmula de siempre (gancho, caso real, resultado):
+          un negocio real, un problema real, resuelto en 60 segundos. La cuenta
+          personal NO vende: muestra. El perfil linkea a respald.ar y el bot remata.
+          Dos videos por semana sostenidos valen más que diez en una semana.</p>
+        </div></div>
+      </div>
+      <div class="tarj">
+        <div class="paso"><b class="n">4</b><div>
+          <h3>Meta Ads por rubro, con el pixel propio</h3>
+          <p>Recién cuando lo orgánico valida el mensaje. Una campaña por rubro,
+          creativo = la pantalla real del sistema + el dolor en su idioma, destino =
+          WhatsApp del bot (no un formulario: acá se chatea). Presupuesto chico,
+          medido por costo por conversación iniciada, se apaga lo que no charla.</p>
+        </div></div>
+      </div>
+      <div class="tarj">
+        <div class="paso"><b class="n">5</b><div>
+          <h3>La tarjeta que viaja sola</h3>
+          <p>Cada link compartido por WhatsApp es un anuncio gratis: la tarjeta OG
+          tiene que vender antes del click. Ya está armada para respald.ar; se
+          replica el criterio en cada página nueva que se muestre.</p>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 · EL RITUAL DE VENTA -->
+<section>
+  <div class="wrap">
+    <div class="intro">
+      <p class="eyebrow">5 · El ritual de venta</p>
+      <h2>Siempre el mismo camino, para poder medirlo</h2>
+    </div>
+    <div class="tarj">
+      <table>
+        <tr><th>Paso</th><th>Qué pasa</th><th>Qué lo mata</th></tr>
+        <tr><td><b>1 · La charla</b></td><td>Entra por referido, video o anuncio. Lo atiende el bot, que muestra pantallas y agenda.</td><td>Tardar en responder lo que el bot no resuelve.</td></tr>
+        <tr><td><b>2 · La demo</b></td><td>En la mesa o por videollamada: SU rubro, SUS palabras, el sistema en su celular.</td><td>Mostrar de más. Tres pantallas que duelan, no doce.</td></tr>
+        <tr><td><b>3 · La propuesta</b></td><td>Por escrito, con la piel de la marca: alcance, precio cerrado, fecha, seña 50%. Se manda el MISMO día de la demo.</td><td>Dejarla enfriar. A las 48 hs el bot pregunta si quedó alguna duda.</td></tr>
+        <tr><td><b>4 · El arranque</b></td><td>Con la seña se arranca y se le da fecha. La entrega puntual es el argumento del próximo referido.</td><td>Alcance abierto. Todo cambio fuera del papel se cotiza aparte.</td></tr>
+      </table>
+    </div>
+    <div class="frase" style="margin-top:var(--e2)">
+      Tres pantallas que duelan valen más que doce que impresionen.
+      <small>La regla de toda demo.</small>
+    </div>
+  </div>
+</section>
+
+<!-- 6 · LOS NÚMEROS -->
+<section class="franja">
+  <div class="wrap">
+    <div class="intro">
+      <p class="eyebrow">6 · Los números que mandan</p>
+      <h2>Cuatro números por semana, nada más</h2>
+      <p class="lead">Si un número no cambia una decisión, no se mira. Estos cuatro sí:</p>
+    </div>
+    <div class="grid g2">
+      <div class="tarj"><h3>Charlas nuevas</h3><p>Conversaciones iniciadas con el bot o con vos, por canal. Es el pulso del embudo: si no hay charlas, todo lo demás da cero.</p></div>
+      <div class="tarj"><h3>Demos hechas</h3><p>Cuántas charlas llegaron a ver el sistema. Si la charla no llega a demo, el mensaje está flojo o el bot deriva mal.</p></div>
+      <div class="tarj"><h3>Propuestas y cierres</h3><p>Cuántas demos pidieron precio y cuántas firmaron. Acá se ve si el precio ancla y el "cerrado con fecha" convencen.</p></div>
+      <div class="tarj"><h3>El mensual acumulado</h3><p>La suma de abonos por mes. Es EL número del negocio: lo que te deja dormir es el recurrente, no el proyecto grande de una vez.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 · 90 DÍAS -->
+<section>
+  <div class="wrap">
+    <div class="intro">
+      <p class="eyebrow">7 · Los primeros 90 días</p>
+      <h2>Un plan que una sola persona puede cumplir</h2>
+      <p class="lead">Pensado para vos solo, sin equipo, sin que el a medida te coma el tiempo del producto.</p>
+    </div>
+    <div class="grid g3">
+      <div class="tarj">
+        <span class="pill">Semanas 1 a 3</span>
+        <h3 style="margin-top:10px">Cimientos</h3>
+        <ul>
+          <li>Símbolo elegido y marca unificada.</li>
+          <li>Los 3 casos escritos en el idioma de cada rubro, con un número cada uno.</li>
+          <li>La demo viva de $0 andando: archivo → bot atendiendo.</li>
+          <li>Pixel de Meta instalado y midiendo.</li>
+        </ul>
+      </div>
+      <div class="tarj">
+        <span class="pill">Semanas 4 a 8</span>
+        <h3 style="margin-top:10px">Circuito orgánico</h3>
+        <ul>
+          <li>Pedir referidos a los 3 clientes, con incentivo.</li>
+          <li>2 videos por semana, siempre caso real.</li>
+          <li>5 demos en mesa por semana como piso.</li>
+          <li>Toda propuesta por escrito y el mismo día.</li>
+        </ul>
+      </div>
+      <div class="tarj">
+        <span class="pill">Semanas 9 a 13</span>
+        <h3 style="margin-top:10px">Plata al fuego</h3>
+        <ul>
+          <li>Meta Ads en el rubro que más cerró, presupuesto chico.</li>
+          <li>Se duplica solo lo que baje el costo por charla.</li>
+          <li>Revisión de precios con lo aprendido: el ancla puede subir.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="frase" style="margin-top:var(--e3)">
+      Meta de los 90 días: que el recurrente pague los gastos fijos.
+      <small>Cada abono nuevo es un mes más de aire para construir el producto.</small>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

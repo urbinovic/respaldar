@@ -351,6 +351,65 @@ ul.lista li,ul.lista li b,.mod,.mod b,.hito,.hito b,.perfil,.perfil b,
 .celu .btn{margin-top:auto;padding:9px 18px;font-size:13.5px;align-self:center}
 .celu figcaption{margin-bottom:12px}
 
+/* ── TU SISTEMA EN VIVO ──────────────────────────────────────
+   La maqueta que genera la IA con el negocio del visitante. Las
+   pantallas usan el mismo marco de celular que las demos reales:
+   lo que cambia es que el contenido se pinta con SUS datos. */
+/* mismo ancho que el chat del cierre (.chatwrap): así los dos campos de
+   texto de la página arrancan en el MISMO eje y no inventan uno cada uno */
+.mq-form{display:flex;gap:var(--e1);max-width:672px;margin:var(--e3) auto 0;flex-wrap:wrap;justify-content:center}
+.mq-form input{flex:1;min-width:260px;border:2px solid var(--linea);border-radius:999px;
+  padding:14px 22px;font-size:15.5px;color:var(--tinta);font-family:inherit;background:#fff}
+.mq-form input:focus{outline:none;border-color:var(--calido)}
+.mq-form button{white-space:nowrap;cursor:pointer;font-family:inherit}
+.mq-ideas{font-size:13.5px;color:var(--gris);margin-top:var(--e2);text-align:center}
+.mq-idea{background:none;border:0;color:var(--calido-osc);font-size:13.5px;cursor:pointer;
+  text-decoration:underline;font-family:inherit;padding:2px 4px}
+
+.mq-cargando{display:none;max-width:420px;margin:var(--e4) auto 0}
+.mq-cargando.on{display:block}
+.mq-pasos{display:grid;gap:10px}
+.mq-paso{font-size:15px;color:var(--gris-claro);padding-left:30px;position:relative;transition:color .3s}
+.mq-paso::before{content:"";position:absolute;left:0;top:4px;width:16px;height:16px;border-radius:50%;
+  border:2px solid var(--linea);transition:all .3s}
+.mq-paso.hecho{color:var(--tinta)}
+.mq-paso.hecho::before{background:var(--calido);border-color:var(--calido)}
+.mq-paso.yendo{color:var(--tinta);font-weight:700}
+.mq-paso.yendo::before{border-color:var(--calido);border-right-color:transparent;animation:gira .7s linear infinite}
+@keyframes gira{to{transform:rotate(360deg)}}
+
+.mq-listo{display:none}
+.mq-listo.on{display:block;animation:aparece .5s ease}
+@keyframes aparece{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.mq-titulo{text-align:center;font-family:'Bricolage Grotesque',Manrope,sans-serif;font-weight:800;
+  font-size:clamp(21px,2.6vw,29px);letter-spacing:-.02em;margin-bottom:var(--e3)}
+.mq-titulo em{font-style:normal;color:var(--calido-osc)}
+.mq-celus{grid-template-columns:repeat(3,1fr)}
+@media(max-width:900px){.mq-celus{grid-template-columns:1fr}}
+.mq-pant{background:#0a1c30}
+.mqp{background:#fff;border-radius:19px;overflow:hidden;min-height:330px;color:var(--tinta);
+  display:flex;flex-direction:column}
+.mqp-top{background:var(--tinta);color:#fff;padding:13px 15px}
+.mqp-top b{display:block;font-family:'Bricolage Grotesque',Manrope,sans-serif;font-size:15px;line-height:1.2}
+.mqp-top span{display:block;font-size:11px;color:var(--gris-claro);margin-top:2px}
+.mqp-cuerpo{padding:12px 13px;display:grid;gap:7px;align-content:start;flex:1}
+.mqp-item{display:flex;justify-content:space-between;align-items:baseline;gap:8px;
+  background:var(--papel-2);border-radius:9px;padding:9px 11px;text-align:left}
+.mqp-item b{font-size:12.5px;line-height:1.25;font-weight:700}
+.mqp-item small{display:block;color:var(--gris);font-size:10.5px;font-weight:400;margin-top:1px}
+.mqp-item i{font-style:normal;font-weight:800;font-size:13px;white-space:nowrap}
+.mqp-kpis{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.mqp-kpi{background:var(--papel-2);border-radius:9px;padding:11px 10px;text-align:left}
+.mqp-kpi small{display:block;font-size:9px;font-weight:800;letter-spacing:.07em;color:var(--gris)}
+.mqp-kpi b{display:block;font-size:16px;letter-spacing:-.02em;margin-top:3px}
+.mqp-kpi.verde b{color:var(--lima-osc)}
+.mqp-kpi.roja b{color:var(--rojo)}
+.mqp-chat{background:#e7ecf2;flex:1;padding:13px;display:flex;flex-direction:column;gap:8px}
+.mqp-burb{background:#fff;border-radius:12px;border-bottom-left-radius:4px;padding:11px 13px;
+  font-size:12.5px;line-height:1.45;text-align:left;box-shadow:0 1px 1px rgba(0,0,0,.06)}
+.mqp-burb.mia{background:#dcf3c8;margin-left:16%;border-radius:12px;border-bottom-right-radius:4px}
+.mqp-nota{font-size:10.5px;color:var(--gris);text-align:center;margin-top:auto;padding-top:8px}
+
 /* ── pantallas: los sistemas dibujados con marco de navegador ─
    Todo el contenido interno va CENTRADO o en grillas propias: son
    ilustraciones, no columnas de texto de la página. */
@@ -573,6 +632,76 @@ footer b{color:#fff}
         </div>
         <figcaption>Tu negocio, en una pantalla.</figcaption>
       </figure>
+    </div>
+  </div>
+</section>
+
+<!-- 1b · TU SISTEMA EN VIVO — el corazón de la página -->
+<section class="clara" id="tuyo">
+  <div class="wrap">
+    <div class="intro">
+      <p class="eyebrow">Nadie más hace esto</p>
+      <h2>Mirá tu sistema antes de comprarlo</h2>
+      <p class="lead">
+        Escribí cómo se llama tu negocio y qué vendés. En treinta segundos
+        te armamos la maqueta con <b>tus</b> productos y <b>tus</b> números.
+      </p>
+      <form class="mq-form" id="mqForm" autocomplete="off">
+        <input id="mqTxt" placeholder="Ej: Panadería El Trigo, facturas y pan casero" maxlength="120">
+        <button class="btn btn-lima" id="mqBtn" type="submit">Armar el mío</button>
+      </form>
+      <p class="mq-ideas">
+        Probá con:
+        <button type="button" class="mq-idea">Ferretería del Centro, tornillos y pinturas</button>
+        <button type="button" class="mq-idea">Veterinaria Huellas, consultas y vacunas</button>
+        <button type="button" class="mq-idea">Kiosco 24hs, bebidas y golosinas</button>
+      </p>
+    </div>
+
+    <!-- mientras piensa -->
+    <div class="mq-cargando" id="mqCargando">
+      <div class="mq-pasos">
+        <span class="mq-paso" data-p="1">Entendiendo tu negocio</span>
+        <span class="mq-paso" data-p="2">Cargando tus productos</span>
+        <span class="mq-paso" data-p="3">Calculando tus números</span>
+        <span class="mq-paso" data-p="4">Poniendo a trabajar al bot</span>
+      </div>
+    </div>
+
+    <!-- el resultado -->
+    <div class="mq-listo" id="mqListo">
+      <p class="mq-titulo" id="mqTitulo"></p>
+      <div class="celus mq-celus">
+
+        <figure class="celu">
+          <div class="celu-marco mq-pant">
+            <div class="mqp" id="mqPant1"></div>
+          </div>
+          <figcaption><b id="mqCap1">Tu pantalla</b><span id="mqSub1"></span></figcaption>
+        </figure>
+
+        <figure class="celu">
+          <div class="celu-marco mq-pant">
+            <div class="mqp" id="mqPant2"></div>
+          </div>
+          <figcaption><b>Tus números</b><span>Lo que entró, lo que salió, lo que te quedó.</span></figcaption>
+        </figure>
+
+        <figure class="celu">
+          <div class="celu-marco mq-pant">
+            <div class="mqp" id="mqPant3"></div>
+          </div>
+          <figcaption><b>Tu bot</b><span>Te escribe con los datos de tu negocio.</span></figcaption>
+        </figure>
+
+      </div>
+      <div class="intro intro-fin">
+        <p class="lead" id="mqCierre"></p>
+        <div class="acciones">
+          <a class="btn btn-lima" href="#contacto">Quiero el mío de verdad</a>
+          <button class="btn btn-borde-t" id="mqOtro" type="button">Probar con otro negocio</button>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1072,6 +1201,128 @@ footer b{color:#fff}
 </section>
 
 <script>
+/* ══════════════════════════════════════════════════════════════════
+   TU SISTEMA EN VIVO
+   El visitante escribe su negocio y la edge `maqueta-ia` devuelve SUS
+   productos, SUS números y lo que le diría el bot. Acá solo se pinta.
+   Los pasos de carga no son decorativos: la IA tarda entre 5 y 8
+   segundos y sin ellos la espera se siente rota.
+   ══════════════════════════════════════════════════════════════════ */
+(function(){
+  var FN  = "https://ysbqvxebkxwylmmzrsjj.supabase.co/functions/v1/maqueta-ia";
+  var KEY = "sb_publishable_GsUGCK8H38vIRXUOP8WEpQ_qUFW8JVw";
+  var form = document.getElementById("mqForm"), txt = document.getElementById("mqTxt");
+  var btn = document.getElementById("mqBtn");
+  var cargando = document.getElementById("mqCargando"), listo = document.getElementById("mqListo");
+  var pasos = [].slice.call(document.querySelectorAll(".mq-paso"));
+  var timers = [];
+
+  function plata(n){ return "$" + (Number(n)||0).toLocaleString("es-AR"); }
+  function esc(s){ var d=document.createElement("div"); d.textContent=String(s==null?"":s); return d.innerHTML; }
+
+  function pasosArrancar(){
+    pasos.forEach(function(p){ p.className="mq-paso"; });
+    pasos[0].classList.add("yendo");
+    timers.forEach(clearTimeout); timers=[];
+    [1400,3000,4600].forEach(function(ms,i){
+      timers.push(setTimeout(function(){
+        pasos[i].className="mq-paso hecho";
+        if(pasos[i+1]) pasos[i+1].classList.add("yendo");
+      }, ms));
+    });
+  }
+  function pasosFrenar(){ timers.forEach(clearTimeout); timers=[]; }
+
+  // ── las tres pantallas, según el rubro que devolvió la IA ──
+  var TITULOS = {
+    tienda: ["Tu tienda online", "Tus productos, con precio y stock."],
+    salon:  ["Tu salón", "Lo que se pide en cada mesa."],
+    turnos: ["Tu agenda", "Los turnos del día, con su seña."],
+    flota:  ["Tu flota", "Cada viaje con sus gastos."]
+  };
+
+  function pantallaProductos(m){
+    var t = TITULOS[m.pantalla] || TITULOS.tienda;
+    var filas = (m.productos||[]).map(function(p){
+      return '<span class="mqp-item"><span><b>'+esc(p.nombre)+'</b><small>'+esc(p.detalle)+'</small></span><i>'+plata(p.precio)+'</i></span>';
+    }).join("");
+    return '<div class="mqp-top"><b>'+esc(m.negocio)+'</b><span>'+esc(t[0])+'</span></div>'+
+           '<div class="mqp-cuerpo">'+filas+'</div>';
+  }
+  function pantallaNumeros(m){
+    var n = m.numeros||{};
+    return '<div class="mqp-top"><b>'+esc(m.negocio)+'</b><span>Tu mes, hasta hoy</span></div>'+
+      '<div class="mqp-cuerpo">'+
+        '<div class="mqp-kpis">'+
+          '<span class="mqp-kpi"><small>VENDISTE</small><b>'+plata(n.vendiste)+'</b></span>'+
+          '<span class="mqp-kpi"><small>GASTASTE</small><b>'+plata(n.gastaste)+'</b></span>'+
+          '<span class="mqp-kpi verde"><small>TE QUEDÓ</small><b>'+plata(n.quedo)+'</b></span>'+
+          '<span class="mqp-kpi roja"><small>POR PAGAR</small><b>'+plata(n.porpagar)+'</b></span>'+
+        '</div>'+
+        '<span class="mqp-item"><span><b>'+esc(m.alivio||"Todo cargado solo")+'</b><small>Sin planillas ni cuaderno</small></span></span>'+
+      '</div>';
+  }
+  function pantallaBot(m){
+    return '<div class="mqp-top"><b>El sistema</b><span>en línea</span></div>'+
+      '<div class="mqp-chat">'+
+        '<div class="mqp-burb">'+esc(m.bot)+'</div>'+
+        '<div class="mqp-burb mia">¿Cuánto vendimos hoy?</div>'+
+        '<div class="mqp-burb">'+plata(Math.round((m.numeros&&m.numeros.vendiste||0)/26))+' hasta ahora. Vas mejor que ayer.</div>'+
+        '<div class="mqp-nota">Te contesta con los datos de '+esc(m.negocio)+'</div>'+
+      '</div>';
+  }
+
+  function pintar(m){
+    var t = TITULOS[m.pantalla] || TITULOS.tienda;
+    document.getElementById("mqTitulo").innerHTML = 'Así se vería el sistema de <em>'+esc(m.negocio)+'</em>';
+    document.getElementById("mqPant1").innerHTML = pantallaProductos(m);
+    document.getElementById("mqPant2").innerHTML = pantallaNumeros(m);
+    document.getElementById("mqPant3").innerHTML = pantallaBot(m);
+    document.getElementById("mqCap1").textContent = t[0];
+    document.getElementById("mqSub1").textContent = t[1];
+    document.getElementById("mqCierre").innerHTML =
+      'Esto lo armó una IA en segundos y con lo poco que escribiste. El de verdad se hace escuchándote, y lo tenés andando en tres semanas.';
+    cargando.classList.remove("on");
+    listo.classList.add("on");
+    listo.scrollIntoView({block:"start"});
+  }
+
+  function pedir(texto){
+    if(!texto || texto.trim().length < 4){ txt.focus(); return; }
+    btn.disabled = true; btn.textContent = "Armando…";
+    listo.classList.remove("on");
+    cargando.classList.add("on");
+    pasosArrancar();
+    cargando.scrollIntoView({block:"center"});
+
+    fetch(FN, {
+      method:"POST",
+      headers:{ "Content-Type":"application/json", "Authorization":"Bearer "+KEY, "apikey":KEY },
+      body: JSON.stringify({ texto: texto })
+    })
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      pasosFrenar();
+      if(d && d.ok && d.maqueta){ pasos.forEach(function(p){ p.className="mq-paso hecho"; }); setTimeout(function(){ pintar(d.maqueta); }, 350); }
+      else { cargando.classList.remove("on"); alert("Se me trabó armando la maqueta. Probá de nuevo en un ratito."); }
+    })
+    .catch(function(){
+      pasosFrenar(); cargando.classList.remove("on");
+      alert("Se cortó la conexión. Probá de nuevo.");
+    })
+    .then(function(){ btn.disabled=false; btn.textContent="Armar el mío"; });
+  }
+
+  form.addEventListener("submit", function(e){ e.preventDefault(); pedir(txt.value); });
+  [].slice.call(document.querySelectorAll(".mq-idea")).forEach(function(b){
+    b.addEventListener("click", function(){ txt.value = b.textContent.trim(); pedir(txt.value); });
+  });
+  document.getElementById("mqOtro").addEventListener("click", function(){
+    listo.classList.remove("on"); txt.value=""; txt.focus();
+    document.getElementById("tuyo").scrollIntoView({block:"start"});
+  });
+})();
+
 /* El recepcionista: la MISMA edge function del entrevistador comercial
    (entrevista-ia, tipo "sistemas") que ya entrevista prospectos, guarda la
    charla y manda el resumen del analista por mail. Acá solo vive la cara. */
