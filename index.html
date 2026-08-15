@@ -1529,14 +1529,15 @@ footer b{color:#fff}
 
   var R = {
     ferreteria:{
-      cierre:"Una foto, la mercadería que entró, las ventas del mostrador y el cierre de caja.",
+      cierre:"Una foto, la mercadería que entró, las ventas del mostrador, lo que se llevó el de siempre y el cierre de caja.",
       vsLead:"El sistema de la caja anota lo que vendés, y está bien que lo haga. El problema empieza después: el remito del proveedor, el vencimiento, el stock que no cierra y las horas del que atiende el mostrador.",
       dia:[
         ["07:30","solo","Todavía estás durmiendo.","En el mail ya tenés el cierre de ayer: lo que entró, lo que salió y lo que te quedó. Con un aviso abajo: <b>la pintura te subió 22%</b> en las últimas tres compras."],
         ["09:00","vos","Llega el proveedor.","Le sacás una foto al remito y lo mandás por WhatsApp. Eso es todo lo que hacés. El gasto queda cargado con el proveedor, el monto y <b>la fecha en que vence</b>."],
         ["10:30","vos","Entra la mercadería.","Cargás lo que llegó y el sistema te pregunta a cuánto lo compraste. Con eso ya sabe <b>cuánto ganás en cada venta</b>, sin que hagas la cuenta."],
         ["11:00","solo","Entra el personal.","Fichan con el celular. Esas horas son las mismas con las que después se arma el sueldo, así que nadie las vuelve a escribir."],
-        ["13:00","vos","Mostrador lleno.","Cobrás y el stock baja solo. Si el que compra tiene cuenta corriente, se lo anotás a su nombre y queda en su ficha."],
+        ["13:00","vos","Mostrador lleno.","Pasás cada cosa por el <b>lector de código de barras</b> y entra al ticket con su precio: no la buscás en una lista de mil. El que paga en efectivo tiene su precio y el que paga con tarjeta el suyo, sin que nadie saque la cuenta a mano."],
+        ["13:20","vos","El de siempre se lleva y paga a fin de mes.","Se lo anotás a su nombre y queda en su cuenta corriente. Cuando venga a pagar está todo junto, sin buscar papelitos ni acordarte de memoria."],
         ["16:30","cliente","Alguien compra desde tu tienda online.","Elige, paga y le llega el aviso. Sale del <b>mismo stock</b> que el del mostrador, así que no vendés dos veces lo que tenés una sola vez."],
         ["18:00","solo","Al que compró una vez le llega un mail tuyo.","A los que compraron y hace tres meses que no vuelven les sale un mail con lo que entró nuevo. Se manda solo, con el link de baja, y <b>después sabés quién lo abrió</b>. Los mensajes de Instagram y Facebook los contesta la misma IA."],
         ["20:30","vos","Cerrás la caja.","El sistema te dice cuánto tendría que haber, contás y confirmás. Si falta, sabés de cuánto es la diferencia esta misma noche."],
@@ -1552,7 +1553,7 @@ footer b{color:#fff}
         ["09:00","vos","Llega mercadería nueva.","Le sacás una foto al remito y lo mandás por WhatsApp. El gasto queda cargado con el proveedor y el vencimiento."],
         ["10:30","vos","La cargás una sola vez.","Ponés la prenda con sus talles y sus colores, y esa misma carga sirve para <b>el local y para la tienda online</b>. No la subís dos veces."],
         ["11:00","solo","Entra el personal.","Fichan con el celular, y esas horas son las que después arman el sueldo."],
-        ["13:00","vos","Vendés en el local.","Cobrás, elegís talle y color, y el stock de esa combinación baja solo."],
+        ["13:00","vos","Vendés en el local.","Elegís talle y color, y el stock de <b>esa combinación</b> baja solo. Cada línea del ticket lleva la foto de la prenda: la misma remera en negro y en blanco se lee casi igual, y así ves de un vistazo que estás cobrando lo que se lleva."],
         ["16:30","cliente","Entra una venta por la web.","Elige talle y color, paga y le llega el aviso. Sale del mismo stock, así que <b>no le vendés algo que ya no está</b>."],
         ["18:00","solo","A las clientas les llega la temporada nueva.","A las que compraron y hace tres meses que no vuelven les sale un mail con lo que entró. Se manda solo, con el link de baja, y <b>después sabés quién lo abrió</b>. Los mensajes de Instagram y Facebook los contesta la misma IA."],
         ["19:00","vos","Vienen a cambiar un talle.","Lo cambiás en la pantalla: vuelve el que entregó y sale el que se lleva. Los dos quedan bien contados."],
@@ -1581,13 +1582,15 @@ footer b{color:#fff}
       ]
     },
     transporte:{
-      cierre:"Una foto del ticket, un viaje cargado y un cheque anotado.",
+      cierre:"Una foto del ticket, un viaje cargado, un adicional anotado y un cheque.",
       vsLead:"Acá casi no hay sistema que reemplazar: esto vive en un cuaderno, un Excel y tres grupos de WhatsApp. Los viajes se facturan de memoria y los gastos del camión aparecen cuando ya los pagaste.",
       dia:[
         ["07:30","solo","Todavía estás durmiendo.","En el mail están los viajes de ayer, lo que facturaste y lo que te falta cobrar. Con un aviso: <b>el seguro del acoplado vence el jueves</b>."],
         ["08:00","vos","El chofer carga combustible.","Te manda la foto del ticket por WhatsApp y el gasto queda cargado <b>al camión que lo gastó</b>, no a una bolsa general."],
         ["10:00","solo","Sale un viaje a Mendoza.","Los kilómetros los pone el sistema, que ya conoce esa ruta. Nadie los adivina ni los escribe de memoria."],
-        ["12:00","vos","Cargás un viaje nuevo.","Desde el celular, con el cliente, la carga y la tarifa. Queda listo para facturar."],
+        ["09:30","solo","El rendimiento te avisa.","El camión de Gómez viene haciendo 2,1 kilómetros por litro cuando hacía 2,6. El sistema lo saca solo de los tickets de combustible y los kilómetros de los viajes, así que <b>lo ves ahora y no dentro de tres meses</b>."],
+        ["12:00","vos","Cargás un viaje nuevo.","Desde el celular, con el cliente, la carga y la tarifa. Si el camión descarga en varios lugares, las paradas van dentro del mismo viaje: es un flete y una factura, con más kilómetros."],
+        ["12:30","vos","El chofer esperó cuatro horas para descargar.","Lo cargás como adicional y queda marcado <b>para reclamárselo al cliente</b>, con su cartel en Cobranza hasta que lo cobres. Eso, el peón y el segundo lugar de entrega son la plata que hoy se pierde por no anotarla en el momento."],
         ["15:00","solo","La factura sale del viaje.","Con los datos que ya están cargados. No la escribís de nuevo, y <b>no se te escapa ningún viaje sin facturar</b>."],
         ["18:00","vos","Entra un cheque a 60 días.","Queda anotado con <b>las dos fechas</b>: cuándo te lo dieron y cuándo se cobra. Así sabés con qué plata contás y para cuándo."],
         ["19:00","solo","El cliente que dejó de darte carga.","El sistema te marca a los que hace dos meses que no te llaman y les manda un mail tuyo. Se arma con la lista que ya tenés cargada y <b>después sabés quién lo abrió</b>."],
