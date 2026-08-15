@@ -302,6 +302,76 @@ ul.lista li,ul.lista li b,.mod,.mod b,.hito,.hito b,.perfil,.perfil b,
 .hito b{display:block;font-size:16.5px}
 .hito small{color:var(--gris);font-size:13px}
 
+/* ── el día del negocio ─────────────────────────────────────────
+   Un relato, no una lista de funciones. Se lee de arriba a abajo
+   como un martes real. El COLOR DEL PUNTO es el argumento: naranja
+   = lo hizo el sistema, tinta = lo hiciste vos. De un vistazo se
+   ve cuántos naranjas hay. */
+.dia-ref{display:flex;gap:var(--e3);justify-content:center;flex-wrap:wrap;margin-top:var(--e3)}
+.dia-ref .ref{display:inline-flex;align-items:center;gap:9px;font-size:13.5px;font-weight:700;color:var(--gris)}
+.dia-ref .ref::before{content:"";width:13px;height:13px;border-radius:50%;flex:0 0 auto}
+.dia-ref .vos::before{background:var(--tinta)}
+.dia-ref .solo::before{background:var(--calido)}
+
+.dia{max-width:720px;margin:0 auto}
+/* La guía vertical la dibuja CADA momento, de su punto al de abajo, y el
+   último no la dibuja. Con una sola línea de punta a punta había que
+   adivinar dónde termina, y se metía adentro del cuadro del cierre. */
+.mom{display:grid;grid-template-columns:64px 1fr;gap:var(--e3);align-items:start;
+  padding-bottom:var(--e3);position:relative}
+.mom::before{content:"";position:absolute;left:67px;top:4px;width:12px;height:12px;border-radius:50%;
+  border:3px solid var(--papel-2);box-sizing:content-box;z-index:1}
+.mom::after{content:"";position:absolute;left:75px;top:22px;bottom:0;width:2px;background:var(--linea)}
+.mom:last-of-type::after{content:none}
+.mom.vos::before{background:var(--tinta)}
+.mom.solo::before{background:var(--calido)}
+.mom .hora{font-size:13px;font-weight:800;color:var(--tinta);letter-spacing:-.01em;padding-top:1px;
+  text-align:right;white-space:nowrap}
+.mom b{display:block;font-size:17px;color:var(--tinta);margin-bottom:5px;line-height:1.3}
+.mom p{font-size:15px;color:var(--gris);margin:0}
+.mom p b{display:inline;font-size:inherit;color:var(--tinta)}
+/* el cierre cuelga de la misma columna de texto que los momentos */
+.dia-fin{display:grid;grid-template-columns:64px 1fr;gap:var(--e3);margin-top:var(--e1)}
+.dia-fin .cuenta{grid-column:2;background:var(--tinta);color:#fff;border-radius:var(--radio);
+  padding:var(--caja);text-align:left}
+.dia-fin .cuenta b{display:block;font-family:'Bricolage Grotesque',Manrope,system-ui,sans-serif;
+  font-size:clamp(19px,2.4vw,24px);line-height:1.25;margin-bottom:6px}
+.dia-fin .cuenta span{font-size:15px;color:var(--gris-claro)}
+/* En celular el punto entero (12px + 3 de borde a cada lado = 18) no
+   entraba en un gap de 16 y le comía la primera letra al título. Acá el
+   punto se achica y el pasillo se ensancha: 40 + 20 deja el texto en 60
+   y el punto termina en 57. */
+@media(max-width:640px){
+  .mom,.dia-fin{grid-template-columns:40px 1fr;gap:20px}
+  .mom::before{left:43px;top:4px;width:10px;height:10px;border-width:2px}
+  .mom::after{left:49px;top:18px}
+  .mom .hora{font-size:12px}
+  .dia-fin .cuenta{grid-column:1/-1}
+}
+
+/* ── la comparación ─────────────────────────────────────────────
+   Tres columnas en compu; en celular cada fila se apila y las
+   etiquetas ocultas ("Hoy" / "Con nosotros") aparecen, porque sin
+   cabecera no se entiende qué columna es cuál. */
+.vs{display:grid;gap:12px;margin-top:var(--e3)}
+.vs-cab,.vs-f{display:grid;grid-template-columns:1.05fr 1fr 1.15fr;gap:var(--e2);align-items:center}
+.vs-cab{padding:0 var(--caja-b) 4px}
+.vs-cab span{font-size:11.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--gris-claro)}
+.vs-cab .destaca{color:var(--lima)}
+.vs-f{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);
+  border-radius:var(--radio);padding:var(--caja-b)}
+.vs-f>b{font-size:16px;color:#fff;line-height:1.3}
+.vs-f .hoy{font-size:14.5px;color:var(--gris-claro)}
+.vs-f .nos{font-size:14.5px;color:#fff;font-weight:600}
+.vs-f i{display:none}
+@media(max-width:900px){
+  .vs-cab{display:none}
+  .vs-f{grid-template-columns:1fr;gap:12px}
+  .vs-f i{display:block;font-style:normal;font-size:11px;font-weight:800;letter-spacing:.12em;
+    text-transform:uppercase;margin-bottom:3px;color:var(--gris-claro)}
+  .vs-f .nos i{color:var(--lima)}
+}
+
 /* ── perfil del trabajador: la reputación se VE ─────────────── */
 .perfil{background:#fff;border:1px solid var(--linea);border-radius:var(--radio);padding:var(--caja-b);text-align:left}
 .perfil-top{display:flex;align-items:center;gap:var(--gap-medallon);padding-bottom:12px;border-bottom:1px solid var(--linea)}
@@ -603,7 +673,7 @@ footer b{color:#fff}
         </p>
         <div class="acciones">
           <a class="btn btn-lima" href="#contacto">Contame qué necesitás</a>
-          <a class="btn btn-borde" href="#demos">Tocá una demo en vivo</a>
+          <a class="btn btn-borde" href="#dia">Ver un día con el sistema</a>
         </div>
         <p class="hero-nota">Precio cerrado y fecha de entrega · <b class="cupo">tomamos 3 proyectos por mes</b></p>
       </div>
@@ -636,15 +706,227 @@ footer b{color:#fff}
   </div>
 </section>
 
-<!-- 1b · TU SISTEMA EN VIVO — el corazón de la página -->
+<!-- 1b · UN MARTES CUALQUIERA — el camino completo, contado como un día.
+     Reemplaza a la lista de funciones: el cliente no compra "módulos",
+     compra un día en el que no tuvo que acordarse de nada. El color del
+     punto hace el argumento solo. -->
+<section class="clara" id="dia">
+  <div class="wrap">
+    <div class="intro">
+      <p class="eyebrow">Cómo funciona, de verdad</p>
+      <h2>Un martes cualquiera</h2>
+      <p class="lead">
+        No te vamos a listar funciones. Te contamos un día entero de tu
+        negocio, de punta a punta. Mirá los puntos naranjas: eso pasó
+        <b>sin que nadie se acordara de hacerlo</b>.
+      </p>
+      <p class="dia-ref">
+        <span class="ref vos">Lo hacés vos</span>
+        <span class="ref solo">Lo hace el sistema</span>
+      </p>
+    </div>
+
+    <div class="dia">
+
+      <div class="mom solo">
+        <span class="hora">07:30</span>
+        <div>
+          <b>Todavía estás durmiendo.</b>
+          <p>En el mail ya tenés el cierre de ayer: lo que entró, lo que
+          salió y lo que te quedó. Con un aviso abajo:
+          <b>la harina te subió 18%</b> en las últimas tres compras.</p>
+        </div>
+      </div>
+
+      <div class="mom vos">
+        <span class="hora">09:00</span>
+        <div>
+          <b>Llega el proveedor.</b>
+          <p>Le sacás una foto a la boleta y la mandás por WhatsApp. Eso
+          es todo lo que hacés. El gasto queda cargado con el proveedor,
+          el monto y <b>la fecha en que vence</b>.</p>
+        </div>
+      </div>
+
+      <div class="mom solo">
+        <span class="hora">11:00</span>
+        <div>
+          <b>Entra el personal.</b>
+          <p>Fichan con el celular. Esas horas son las mismas con las que
+          después se arma el sueldo, así que nadie las vuelve a escribir
+          en ningún lado.</p>
+        </div>
+      </div>
+
+      <div class="mom vos">
+        <span class="hora">13:00</span>
+        <div>
+          <b>Mediodía lleno.</b>
+          <p>El mozo toma el pedido en el celular y se parte solo: los
+          platos salen en la cocina, las bebidas en la barra. Nadie grita
+          nada ni pierde una comanda.</p>
+        </div>
+      </div>
+
+      <div class="mom solo">
+        <span class="hora">16:30</span>
+        <div>
+          <b>Alguien reserva desde tu web.</b>
+          <p>Elige el día, deja la seña y le llega la confirmación. La
+          mesa queda tomada y <b>la plata entra a tu cuenta</b>, no a la
+          nuestra.</p>
+        </div>
+      </div>
+
+      <div class="mom vos">
+        <span class="hora">20:30</span>
+        <div>
+          <b>La mesa 4 pide la cuenta.</b>
+          <p>Son seis y pagan por separado: dos con transferencia, el
+          resto en efectivo. Se divide en la pantalla y cada parte queda
+          anotada donde va.</p>
+        </div>
+      </div>
+
+      <div class="mom vos">
+        <span class="hora">00:30</span>
+        <div>
+          <b>Cerrás la caja.</b>
+          <p>El sistema te dice cuánto tendría que haber, contás y
+          confirmás. Si falta, sabés de cuánto es la diferencia esta
+          misma noche y no dentro de un mes.</p>
+        </div>
+      </div>
+
+      <div class="mom solo">
+        <span class="hora">01:30</span>
+        <div>
+          <b>Ya te fuiste a tu casa.</b>
+          <p>El sistema repasa el día solo: una comanda quedó abierta, un
+          producto se vendió por debajo de lo que te cuesta y el seguro
+          de la camioneta vence el jueves. Todo eso te espera en el mail
+          de mañana.</p>
+        </div>
+      </div>
+
+      <div class="mom solo">
+        <span class="hora">Fin<br>de mes</span>
+        <div>
+          <b>Los sueldos.</b>
+          <p>Salen de las horas que ya fichó cada uno, con los adelantos
+          que se llevaron durante el mes ya descontados. No hay un Excel
+          aparte.</p>
+        </div>
+      </div>
+
+      <div class="dia-fin">
+        <div class="cuenta">
+          <b>En todo el día, vos tocaste el sistema cuatro veces.</b>
+          <span>Una foto, un pedido, un cobro y el cierre de caja. Lo
+          demás pasó mientras atendías el negocio.</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 1c · LA COMPARACIÓN — contra el sistema que YA tiene.
+     Ojo con el encuadre: la tabla habla de "hoy" en general, y a Fudo
+     se lo nombra UNA vez y solo para reconocer lo que hace bien. Nada
+     de afirmar qué NO tiene un producto ajeno: si una sola fila es
+     inexacta, el cliente desarma la página entera. -->
+<section class="oscura" id="falta">
+  <div class="wrap">
+    <div class="intro">
+      <p class="eyebrow">La diferencia</p>
+      <h2>Anotar, anotan todos</h2>
+      <p class="lead">
+        Fudo es muy bueno en lo suyo, y lo suyo es el salón: la comanda,
+        la cocina, el cobro. No venimos a discutirle eso. Venimos por las
+        otras veinte horas del día, las que igual terminás haciendo vos.
+      </p>
+    </div>
+
+    <div class="vs">
+      <div class="vs-cab">
+        <span></span>
+        <span>Como lo hacés hoy</span>
+        <span class="destaca">Como queda con nosotros</span>
+      </div>
+
+      <div class="vs-f">
+        <b>El gasto del proveedor</b>
+        <span class="hoy"><i>Hoy</i>Lo cargás vos, uno por uno, cuando te acordás</span>
+        <span class="nos"><i>Con nosotros</i>Le sacás una foto a la boleta y queda cargado, con vencimiento</span>
+      </div>
+
+      <div class="vs-f">
+        <b>Saber si ganaste plata</b>
+        <span class="hoy"><i>Hoy</i>Entrás, elegís las fechas y sacás la cuenta</span>
+        <span class="nos"><i>Con nosotros</i>A las 9:30 lo tenés en el mail, sin entrar a ningún lado</span>
+      </div>
+
+      <div class="vs-f">
+        <b>Las horas del personal</b>
+        <span class="hoy"><i>Hoy</i>En un cuaderno, o de memoria</span>
+        <span class="nos"><i>Con nosotros</i>Fichan con el celular y las horas quedan solas</span>
+      </div>
+
+      <div class="vs-f">
+        <b>El sueldo de fin de mes</b>
+        <span class="hoy"><i>Hoy</i>Lo armás aparte, en una planilla</span>
+        <span class="nos"><i>Con nosotros</i>Sale de esas mismas horas, con los adelantos descontados</span>
+      </div>
+
+      <div class="vs-f">
+        <b>Preguntar cómo viene el mes</b>
+        <span class="hoy"><i>Hoy</i>Prendés la compu y buscás el reporte</span>
+        <span class="nos"><i>Con nosotros</i>Se lo preguntás por WhatsApp y te contesta</span>
+      </div>
+
+      <div class="vs-f">
+        <b>El otro negocio que tenés</b>
+        <span class="hoy"><i>Hoy</i>Otro sistema, otro abono, otra clave</span>
+        <span class="nos"><i>Con nosotros</i>El mismo sistema, con los dos adentro</span>
+      </div>
+
+      <div class="vs-f">
+        <b>Tu mejor empleado</b>
+        <span class="hoy"><i>Hoy</i>Es un usuario más, y lo que hizo bien se pierde cuando se va</span>
+        <span class="nos"><i>Con nosotros</i>Se lleva su propia calificación a donde vaya a trabajar</span>
+      </div>
+
+      <div class="vs-f">
+        <b>Cuando te falta algo</b>
+        <span class="hoy"><i>Hoy</i>Lo pedís y esperás a que algún día lo saquen</span>
+        <span class="nos"><i>Con nosotros</i>Se hace, porque el sistema es tuyo y lo hacemos nosotros</span>
+      </div>
+    </div>
+
+    <div class="intro intro-fin">
+      <p class="lead">
+        Ninguna de esas cosas es magia. Son las que ya están andando todos
+        los días en los negocios de acá abajo.
+      </p>
+      <div class="acciones">
+        <a class="btn btn-lima" href="#contacto">Quiero esto en mi negocio</a>
+        <a class="btn btn-borde" href="#demos">Ver los que ya andan</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 1d · TU SISTEMA EN VIVO — el corazón de la página -->
 <section class="clara" id="tuyo">
   <div class="wrap">
     <div class="intro">
-      <p class="eyebrow">Nadie más hace esto</p>
-      <h2>Mirá tu sistema antes de comprarlo</h2>
+      <p class="eyebrow">Una vuelta más</p>
+      <h2>¿Y en tu negocio cómo se vería?</h2>
       <p class="lead">
-        Escribí cómo se llama tu negocio y qué vendés. En treinta segundos
-        te armamos la maqueta con <b>tus</b> productos y <b>tus</b> números.
+        Escribí a qué te dedicás y te lo dibujamos con <b>tus</b> productos
+        y <b>tus</b> números. Es una aproximación que arma una IA en
+        segundos: el de verdad se hace escuchándote.
       </p>
       <form class="mq-form" id="mqForm" autocomplete="off">
         <input id="mqTxt" placeholder="Ej: Panadería El Trigo, facturas y pan casero" maxlength="120">
