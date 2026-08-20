@@ -178,6 +178,15 @@ section{padding-block:var(--e5)}
 .g3{grid-template-columns:repeat(3,1fr)}
 .g4{grid-template-columns:repeat(4,1fr)}
 @media(max-width:900px){.g2,.g3,.g4{grid-template-columns:1fr}}
+/* seis tarjetas cortas apiladas de a una se comen una pantalla entera
+   para decir seis frases de cinco palabras: en celular van de a dos */
+@media(max-width:900px){
+  .g3.compacto{grid-template-columns:repeat(2,1fr);gap:10px}
+  .g3.compacto .tarj{padding:14px 10px}
+  .g3.compacto .rub-ico{font-size:26px}
+  .g3.compacto b{font-size:14.5px}
+  .g3.compacto p{font-size:13px}
+}
 
 /* ── cajas: todas con el mismo padding compensado ───────────── */
 .tarj{background:var(--papel);border:1px solid var(--linea);border-radius:var(--radio);padding:var(--caja-b);text-align:left}
@@ -404,7 +413,7 @@ ul.lista li,ul.lista li b,.mod,.mod b,.hito,.hito b,.perfil,.perfil b,
    innerHTML del contenedor cada vez que se cambia de rubro y se lo
    llevaría puesto. */
 .dia.plegado{position:relative}
-.dia.plegado > .mom:nth-child(n+6),
+.dia.plegado > .mom:nth-child(n+5),
 .dia.plegado > .dia-fin{display:none}
 .dia.plegado::after{content:"";position:absolute;left:0;right:0;bottom:0;height:120px;
   pointer-events:none;background:linear-gradient(to bottom,rgba(238,242,247,0),var(--papel-2))}
@@ -454,6 +463,28 @@ ul.lista li,ul.lista li b,.mod,.mod b,.hito,.hito b,.perfil,.perfil b,
    clara quedan como sellos, no como manchas. */
 .logos-tit{margin:var(--e4) 0 0;text-align:center;font-size:12.5px;font-weight:800;
   letter-spacing:.14em;text-transform:uppercase;color:var(--gris)}
+/* rótulo de fila adentro de una franja oscura: separa "lo que ve tu
+   cliente" de "lo que ves vos" sin gastar otro encabezado de sección */
+.fila-tit{margin:var(--e4) 0 var(--e2);text-align:center;font-size:12.5px;font-weight:800;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--lima)}
+.fila-tit:first-of-type{margin-top:0}
+/* el lima sobre el papel claro no se lee: en franja clara va gris */
+.clara .fila-tit,section:not(.oscura):not(.hero) .fila-tit{color:var(--gris)}
+.clara .pie-cta,section:not(.oscura):not(.hero) .pie-cta{color:var(--gris)}
+
+/* ── LOS NÚMEROS QUE YA HIZO ──────────────────────────────────
+   Prueba de RESULTADO, no de existencia: todo lo demás muestra que la
+   pantalla existe, esto muestra lo que produjo. Se cuentan de la base
+   y llevan la fecha al lado; no se estiman nunca. */
+.numeros{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--e2)}
+.num{background:#fff;border:1px solid var(--linea);border-radius:var(--radio);
+  padding:var(--e2) 12px;text-align:center;display:flex;flex-direction:column;gap:5px}
+.num b{font-family:'Poppins',Manrope,system-ui,sans-serif;font-weight:800;
+  font-size:clamp(26px,3.4vw,34px);color:var(--tinta);line-height:1}
+.num small{font-size:12.5px;color:var(--gris);line-height:1.3}
+@media(max-width:700px){.numeros{grid-template-columns:repeat(2,1fr);gap:10px}
+  .num{padding:14px 8px}
+  .num small{font-size:11.5px}}
 .logos{display:flex;flex-wrap:wrap;gap:var(--e2);justify-content:center;align-items:stretch;margin-top:var(--e2);text-align:center}
 .lg{width:132px;height:132px;border-radius:var(--radio);overflow:hidden;background:var(--papel-2);
   display:grid;place-items:center;box-shadow:0 6px 18px rgba(15,42,74,.10)}
@@ -648,6 +679,15 @@ ul.lista li,ul.lista li b,.mod,.mod b,.hito,.hito b,.perfil,.perfil b,
 .scb.libre{background:#fff;border:1px solid var(--linea);color:var(--gris)}
 
 /* ── tarjetas de rubro: estampitas, no párrafos (menos es más) ── */
+/* las dos caras del bot: ícono grande arriba y el texto a la izquierda,
+   que es distinto de .rub (centrado y para tarjetas cortas) */
+.tarj-bot .rub-ico{display:block;font-size:32px;line-height:1;margin-bottom:var(--e1)}
+/* OJO con el `>`: sin él, el <b> que resalta una frase ADENTRO del
+   párrafo también se volvía bloque y partía la oración al medio
+   (quedaba un ": te avisa…" huérfano en su propia línea) */
+.tarj-bot > b{display:block;font-size:18px;margin-bottom:6px;color:var(--tinta)}
+.tarj-bot p{margin:0}
+.tarj-bot p b{display:inline;font-size:inherit}
 .rub{text-align:center}
 .rub .rub-ico{display:block;font-size:34px;line-height:1;margin-bottom:var(--e1)}
 .rub b{display:block;font-size:16px;margin-bottom:2px}
@@ -657,6 +697,10 @@ ul.lista li,ul.lista li b,.mod,.mod b,.hito,.hito b,.perfil,.perfil b,
 .rubros{display:flex;flex-wrap:wrap;gap:var(--e1);justify-content:center;margin-top:var(--e3);text-align:center}
 .rchip{border:1px solid var(--linea);background:#fff;border-radius:999px;padding:8px 15px;font-size:14px;color:var(--gris)}
 .rchip.destacado{background:var(--lima);border-color:var(--lima);color:var(--lima-txt);font-weight:700}
+/* la tira son 28 fichas: van más chicas que los botones del día, si no
+   se comen media pantalla de celular para decir una sola cosa */
+.rubros-tira{margin-top:var(--e2);gap:7px}
+.rubros-tira .rchip{padding:6px 12px;font-size:13px}
 
 /* ── chat en vivo del cierre ────────────────────────────────── */
 .chatwrap{max-width:672px;margin:var(--e3) auto 0;text-align:left}
@@ -813,11 +857,12 @@ footer b{color:#fff}
       <p class="eyebrow">Tocalo vos, desde tu celular</p>
       <h2><span id="nDemos">8</span> pantallas que están andando ahora mismo</h2>
       <p class="lead">
-        No son maquetas. Son tres negocios de San Juan, con sus servicios
-        y sus precios de hoy. Entrá y recorrelas como las recorre su
-        cliente.
+        No son maquetas. Son tres negocios de San Juan con sus precios de
+        hoy: entrá y recorrelas. Y abajo, el otro lado del mostrador.
       </p>
     </div>
+
+    <p class="fila-tit">Lo que ve tu cliente</p>
 
     <div class="celus tres">
       <figure class="celu">
@@ -856,9 +901,122 @@ footer b{color:#fff}
       </figure>
     </div>
 
+    <!-- 1a-bis · Y AHORA EL OTRO LADO DEL MOSTRADOR.
+         Pelá, 20/08: "eso realmente es lo que deberíamos vender?". No.
+         Todo lo de arriba es lo que ve el cliente DE TU CLIENTE, que es
+         lo más fácil de copiar y lo que te hace comparar por precio. Lo
+         que el dueño COMPRA son los números, y no estaba en ninguna
+         pantalla. Va acá adentro y no en una sección propia para no
+         pagar otro encabezado. -->
+    <p class="fila-tit">Y esto es tu lado del mostrador</p>
+
+    <div class="grid g2">
+      <figure class="screen">
+        <div class="sc-top"><i></i><i></i><i></i><span class="sc-url">tunegocio.ar/reportes</span></div>
+        <div class="sc-body">
+          <div class="sc-tabs"><span class="act">Ventas</span><span>Caja</span><span>Gastos</span><span>Stock</span><span>Personal</span></div>
+          <div class="sc-titulo">Agosto · del 1 al 20</div>
+          <div class="sc-kpis">
+            <span class="sck"><small>VENDISTE</small><b>$4.812.300</b></span>
+            <span class="sck"><small>GASTASTE</small><b>$3.107.900</b></span>
+            <span class="sck verde"><small>TE QUEDÓ</small><b>$1.704.400</b></span>
+            <span class="sck roja"><small>POR PAGAR</small><b>$486.200</b></span>
+          </div>
+          <div class="sc-lineas">
+            <span class="scl ok">📈 Agosto viene <b>31% arriba</b> de julio</span>
+            <span class="scl warn">⏰ Vencen <b>$486.200</b> esta semana</span>
+          </div>
+        </div>
+        <figcaption>Los números, sin que nadie arme una planilla.</figcaption>
+      </figure>
+
+      <figure class="screen">
+        <div class="sc-top"><i></i><i></i><i></i><span class="sc-url">tunegocio.ar/salon</span></div>
+        <div class="sc-body">
+          <div class="sc-mesas">
+            <span class="scm ok">M1</span><span class="scm pide">M2</span><span class="scm ok">M3</span><span class="scm cobra">M4</span>
+            <span class="scm libre">M5</span><span class="scm pide">M6</span><span class="scm libre">M7</span><span class="scm ok">M8</span>
+          </div>
+          <div class="sc-lineas">
+            <span class="scl ok">🍝 Mesa 2 → <b>cocina</b>: 2 sorrentinos</span>
+            <span class="scl ok">🥤 Mesa 2 → <b>barra</b>: 2 limonadas</span>
+            <span class="scl warn">💵 Mesa 4 · pre-cuenta <b>$38.500</b></span>
+          </div>
+        </div>
+        <figcaption>El pedido se parte solo: cocina y barra.</figcaption>
+      </figure>
+    </div>
+
     <p class="pie-cta">
-      Las tres corren sobre el mismo sistema. Lo único que cambia es tu rubro.
-      <a class="btn btn-lima btn-chico" href="#contacto">Quiero el mío</a>
+      Si tenés flota, agenda o depósito, esta pantalla es la de tu rubro.
+      <a class="btn btn-lima btn-chico" href="#contacto">Quiero ver la mía</a>
+    </p>
+  </div>
+</section>
+
+<!-- 1c · EL BOT, CON SECCIÓN PROPIA.
+     Pelá, 20/08: "necesito vender, necesito que me contraten". Esto es
+     lo que la competencia NO tiene y lo único que el prospecto puede
+     PROBAR en la mesa, en treinta segundos. Estaba repartido en cuatro
+     lugares de la página (un momento del día, una fila de la tabla, un
+     chip y el chat del final) y en ninguno tenía sección, prueba ni
+     números. simplific.ar vende SOLO un bot de WhatsApp a USD 500.
+
+     ⚠️ Los números de abajo se contaron de la base el 20/08/2026 y son
+     de negocios reales. Si se tocan, se vuelven a contar; no se estiman:
+       114 = select count(distinct de) from wa_entrantes
+        96 = gastro_gastos con origen='whatsapp' (los 96 traen la foto).
+             OJO: "gastos con comprobante" da 110, pero 15 los subió
+             alguien desde el panel y NO son del bot. El número que se
+             publica es el que la frase promete, no el más grande.
+       276 = negocio_chats de un cliente, 04/08 al 19/08 (253 con IA)
+       139 = redes_entrantes (110 contestados por la IA)
+     ⚠️ Y NO se promete lo que no corre: el único bot público que el
+     visitante puede tocar hoy es el de la web de Siciliano (Nino). El
+     "🤖 ¿Te ayudo?" del turnero de Valkiria NO es IA (es una ayuda
+     escrita, sin modelo), así que no se linkea como demo del bot. -->
+<section class="clara" id="bot">
+  <div class="wrap">
+    <div class="intro">
+      <p class="eyebrow">Lo que no tiene ningún otro</p>
+      <h2>Un empleado más, que vive en el WhatsApp</h2>
+      <p class="lead">
+        No es un contestador de preguntas frecuentes pegado por afuera.
+        Trabaja adentro de tu sistema: mira tu carta, tu stock, tus
+        horarios, tus proveedores y tus números de verdad.
+      </p>
+    </div>
+
+    <div class="grid g2">
+      <div class="tarj tarj-bot">
+        <span class="rub-ico">📸</span>
+        <b>Vos le hablás a él</b>
+        <p>Le mandás la foto de la boleta y te contesta en el momento:
+        cargado, cuánto, a quién y cuándo vence. Le preguntás cómo viene
+        el mes y te lo dice. Tu gente le manda los remitos desde el
+        camión, o el gasto del día desde el mostrador.</p>
+      </div>
+      <div class="tarj tarj-bot">
+        <span class="rub-ico">💬</span>
+        <b>Él le habla a tus clientes</b>
+        <p>En tu página web, en Instagram, en Facebook y por WhatsApp,
+        con lo que vos tenés cargado. <b>Si el dato no está, no lo
+        inventa</b>: te avisa para que contestes vos. Y si alguien del
+        local ya está contestando, el bot se calla solo.</p>
+      </div>
+    </div>
+
+    <p class="fila-tit">Lo que lleva hecho, contado de la base el 20/08/2026</p>
+    <div class="numeros">
+      <span class="num"><b>114</b><small>personas le escribieron</small></span>
+      <span class="num"><b>96</b><small>gastos cargados mandando la foto de la boleta</small></span>
+      <span class="num"><b>276</b><small>charlas atendidas en la web de un cliente, en 15 días</small></span>
+      <span class="num"><b>139</b><small>mensajes de Instagram y Facebook</small></span>
+    </div>
+
+    <p class="pie-cta">
+      El de Siciliano está atendiendo ahora en su web. Preguntale lo que quieras.
+      <a class="btn btn-lima btn-chico" href="https://sicilianoresto.com.ar" target="_blank" rel="noopener">Hablar con el bot</a>
     </p>
   </div>
 </section>
@@ -1095,18 +1253,11 @@ footer b{color:#fff}
         <span class="destaca">Como queda con nosotros</span>
       </div>
 
-      <div class="vs-f">
-        <b>Preguntar cómo viene el mes</b>
-        <span class="hoy"><i>Hoy</i>Prendés la compu y buscás el reporte</span>
-        <span class="nos"><i>Con nosotros</i>Se lo preguntás por WhatsApp y te contesta</span>
-      </div>
-
-      <div class="vs-f">
-        <b>Instagram y Facebook</b>
-        <span class="hoy"><i>Hoy</i>Contestás vos, cuando podés, y a veces al otro día</span>
-        <span class="nos"><i>Con nosotros</i>Los contesta la misma IA que atiende tu web</span>
-      </div>
-
+      <!-- Se cayeron dos filas el 20/08 ("preguntar cómo viene el mes" y
+           "Instagram y Facebook"): la sección del bot, que ahora va más
+           arriba, las cuenta enteras y con números. Repetirlas acá era
+           media pantalla para decir dos veces lo mismo. Las tres que
+           quedan son las que el bot NO dice. -->
       <div class="vs-f">
         <b>El otro negocio que tenés</b>
         <span class="hoy"><i>Hoy</i>Otro sistema, otro abono, otra clave</span>
@@ -1160,6 +1311,21 @@ footer b{color:#fff}
       <span class="mod"><i>🌐</i><b>Tu página web</b></span>
       <span class="mod"><i>⭐</i><b>Reputación</b></span>
     </div>
+
+    <!-- Los rubros vivían en una sección propia que se cortó por larga
+         (commit "La mitad de la pagina afuera"). Pelá, 20/08: falta
+         mostrar todo lo que podemos hacer. Vuelven, pero como una tira
+         de fichas adentro de esta sección: cuestan un tercio de pantalla
+         y contestan la única pregunta que se hace el que entra, que es
+         "¿el mío está?". El selector del día sigue con cinco: sumar uno
+         ahí es escribirle la jornada entera, no agregar una ficha. -->
+    <p class="logos-tit">Y esto se arma para el rubro que tengas</p>
+    <div class="rubros rubros-tira">
+      <span class="rchip">Ferretería</span><span class="rchip">Kiosco</span><span class="rchip">Panadería</span><span class="rchip">Carnicería</span><span class="rchip">Verdulería</span><span class="rchip">Rotisería</span><span class="rchip">Heladería</span><span class="rchip">Farmacia</span><span class="rchip">Óptica</span><span class="rchip">Pet shop</span><span class="rchip">Veterinaria</span><span class="rchip">Vivero</span><span class="rchip">Librería</span><span class="rchip">Taller</span><span class="rchip">Gomería</span><span class="rchip">Lavadero</span><span class="rchip">Lubricentro</span><span class="rchip">Hotel y cabañas</span><span class="rchip">Gimnasio</span><span class="rchip">Cancha de pádel</span><span class="rchip">Barbería</span><span class="rchip">Consultorio</span><span class="rchip">Odontología</span><span class="rchip">Academia</span><span class="rchip">Estudio contable</span><span class="rchip">Distribuidora</span><span class="rchip">Mayorista</span><span class="rchip destacado">El tuyo</span>
+    </div>
+    <p class="rubros-otro">
+      ¿No está el tuyo? Mejor: los que nadie hizo son los que más nos gustan.
+    </p>
 
     <p class="logos-tit">Corriendo hoy, en estos negocios</p>
     <div class="logos">
@@ -1232,7 +1398,7 @@ footer b{color:#fff}
       <p class="eyebrow">Antes de que preguntes</p>
       <h2>Lo que puede salir mal, por escrito</h2>
     </div>
-    <div class="grid g3">
+    <div class="grid g3 compacto">
       <div class="tarj rub"><span class="rub-ico">📅</span><b>Si nos pasamos de la fecha</b><p>El primer mes no lo pagás.</p></div>
       <div class="tarj rub"><span class="rub-ico">🔓</span><b>Si te querés ir</b><p>Sin permanencia. Te vas cuando quieras.</p></div>
       <div class="tarj rub"><span class="rub-ico">💾</span><b>Tus datos son tuyos</b><p>Te los llevás en Excel cuando los pidas.</p></div>
@@ -1403,7 +1569,7 @@ footer b{color:#fff}
      El número se CUENTA del DOM, igual que el del cierre: cada rubro
      tiene un día de largo distinto (11, 12 o 13 momentos) y un número
      escrito a mano quedaría mintiendo en cuanto se toque uno. */
-  var VISIBLES = 5;
+  var VISIBLES = 4;
   var masBox = document.getElementById("diaMas");
   var masBtn = document.getElementById("diaVerMas");
   var masNum = document.getElementById("diaFaltan");
