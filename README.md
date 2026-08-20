@@ -16,7 +16,29 @@ como caso y como la pata gratis de reputación.
 | `demos/` | Capturas REALES de producción usadas en la sección de demos, la foto y los logos de clientes. |
 | `marca/` | Manual de marca y los tres SVG del logo. |
 | `og-fuente.html` | Fuente de `og.png` (la tarjeta de WhatsApp). Se regenera con Edge headless. |
-| `demos/fuente-barberia.html` | Fuente de la pantalla de ejemplo de la barbería (negocio inventado). |
+| `chequear.ps1` | Guardián de la paleta. Falla si se coló un color que no es de la marca. Correr antes de publicar. |
+| `medir-largo.ps1` | Cuánto scroll cuesta cada sección, en pantallas de celular. Correr **antes de opinar** sobre el largo. |
+
+## La sección de demos
+
+Es la segunda sección de la página, arriba del argumento, porque la prueba
+tiene que llegar antes que el discurso. Reglas:
+
+- **Solo clientes reales y links públicos que abren.** El 20/08/2026 se mató la
+  pantalla inventada de una barbería: teniendo el turnero real de Casa Valkiria,
+  mostrar uno de mentira debajo del título *"esto no es una maqueta"* le regalaba
+  la duda al que mira. Cada link se prueba antes de publicar.
+- **Se agrupa por CLIENTE, no por función.** Lo que se vende no es un turnero
+  suelto: es el negocio entero online. Por eso cada negocio muestra TODAS sus
+  pantallas públicas.
+- **El número del título se cuenta del DOM** (`#nDemos` cuenta los `.celu-links a`).
+  Sumar o sacar un link no puede dejar el título mintiendo.
+
+**Cómo se saca una captura** (Edge headless contra la URL pública):
+`--headless=new` (el viejo falla), un **`--user-data-dir` distinto por captura**
+(si no, la segunda y la tercera no salen y no avisan) y **`--window-size=480,900`**
+(con 430 se corta el contenido a la derecha y los precios salen "$14.90" en vez
+de "$14.900"). Después PNG→JPG con System.Drawing calidad 82.
 
 ## Reglas de esta página
 

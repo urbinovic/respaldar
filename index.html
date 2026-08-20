@@ -116,7 +116,6 @@ p:last-child{margin-bottom:0}
 .intro{max-width:var(--intro);margin:0 auto var(--e4);text-align:center}
 .intro p{text-align:center}
 .intro .acciones{justify-content:center}
-.intro-fin{margin-top:var(--e4);margin-bottom:0}
 
 .mt-3{margin-top:var(--e3)}
 .mt-4{margin-top:var(--e4)}
@@ -394,6 +393,24 @@ ul.lista li,ul.lista li b,.mod,.mod b,.hito,.hito b,.perfil,.perfil b,
   .dia-fin .cuenta{grid-column:1/-1}
 }
 
+/* ── EL DÍA EMPIEZA PLEGADO ─────────────────────────────────────
+   Pelá, 20/08/2026: "es muy larga la página, el que llega se pierde".
+   Medido con medir-largo.ps1, esta sección sola se comía 4 pantallas
+   de las 15,4: el 26% de la página, y estaba ANTES de cualquier
+   prueba. No se corta el texto (el día completo es el argumento):
+   se cobra solo lo que el visitante quiere leer. Los cinco primeros
+   momentos ya muestran el mecanismo; el resto se abre con un botón.
+   El botón vive AFUERA de .dia a propósito: pintar() reescribe el
+   innerHTML del contenedor cada vez que se cambia de rubro y se lo
+   llevaría puesto. */
+.dia.plegado{position:relative}
+.dia.plegado > .mom:nth-child(n+6),
+.dia.plegado > .dia-fin{display:none}
+.dia.plegado::after{content:"";position:absolute;left:0;right:0;bottom:0;height:120px;
+  pointer-events:none;background:linear-gradient(to bottom,rgba(238,242,247,0),var(--papel-2))}
+.dia-mas{text-align:center;margin-top:var(--e2)}
+.dia-mas small{display:block;color:var(--gris);font-size:13.5px;margin-top:9px}
+
 /* ── la comparación ─────────────────────────────────────────────
    Tres columnas en compu; en celular cada fila se apila y las
    etiquetas ocultas ("Hoy" / "Con nosotros") aparecen, porque sin
@@ -435,7 +452,9 @@ ul.lista li,ul.lista li b,.mod,.mod b,.hito,.hito b,.perfil,.perfil b,
 /* logos REALES de los clientes (bajados de su ficha). Vienen con fondo
    oscuro propio, así que se montan como tarjetas cuadradas: sobre la franja
    clara quedan como sellos, no como manchas. */
-.logos{display:flex;flex-wrap:wrap;gap:var(--e2);justify-content:center;align-items:stretch;margin-top:var(--e3);text-align:center}
+.logos-tit{margin:var(--e4) 0 0;text-align:center;font-size:12.5px;font-weight:800;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--gris)}
+.logos{display:flex;flex-wrap:wrap;gap:var(--e2);justify-content:center;align-items:stretch;margin-top:var(--e2);text-align:center}
 .lg{width:132px;height:132px;border-radius:var(--radio);overflow:hidden;background:var(--papel-2);
   display:grid;place-items:center;box-shadow:0 6px 18px rgba(15,42,74,.10)}
 .lg img{width:100%;height:100%;object-fit:cover;display:block}
@@ -446,30 +465,49 @@ ul.lista li,ul.lista li b,.mod,.mod b,.hito,.hito b,.perfil,.perfil b,
 /* ── celulares con CAPTURAS REALES de producción ──────────────
    Las imágenes salen de sacarle una foto al sistema andando (Edge
    headless sobre aval.ar). El marco es CSS; la pantalla es real. */
-.celus{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--e3);align-items:stretch}
-@media(max-width:900px){.celus{grid-template-columns:repeat(2,1fr);gap:var(--e2)}}
-/* En celular NO se pasa a una sola columna: cuatro capturas apiladas se
-   comían cuatro pantallas de scroll para mostrar cuatro fotos. De a dos
-   se ven igual de bien y la sección mide la mitad. */
-@media(max-width:520px){.celus{grid-template-columns:repeat(2,1fr);gap:12px}
-  .celu figcaption{font-size:12.5px}
-  .celu .btn{padding:9px 12px;font-size:13px}}
-/* columna flex: con el botón en margin-top:auto los cuatro quedan a la MISMA
-   altura aunque una descripción ocupe una línea y otra dos */
+.celus{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--e3);align-items:stretch}
+/* columna flex: con la fila de links en margin-top:auto los tres quedan a la
+   MISMA altura aunque una descripción ocupe una línea y otra dos */
 .celu{margin:0;text-align:center;display:flex;flex-direction:column;height:100%}
+.celu-info{display:flex;flex-direction:column;flex:1}
 .celu-marco{background:#0a1c30;border-radius:26px;padding:9px 7px;box-shadow:0 12px 30px rgba(0,0,0,.28);position:relative}
 .celu-marco::before{content:"";position:absolute;top:4px;left:50%;transform:translateX(-50%);
   width:32%;height:5px;border-radius:99px;background:rgba(255,255,255,.28)}
 .celu-marco img{display:block;width:100%;border-radius:19px;background:#fff}
-.celu-marco{position:relative}
-/* la de muestra va rotulada: las otras tres son negocios de verdad */
-.tag-ej{position:absolute;z-index:2;top:16px;right:14px;background:var(--lima);color:var(--lima-txt);
-  font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
-  border-radius:999px;padding:3px 10px}
-.celu figcaption{color:var(--gris-claro);font-size:13.5px;margin-top:12px}
-.celu figcaption b{display:block;color:#fff;font-size:15.5px;margin-bottom:2px}
-.celu .btn{margin-top:auto;padding:9px 18px;font-size:13.5px;align-self:center}
-.celu figcaption{margin-bottom:12px}
+.celu figcaption{color:var(--gris-claro);font-size:13.5px;margin:12px 0}
+.celu figcaption b{display:block;color:#fff;font-size:16.5px;margin-bottom:2px}
+/* ── los LINKS de cada negocio ────────────────────────────────
+   Uno por pantalla pública que tiene ese cliente andando. Son la
+   sección entera: la píldora tiene que leerse como algo que se toca,
+   no como texto. La flecha ↗ avisa que abre afuera. */
+.celu-links{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin-top:auto}
+.celu-links a{display:inline-flex;align-items:center;gap:5px;text-decoration:none;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;
+  border-radius:999px;padding:7px 13px;font-size:13px;font-weight:700;
+  transition:background .15s,color .15s,border-color .15s}
+.celu-links a::after{content:"↗";font-size:11px;opacity:.65}
+.celu-links a:hover,.celu-links a:focus-visible{background:var(--lima);color:var(--lima-txt);border-color:var(--lima)}
+.celu-links a:hover::after,.celu-links a:focus-visible::after{opacity:1}
+/* el remate de una franja oscura: una línea y el botón, en el mismo
+   renglón. Reemplaza a los bloques de cierre con lead + dos botones,
+   que costaban media pantalla cada uno para repetir la misma llamada. */
+.pie-cta{margin:var(--e3) 0 0;text-align:center;color:var(--gris-claro);font-size:15px;
+  display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:center}
+/* ── en el celular, cada negocio se acuesta ───────────────────
+   Tres capturas apiladas a lo ancho se comían tres pantallas de scroll
+   para mostrar tres fotos. Acostadas (foto chica a la izquierda, nombre
+   y links a la derecha) se ven igual y la sección mide un tercio. */
+@media(max-width:660px){
+  .celus{grid-template-columns:1fr;gap:16px}
+  .celu{flex-direction:row;align-items:flex-start;gap:14px;text-align:left}
+  .celu-marco{flex:0 0 34%;max-width:124px;border-radius:18px;padding:6px 5px;box-shadow:0 8px 18px rgba(0,0,0,.28)}
+  .celu-marco::before{height:4px;top:3px}
+  .celu-marco img{border-radius:13px}
+  .celu figcaption{margin-top:0;font-size:13px}
+  .celu-links{justify-content:flex-start;gap:6px}
+  .celu-links a{padding:6px 11px;font-size:12.5px}
+  .pie-cta{gap:12px}
+}
 
 /* ── TU SISTEMA EN VIVO ──────────────────────────────────────
    La maqueta que genera la IA con el negocio del visitante. Las
@@ -722,7 +760,7 @@ footer b{color:#fff}
         </p>
         <div class="acciones">
           <a class="btn btn-lima" href="#contacto">Contame qué necesitás</a>
-          <a class="btn btn-borde" href="#dia">Ver un día con el sistema</a>
+          <a class="btn btn-borde" href="#demos">Ver los que ya andan</a>
         </div>
         <p class="hero-nota">Precio cerrado y fecha de entrega · <b class="cupo">tomamos 3 proyectos por mes</b></p>
       </div>
@@ -755,6 +793,76 @@ footer b{color:#fff}
   </div>
 </section>
 
+<!-- 1a · DEMOS REALES, ARRIBA DE TODO.
+     Pelá, 20/08/2026: "el que llegue a esa página se pierde" y "podríamos
+     estar mostrando un montón de cosas para vender y no lo estamos
+     mostrando". Las dos cosas se arreglan con el mismo movimiento: la
+     PRUEBA sube al segundo lugar, antes del argumento. Antes había que
+     bajar 7 pantallas de texto para ver la primera pantalla real.
+     Se agrupa por CLIENTE y no por función: lo que se vende no es un
+     turnero suelto, es el negocio entero online. Y se murió la barbería
+     inventada: teniendo el turnero real de Casa Valkiria, mostrar uno de
+     mentira debajo del título "esto no es una maqueta" era regalarle la
+     duda al que mira. Todos los links son públicos y se probaron uno por
+     uno el 20/08. Las capturas se sacan con Edge headless (ver la receta
+     en el README): --headless=new, un --user-data-dir por captura y
+     --window-size=480,900. -->
+<section class="oscura" id="demos">
+  <div class="wrap">
+    <div class="intro">
+      <p class="eyebrow">Tocalo vos, desde tu celular</p>
+      <h2><span id="nDemos">8</span> pantallas que están andando ahora mismo</h2>
+      <p class="lead">
+        No son maquetas. Son tres negocios de San Juan, con sus servicios
+        y sus precios de hoy. Entrá y recorrelas como las recorre su
+        cliente.
+      </p>
+    </div>
+
+    <div class="celus tres">
+      <figure class="celu">
+        <div class="celu-marco"><img src="demos/valkiria-turnos.jpg" alt="Turnero online de Casa Valkiria" loading="lazy"></div>
+        <div class="celu-info">
+          <figcaption><b>Casa Valkiria</b>Estética. Las clientas eligen, sacan turno y dejan la seña solas, a la hora que sea.</figcaption>
+          <div class="celu-links">
+            <a href="https://aval.ar/turnos/casa-valkiria" target="_blank" rel="noopener">Sacar un turno</a>
+            <a href="https://aval.ar/casa-valkiria" target="_blank" rel="noopener">Su página</a>
+            <a href="https://aval.ar/gift/casa-valkiria" target="_blank" rel="noopener">Regalar una gift</a>
+            <a href="https://aval.ar/productos/casa-valkiria" target="_blank" rel="noopener">Sus productos</a>
+          </div>
+        </div>
+      </figure>
+
+      <figure class="celu">
+        <div class="celu-marco"><img src="demos/local.jpg" alt="Web propia de Siciliano" loading="lazy"></div>
+        <div class="celu-info">
+          <figcaption><b>Siciliano</b>Restaurante. Su dominio y su diseño, y la carta cambia desde el mismo sistema.</figcaption>
+          <div class="celu-links">
+            <a href="https://sicilianoresto.com.ar" target="_blank" rel="noopener">Su web</a>
+            <a href="https://sicilianoresto.com.ar/carta.html" target="_blank" rel="noopener">La carta con QR</a>
+            <a href="https://aval.ar/reservar/siciliano" target="_blank" rel="noopener">Reservar una mesa</a>
+          </div>
+        </div>
+      </figure>
+
+      <figure class="celu">
+        <div class="celu-marco"><img src="demos/diosas.jpg" alt="Tienda online de Diosas Odiosas" loading="lazy"></div>
+        <div class="celu-info">
+          <figcaption><b>Diosas Odiosas</b>Ropa. Vende de noche con el mismo stock del local: talles, cuotas y transferencia.</figcaption>
+          <div class="celu-links">
+            <a href="https://aval.ar/tienda/diosas-odiosas" target="_blank" rel="noopener">Entrar a la tienda</a>
+          </div>
+        </div>
+      </figure>
+    </div>
+
+    <p class="pie-cta">
+      Las tres corren sobre el mismo sistema. Lo único que cambia es tu rubro.
+      <a class="btn btn-lima btn-chico" href="#contacto">Quiero el mío</a>
+    </p>
+  </div>
+</section>
+
 <!-- 1b · UN MARTES CUALQUIERA — el camino completo, contado como un día.
      Reemplaza a la lista de funciones: el cliente no compra "módulos",
      compra un día en el que no tuvo que acordarse de nada. El color del
@@ -764,10 +872,12 @@ footer b{color:#fff}
     <div class="intro">
       <p class="eyebrow">Cómo funciona, de verdad</p>
       <h2>Un martes cualquiera</h2>
+      <!-- El lead explicaba el color de los puntos y la referencia de acá
+           abajo lo vuelve a explicar tres líneas después. Se queda la
+           referencia, que además se ve. -->
       <p class="lead">
-        No te vamos a listar funciones. Te contamos un día entero de tu
-        negocio, de punta a punta. Fijate el color de los puntos: los
-        azules son <b>las pocas veces que tuviste que hacer algo vos</b>.
+        Un día entero de tu negocio, de punta a punta. Mirá el color de
+        los puntos.
       </p>
 
       <p class="rubros-tit">¿Cuál es tu rubro?</p>
@@ -790,7 +900,7 @@ footer b{color:#fff}
       </p>
     </div>
 
-    <div class="dia">
+    <div class="dia plegado" id="diaLista">
 
       <div class="mom solo">
         <span class="hora">07:30</span>
@@ -951,6 +1061,13 @@ footer b{color:#fff}
       </div>
 
     </div>
+
+    <p class="dia-mas" id="diaMas">
+      <button type="button" class="btn btn-borde" id="diaVerMas">
+        Seguir el día hasta el cierre de caja
+      </button>
+      <small>Quedan <b id="diaFaltan">9</b> momentos, hasta que cerrás la caja y te vas a tu casa.</small>
+    </p>
   </div>
 </section>
 
@@ -1009,60 +1126,18 @@ footer b{color:#fff}
       </div>
     </div>
 
-    <div class="intro intro-fin">
-      <p class="lead">
-        Ninguna de esas cosas es magia. Son las que ya están andando todos
-        los días en los negocios de acá abajo.
-      </p>
-      <div class="acciones">
-        <a class="btn btn-lima" href="#contacto">Quiero esto en mi negocio</a>
-        <a class="btn btn-borde" href="#demos">Ver los que ya andan</a>
-      </div>
-    </div>
+    <p class="pie-cta">
+      Nada de eso es magia: es lo que ya viste andando acá arriba.
+      <a class="btn btn-lima btn-chico" href="#contacto">Quiero esto en mi negocio</a>
+    </p>
   </div>
 </section>
 
-<!-- 4b · DEMOS REALES: capturas de producción + link para tocarlas -->
-<section class="oscura" id="demos">
-  <div class="wrap">
-    <div class="intro">
-      <p class="eyebrow">Andando ahora mismo</p>
-      <h2>Esto no es una maqueta.</h2>
-      <p class="lead">
-        Abrilas desde tu celular. Son negocios reales vendiendo hoy.
-      </p>
-    </div>
-
-    <div class="celus">
-      <figure class="celu">
-        <div class="celu-marco"><img src="demos/diosas.jpg" alt="Tienda online de Diosas Odiosas" loading="lazy"></div>
-        <figcaption><b>Una tienda que vende</b>Talles, cuotas y descuento por transferencia.</figcaption>
-        <a class="btn btn-lima" href="https://aval.ar/tienda/diosas-odiosas" target="_blank" rel="noopener">Entrar a la tienda</a>
-      </figure>
-
-      <figure class="celu">
-        <div class="celu-marco"><img src="demos/local.jpg" alt="Web de Siciliano en su propio dominio" loading="lazy"></div>
-        <figcaption><b>La web de tu negocio</b>Tu dominio, tu marca y tus reseñas.</figcaption>
-        <a class="btn btn-lima" href="https://sicilianoresto.com.ar" target="_blank" rel="noopener">Ver la web</a>
-      </figure>
-
-      <figure class="celu">
-        <div class="celu-marco"><img src="demos/carta.jpg" alt="Carta digital de Siciliano en su propio dominio" loading="lazy"></div>
-        <figcaption><b>La carta con QR</b>En su dominio y con su diseño.</figcaption>
-        <a class="btn btn-lima" href="https://sicilianoresto.com.ar/carta.html" target="_blank" rel="noopener">Ver la carta</a>
-      </figure>
-
-      <figure class="celu">
-        <div class="celu-marco"><span class="tag-ej">Ejemplo</span><img src="demos/barberia.jpg" alt="Turnero de barbería con seña" loading="lazy"></div>
-        <figcaption><b>Turnos con seña</b>El que reserva paga, y no te deja el hueco.</figcaption>
-        <a class="btn btn-lima" href="#contacto">Quiero el mío</a>
-      </figure>
-    </div>
-  </div>
-</section>
-
-<!-- 7 · ANDANDO HOY -->
-<section id="hicimos">
+<!-- 7 · ANDANDO HOY + DE QUIÉN ES.
+     Eran DOS secciones con dos encabezados (los módulos y la tira de
+     logos) para decir la misma cosa: esto corre en negocios de verdad.
+     Juntas pesaban 1,4 pantallas; con un solo encabezado, la mitad. -->
+<section class="clara" id="hicimos">
   <div class="wrap">
     <div class="intro">
       <p class="eyebrow">Andando hoy, en negocios reales</p>
@@ -1085,16 +1160,8 @@ footer b{color:#fff}
       <span class="mod"><i>🌐</i><b>Tu página web</b></span>
       <span class="mod"><i>⭐</i><b>Reputación</b></span>
     </div>
-  </div>
-</section>
 
-<!-- 8 · CASOS -->
-<section class="clara">
-  <div class="wrap">
-    <div class="intro">
-      <p class="eyebrow">Funciona</p>
-      <h2>Negocios que ya delegaron</h2>
-    </div>
+    <p class="logos-tit">Corriendo hoy, en estos negocios</p>
     <div class="logos">
       <span class="lg"><img src="demos/logo-diosas.jpg" alt="Diosas Odiosas" loading="lazy"></span>
       <span class="lg"><img src="demos/logo-siciliano.jpg" alt="Siciliano Caffè & Pasta" loading="lazy"></span>
@@ -1331,6 +1398,29 @@ footer b{color:#fff}
   var cuadro = cont.querySelector(".dia-fin");
   var vsLead = document.getElementById("vsLead");
 
+  /* ── EL DÍA ARRANCA PLEGADO ───────────────────────────────────
+     Se ven los primeros 5 momentos y el botón dice cuántos faltan.
+     El número se CUENTA del DOM, igual que el del cierre: cada rubro
+     tiene un día de largo distinto (11, 12 o 13 momentos) y un número
+     escrito a mano quedaría mintiendo en cuanto se toque uno. */
+  var VISIBLES = 5;
+  var masBox = document.getElementById("diaMas");
+  var masBtn = document.getElementById("diaVerMas");
+  var masNum = document.getElementById("diaFaltan");
+
+  function actualizarPliegue(){
+    if(!masBox) return;
+    var tapados = Math.max(0, cont.querySelectorAll(".mom").length - VISIBLES);
+    if(!cont.classList.contains("plegado") || !tapados){ masBox.hidden = true; return; }
+    masBox.hidden = false;
+    if(masNum) masNum.textContent = tapados;
+  }
+
+  if(masBtn) masBtn.addEventListener("click", function(){
+    cont.classList.remove("plegado");
+    masBox.hidden = true;
+  });
+
   /* el original del HTML es el rubro de gastronomía */
   R.gastro = {
     cierre: cuadro.querySelector("span").innerHTML,
@@ -1359,6 +1449,7 @@ footer b{color:#fff}
     cuadro.querySelector("span").innerHTML = r.cierre;
 
     vsLead.innerHTML = r.vsLead;
+    actualizarPliegue();
 
     botones.forEach(function(b){ b.setAttribute("aria-pressed", b.dataset.rubro===clave ? "true":"false"); });
   }
@@ -1386,6 +1477,17 @@ footer b{color:#fff}
     inicial = new URLSearchParams(location.search).get("rubro") || localStorage.getItem("respaldar_rubro");
   }catch(e){}
   if(inicial && R[inicial] && inicial!=="gastro") pintar(inicial);
+  actualizarPliegue();
+})();
+
+
+/* Cuántas pantallas reales estamos mostrando: se CUENTAN los links de la
+   sección, no se escribe el número. Si mañana se suma o se saca una demo,
+   el título no puede quedar mintiendo. */
+(function(){
+  var n = document.querySelectorAll("#demos .celu-links a").length;
+  var cartel = document.getElementById("nDemos");
+  if(cartel && n) cartel.textContent = n;
 })();
 
 
