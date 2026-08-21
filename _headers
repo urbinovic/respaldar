@@ -9,6 +9,17 @@
 /
   Cache-Control: no-cache, no-store, must-revalidate
 
+# El CSS y el JS de las campañas van igual que el HTML: son parte de la
+# página, cambian seguido y si quedan pegados en el CDN una landing
+# queda con los estilos viejos justo mientras corre la publicidad.
+# Nada de ?v= para forzarlo: un deploy envenena la versión y después no
+# hay forma de saber cuál está sirviendo.
+/campana.css
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/campana.js
+  Cache-Control: no-cache, no-store, must-revalidate
+
 /demos/*
   Cache-Control: public, max-age=2592000
 

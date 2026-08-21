@@ -12,12 +12,47 @@ como caso y como la pata gratis de reputación.
 | Archivo | Qué es |
 |---|---|
 | `index.html` | La página de venta. Todo el CSS y el JS van adentro, sin dependencias externas. |
+| `turnos.html` · `gastronomia.html` · `tienda.html` · `whatsapp.html` · `transporte.html` | **Las landings de campaña.** Una por rubro, para el tráfico de publicidad. |
+| `campana.css` · `campana.js` | El motor que comparten las landings (y del que la home usa el píxel y los WhatsApp). |
+| `campanas.html` | **Interna del equipo**, noindex. El plan de campañas: públicos, textos de anuncio, presupuesto y qué medir. |
 | `vendedor.html` | **Interna del equipo**, sin links desde el sitio. El entrenador de ventas: se comparte como `respald.ar/vendedor.html?v=Nombre`. |
 | `demos/` | Capturas REALES de producción usadas en la sección de demos, la foto y los logos de clientes. |
 | `marca/` | Manual de marca y los tres SVG del logo. |
 | `og-fuente.html` | Fuente de `og.png` (la tarjeta de WhatsApp). Se regenera con Edge headless. |
-| `chequear.ps1` | Guardián de la paleta. Falla si se coló un color que no es de la marca. Correr antes de publicar. |
-| `medir-largo.ps1` | Cuánto scroll cuesta cada sección, en pantallas de celular. Correr **antes de opinar** sobre el largo. |
+| `chequear.ps1` | Guardián de la paleta. Barre TODOS los .html y .css. Falla si se coló un color que no es de la marca. Correr antes de publicar. |
+| `medir-largo.ps1` | Cuánto scroll cuesta cada sección. `medir-largo.ps1 turnos.html` para una landing. Correr **antes de opinar** sobre el largo. |
+
+## La home y las landings son dos cosas distintas
+
+No es la misma página más corta. Es otra página, para otro visitante:
+
+| | La home | Una landing de campaña |
+|---|---|---|
+| Para quién | El que ya te conoce: referido, tarjeta, la mesa | El desconocido que tocó un anuncio |
+| Qué trae | Todo lo que hacemos, y elige su rubro | UNA promesa, la del anuncio |
+| Menú | Sí | **No.** La única salida es el WhatsApp |
+| Largo | 12 a 15 pantallas | **6.** Medido, no opinado |
+| Precio | En la primera pantalla | En la primera pantalla |
+
+Las cinco landings comparten esqueleto: hero con el dolor del rubro en su
+idioma, la prueba real antes de la pantalla 2, cuatro momentos del día, la
+oferta, y el cierre. La barra fija de abajo tiene el WhatsApp siempre a la
+vista: **la auditoría del 21/08/2026 encontró que la home tenía UN solo
+link de WhatsApp y estaba en la pantalla 15,4 de 15,6.**
+
+### Reglas de las landings
+
+1. **Nada inventado al lado de lo real.** Transporte no tiene demo pública
+   porque el panel de una empresa es privado, y por eso ahí la pantalla va
+   dibujada y **rotulada como ejemplo**. No se pone una captura falsa
+   debajo de un título que dice "esto no es una maqueta".
+2. **Un solo precio en todo el sitio.** Si cambia la promo, cambia en las
+   cinco landings y en la home. Buscar `$50.000`.
+3. **El mensaje de WhatsApp lleva la campaña adentro**, entre paréntesis
+   al final. Es la atribución que no depende de Meta: llega el mensaje y
+   ya sabés de qué anuncio salió.
+4. **El píxel se carga en `campana.js`**, una sola vez, y lo usan las seis
+   páginas. Mientras esté vacío la página anda igual, sin medir.
 
 ## La sección de demos
 

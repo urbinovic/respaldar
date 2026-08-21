@@ -9,14 +9,23 @@
 #
 #  Correlo cuando la página se sienta larga, ANTES de opinar:
 #      powershell -File respald\medir-largo.ps1
+#      powershell -File respald\medir-largo.ps1 turnos.html
 #
-#  Referencia: una landing que vende se recorre en 12 a 15 pantallas.
+#  DOS OBJETIVOS DISTINTOS, porque son dos páginas distintas:
+#    · index.html es para el que YA te conoce (referido, tarjeta, la
+#      mesa): puede recorrer. Objetivo 12 a 15 pantallas.
+#    · las landings de campaña son para el DESCONOCIDO que tocó un
+#      anuncio: trae una promesa y se va. Objetivo 6 pantallas. Cada
+#      pantalla de más ahí es plata de publicidad que se va sin llegar
+#      a la oferta.
 #  Una sección que pasa de 2 pantallas tiene que estar ganándoselas.
 # ═══════════════════════════════════════════════════════════════════
 
+param([string]$Pagina = "index.html")
+
 $sp   = $env:TEMP
 $web  = $PSScriptRoot
-$html = [System.IO.File]::ReadAllText((Join-Path $web "index.html"), [System.Text.Encoding]::UTF8)
+$html = [System.IO.File]::ReadAllText((Join-Path $web $Pagina), [System.Text.Encoding]::UTF8)
 $html = $html.Replace('<head>', '<head><base href="file:///' + $web.Replace('\','/') + '/">')
 [System.IO.File]::WriteAllText("$sp\_medir_pagina.html", $html, (New-Object System.Text.UTF8Encoding($false)))
 
@@ -53,7 +62,8 @@ $t = [System.IO.File]::ReadAllText($salida, [System.Text.Encoding]::UTF8)
 if ($t -notmatch '(?s)@@(.+?)@@') { "No pude medir (Edge no devolvio nada)"; exit 1 }
 $j = $Matches[1] | ConvertFrom-Json
 
-"LARGO TOTAL: $($j.pantallas) pantallas de celular    (objetivo: 12 a 15)"
+$objetivo = if ($Pagina -eq "index.html") { "12 a 15" } else { "6" }
+"$Pagina  ·  LARGO TOTAL: $($j.pantallas) pantallas de celular    (objetivo: $objetivo)"
 ""
 "{0,-3} {1,-11} {2,6} {3,5}  {4}" -f "#","id","pant","%","titulo"
 foreach ($s in $j.secciones) {

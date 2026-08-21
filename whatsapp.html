@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El bot que trabaja adentro de tu sistema · respald.ar</title>
+<meta name="description" content="Le mandás la foto de la boleta y queda cargada, con el proveedor y el vencimiento. Y le contesta a tus clientes en tu web, en Instagram y en Facebook. Viene adentro del sistema, no suelto.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Sacale una foto a la boleta. Ya está cargada.">
+<meta property="og:description" content="Un empleado más que vive en el WhatsApp: carga tus gastos con una foto y le contesta a tus clientes. 114 personas ya le escribieron.">
+<meta property="og:url" content="https://respald.ar/whatsapp">
+<meta property="og:image" content="https://respald.ar/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon-180x180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="campana.css">
+</head>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     LANDING · EL BOT  (el diferencial, y el único que se puede PROBAR
+     en la mesa del prospecto en treinta segundos)
+     ═══════════════════════════════════════════════════════════════
+     Es la campaña con más margen para pelear: afuera venden un bot de
+     WhatsApp SUELTO desde USD 500 (medido el 13/08/2026 en la
+     competencia). El nuestro no está pegado por afuera: mira la carta,
+     el stock, los proveedores y los números de verdad.
+
+     ⚠️ LOS NÚMEROS SE CONTARON DE LA BASE EL 20/08/2026. Si se tocan,
+     se vuelven a contar; no se estiman:
+       114 = personas distintas en wa_entrantes
+        96 = gastro_gastos con origen='whatsapp' (los que traen la foto).
+             "Gastos con comprobante" da 110, pero 15 los subió alguien
+             desde el panel y NO son del bot. Se publica el número que
+             la frase promete, no el más grande.
+       276 = negocio_chats de un cliente, 04 al 19/08 (253 con IA)
+       139 = redes_entrantes de Instagram y Facebook (110 contestados)
+       203 = wa_documentos archivados
+
+     ⚠️ NO SE PROMETE que el bot le conteste por WhatsApp a los
+     CLIENTES del local: eso todavía no corre (al 11/08 había UN solo
+     mensaje de un desconocido en toda la historia). Lo que sí corre y
+     por eso se escribe: el dueño y su gente le hablan por WhatsApp, y
+     el bot le contesta a los clientes en la WEB, en Instagram y en
+     Facebook. El único bot público tocable hoy es Nino.
+     ═══════════════════════════════════════════════════════════════ -->
+
+<body data-wa-default="Hola! Vi lo del bot que carga los gastos con una foto. Quiero saber cómo funcionaría en mi negocio.">
+
+<header>
+  <div class="wrap barra">
+    <a href="https://respald.ar" aria-label="respald.ar">
+      <img src="marca/logo-horizontal-transparent.png" width="600" height="117" alt="respald.ar">
+    </a>
+    <a class="btn btn-wa btn-chico" data-wa href="#">Escribime</a>
+  </div>
+</header>
+
+<!-- 1 · HERO: el ejemplo emblema de la marca, tal cual -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-txt">
+      <p class="eyebrow">Para dueños que anotan todo en el celular</p>
+      <h1>Sacale una foto a la boleta.<br><em>Ya está cargada.</em></h1>
+      <p class="lead">
+        Con el proveedor, el monto y la fecha en que vence. Te contesta en
+        el momento, y si algo te subió te lo dice ahí, con el tipo todavía
+        parado en la puerta.
+      </p>
+      <div class="acciones">
+        <a class="btn btn-wa btn-grande" data-wa href="#">Quiero uno así</a>
+        <a class="btn btn-borde" href="#prueba">Probar el que está andando</a>
+      </div>
+      <p class="pildora">🤖 <b>Viene adentro del sistema</b> · no se vende suelto</p>
+      <p class="hero-nota">Afuera, un bot de WhatsApp solo arranca en 500 dólares</p>
+    </div>
+    <figure class="celu">
+      <div class="celu-marco">
+        <img src="demos/local.jpg" width="480" height="900"
+             alt="La web de Siciliano, donde atiende el bot Nino">
+      </div>
+      <figcaption>Nino atiende acá, ahora mismo.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- 2 · LA PRUEBA: primero los números, después el bot vivo -->
+<section class="oscura" id="prueba">
+  <div class="wrap">
+    <div class="intro">
+      <p class="eyebrow">Contado de la base el 20/08/2026</p>
+      <h2>Lo que lleva hecho, en negocios reales</h2>
+      <p class="lead">
+        No son proyecciones ni un demo grabado. Son las cuentas de lo que
+        ya pasó por acá.
+      </p>
+    </div>
+
+    <div class="numeros">
+      <span class="num"><b>114</b><small>personas le escribieron</small></span>
+      <span class="num"><b>96</b><small>gastos cargados mandando la foto de la boleta</small></span>
+      <span class="num"><b>276</b><small>charlas atendidas en la web de un cliente, en 15 días</small></span>
+      <span class="num"><b>139</b><small>mensajes de Instagram y Facebook</small></span>
+    </div>
+
+    <div class="pruebas" style="margin-top:var(--e4)">
+      <div class="prueba">
+        <b>📸 Vos le hablás a él</b>
+        <p>
+          Le mandás la foto de la boleta y te contesta: cargado, cuánto, a
+          quién y cuándo vence. Le preguntás cómo viene el mes y te lo dice.
+          Tu gente le manda los remitos desde el camión o el gasto del día
+          desde el mostrador. <b>Lleva 203 documentos archivados.</b>
+        </p>
+      </div>
+      <div class="prueba">
+        <b>💬 Él le habla a tus clientes</b>
+        <p>
+          En tu página web, en Instagram y en Facebook, con lo que vos
+          tenés cargado: tu carta, tus horarios, tus precios. <b>Si el dato
+          no está, no lo inventa</b>: te avisa para que contestes vos. Y si
+          alguien del local ya está contestando, el bot se calla solo.
+        </p>
+        <div class="prueba-links">
+          <a href="https://sicilianoresto.com.ar" target="_blank" rel="noopener" data-demo="nino-bot">Hablar con Nino ahora</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 · LA DIFERENCIA: por qué no es el bot de la publicidad -->
+<section class="clara">
+  <div class="wrap">
+    <div class="intro">
+      <p class="eyebrow">La diferencia</p>
+      <h2>No está pegado por afuera</h2>
+      <p class="lead">
+        Casi todos los bots que se venden contestan preguntas frecuentes
+        con un texto que alguien escribió a mano. Este trabaja adentro.
+      </p>
+    </div>
+
+    <div class="dia">
+      <div class="mom solo">
+        <span class="hora">Mira</span>
+        <div>
+          <b>Tu carta, tu stock y tus horarios de verdad.</b>
+          <p>Cuando le preguntan si hay sorrentinos, va a fijarse. Si se
+          acabaron, dice que se acabaron. <b>No repite un texto viejo</b>,
+          que es como se pierde un cliente sin enterarse.</p>
+        </div>
+      </div>
+
+      <div class="mom solo">
+        <span class="hora">Carga</span>
+        <div>
+          <b>Escribe adentro del sistema, no en un cuaderno.</b>
+          <p>El gasto que carga por foto entra a tus números, se suma a lo
+          que le debés a ese proveedor y aparece en el cierre del mes.
+          <b>Es el mismo lugar donde mirás la plata.</b></p>
+        </div>
+      </div>
+
+      <div class="mom solo">
+        <span class="hora">Avisa</span>
+        <div>
+          <b>Te habla sin que le preguntes.</b>
+          <p>El cierre de ayer a la mañana, la suba de un insumo cuando
+          llega la boleta, el vencimiento del seguro, la comanda que quedó
+          abierta. <b>Te enterás el mismo día</b>, no a fin de mes.</p>
+        </div>
+      </div>
+
+      <div class="mom vos">
+        <span class="hora">Y vos</span>
+        <div>
+          <b>No aprendés a usar nada.</b>
+          <p>Es un contacto más en tu WhatsApp. Le hablás como le hablás a
+          un empleado, con audios, con fotos, mal escrito. <b>Esa es toda
+          la capacitación.</b></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 · LA OFERTA -->
+<section id="oferta">
+  <div class="wrap">
+    <div class="intro">
+      <p class="eyebrow">Cuánto sale</p>
+      <h2>No se vende suelto, y sale menos</h2>
+      <p class="lead">
+        Un bot que solo contesta preguntas no te sirve de nada si tus
+        números siguen en un cuaderno. Va con el sistema, o no va.
+      </p>
+    </div>
+
+    <div class="oferta">
+      <span class="oferta-rot">La promo de agosto</span>
+      <b class="oferta-num">$50.000<small>/mes</small></b>
+      <span class="oferta-clavo">Y en agosto de 2027 seguís pagando $50.000.</span>
+      <ul>
+        <li><b>El bot, adentro de tu sistema</b>: gastos por foto, documentos y los números cuando se los pedís</li>
+        <li><b>Contestando a tus clientes</b> en tu web, en Instagram y en Facebook</li>
+        <li><b>Turnos o comanda</b>, según tu rubro, con seña que entra a tu cuenta</li>
+        <li><b>El reloj de tu gente</b>: fichan con el celular y de ahí salen los sueldos</li>
+        <li><b>Tu página web</b>, con tus fotos y tus horarios</li>
+        <li>Caja, cierres y los números del mes, sin armar una planilla</li>
+      </ul>
+      <div class="acciones">
+        <a class="btn btn-wa btn-grande" data-wa="Hola! Quiero la promo de $50.000 por mes con el bot adentro. ¿Cómo seguimos?" href="#">Lo quiero, escribime</a>
+      </div>
+      <p class="oferta-pie">
+        Sin permanencia: si te querés ir, te vas. Lo que se congela es el
+        precio, no vos. Instalación y capacitación incluidas.
+      </p>
+    </div>
+
+    <p class="contra">
+      Afuera, <b>el bot solo</b> arranca en 500 dólares y contesta preguntas.
+      Nada más.
+    </p>
+
+    <div class="seguros">
+      <div class="seguro">
+        <i>📅</i><b>Si nos pasamos de la fecha</b>
+        <small>El primer mes no lo pagás.</small>
+      </div>
+      <div class="seguro">
+        <i>💾</i><b>Tus datos son tuyos</b>
+        <small>Te los llevás en Excel cuando los pidas.</small>
+      </div>
+      <div class="seguro">
+        <i>💬</i><b>Si tenés una duda</b>
+        <small>Hablás con quien lo hizo, no con un call center.</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 · CIERRE -->
+<section class="oscura cierre-caja" data-fin>
+  <div class="wrap">
+    <div class="firma">
+      <span class="firma-foto">
+        <img src="demos/foto-pela.jpg" alt="Víctor Pelá Martínez" onerror="this.remove()"><em>VM</em>
+      </span>
+      <div>
+        <p class="eyebrow">Quién te lo va a hacer</p>
+        <h2>Soy Víctor "Pelá" Martínez</h2>
+        <p class="lead">
+          Tengo un restaurante en San Juan y hace años uso inteligencia
+          artificial para producir. El bot lo estrené en mi propio negocio
+          antes de vendérselo a nadie. <b>El que te va a atender soy yo.</b>
+        </p>
+      </div>
+    </div>
+    <div class="acciones" style="justify-content:center;margin-top:var(--e4)">
+      <a class="btn btn-wa btn-grande" data-wa href="#">Contame de tu negocio</a>
+    </div>
+  </div>
+</section>
+
+<div class="fija">
+  <span class="fija-txt">$50.000/mes, clavado un año<small>Sin permanencia</small></span>
+  <a class="btn btn-wa" data-wa href="#">Escribime</a>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p><b>respald.ar</b> · Soluciones informáticas · San Juan</p>
+    <p><a href="https://respald.ar">Ver todo lo que hacemos</a></p>
+  </div>
+</footer>
+
+<script src="campana.js"></script>
+</body>
+</html>

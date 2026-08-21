@@ -1,10 +1,14 @@
 # respald.ar
-# La página de venta se indexa. La del entrenador de ventas NO: es interna
-# del equipo (además lleva su propio noindex en el HTML).
+# La página de venta se indexa. Las landings de campaña TAMBIÉN: están
+# escritas para un rubro y una búsqueda concreta ("turnero online San
+# Juan", "sistema para restaurante"), así que indexarlas es tráfico
+# gratis arriba del que se paga. Lo interno del equipo NO se indexa
+# (además lleva su propio noindex en el HTML).
 
 User-agent: *
 Allow: /
 Disallow: /vendedor.html
+Disallow: /campanas.html
 Disallow: /demos.html
 Disallow: /demos/fuente-barberia.html
 Disallow: /og-fuente.html

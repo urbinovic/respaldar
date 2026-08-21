@@ -408,7 +408,7 @@ $('cmMandar').onclick = () => {
       <div id="cmGracias"></div>`;
     document.querySelectorAll('.estrellas').forEach(e => e.onclick = ev => {
       e.textContent = '★★★★★';
-      e.style.color = '#e8a516';
+      e.style.color = 'var(--calido)';
       $('cmGracias').innerHTML = `<div class="aviso" style="margin-top:var(--e2)"><b>Y acá está la gracia:</b> esas estrellas van al historial de Caro y de Tito, no a una reseña del local. Su buen laburo queda registrado para siempre.</div>`;
     });
   };

@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Turnero online con seña · respald.ar</title>
+<meta name="description" content="Tus clientas sacan turno solas y dejan la seña, a la hora que sea. Con el reloj de tu gente, tus gastos y tu página web. $50.000 por mes, y no te sube en 12 meses.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Que saquen turno solas, y que dejen la seña">
+<meta property="og:description" content="Turnero online con seña, recordatorio automático, el reloj de tu gente y tu página web. $50.000 por mes y no te sube en 12 meses.">
+<meta property="og:url" content="https://respald.ar/turnos">
+<meta property="og:image" content="https://respald.ar/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon-180x180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="campana.css">
+</head>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     LANDING · TURNOS CON SEÑA  (estética, barbería, consultorios)
+     ═══════════════════════════════════════════════════════════════
+     La oferta la definió Pelá el 21/08/2026: turnero con reservas y
+     seña + reloj del personal + página web + gastos, $50.000 por mes
+     con el precio CONGELADO 12 MESES y sin permanencia.
+
+     El congelado es el argumento, no el precio: con la inflación que
+     hay, "en agosto del 2027 seguís pagando lo mismo" vale mucho más
+     que los $10.000 de diferencia contra el paquete de lista.
+
+     ⚠️ LO QUE NO SE PROMETE ACÁ, aunque el código exista:
+     · LISTA DE ESPERA. Está construida, pero vive en el módulo de
+       reservas de restaurante y arranca APAGADA para todas las
+       empresas (ver la memoria avalar-reservas-lista-espera). La home
+       la promete en el día de estética y hay que sacarla de ahí.
+     Lo que SÍ corre y por eso se escribe: turnero online con seña por
+     Mercado Pago, recordatorio automático de la víspera por WhatsApp
+     (estetica-recordatorios v5, en prod desde el 22/07), combos que
+     descuentan sesiones, gift cards, ficha de la clienta, fichaje y
+     sueldos, y gastos por foto.
+     ═══════════════════════════════════════════════════════════════ -->
+
+<body data-wa-default="Hola! Vi lo del turnero con seña en respald.ar y quiero saber cómo me quedaría a mí.">
+
+<header>
+  <div class="wrap barra">
+    <a href="https://respald.ar" aria-label="respald.ar">
+      <img src="marca/logo-horizontal-transparent.png" width="600" height="117" alt="respald.ar">
+    </a>
+    <a class="btn btn-wa btn-chico" data-wa href="#">Escribime</a>
+  </div>
+</header>
+
+<!-- 1 · HERO: la situación literal del mostrador, el precio y la prueba -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-txt">
+      <p class="eyebrow">Estética, barbería y consultorios · San Juan</p>
+      <h1>«¿Tenés lugar el jueves?»<br><em>A las once y media de la noche.</em></h1>
+      <p class="lead">
+        Que lo saque ella sola, que elija con quién, y que deje la seña.
+        Vos te enterás a la mañana, con la agenda ya armada.
+      </p>
+      <div class="acciones">
+        <a class="btn btn-wa btn-grande" data-wa href="#">Quiero el mío</a>
+        <a class="btn btn-borde" href="#prueba">Ver uno andando</a>
+      </div>
+      <p class="pildora">💰 <b>$50.000 por mes</b> · y no te sube en 12 meses</p>
+      <p class="hero-nota">Sin permanencia · andando esta semana</p>
+    </div>
+    <figure class="celu">
+      <div class="celu-marco">
+        <img src="demos/valkiria-turnos.jpg" width="480" height="900"
+             alt="Turnero online de Casa Valkiria, con sus servicios y precios reales">
+      </div>
+      <figcaption>El turnero de Casa Valkiria, hoy.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- 2 · LA PRUEBA. Va segunda a propósito: el que viene de un anuncio
+     no te cree nada hasta que toca algo que abre de verdad. -->
+<section class="oscura" id="prueba">
+  <div class="wrap">
+    <div class="intro">
+      <p class="eyebrow">Tocalo vos, desde tu celular</p>
+      <h2>Esto no es una maqueta</h2>
+      <p class="lead">
+        Es una estética de San Juan con sus servicios y sus precios de
+        hoy. Entrá y sacá un turno como si fueras una clienta.
+      </p>
+    </div>
+
+    <div class="pruebas">
+      <div class="prueba">
+        <b>Casa Valkiria · Estética</b>
+        <p>
+          28 servicios en 8 categorías. La clienta elige el servicio, ve
+          los horarios que tenés libres <b>de verdad</b>, deja la seña por
+          Mercado Pago y <b>esa plata entra a tu cuenta</b>, no a la nuestra.
+          Si compró un combo, la sesión se le descuenta sola.
+        </p>
+        <div class="prueba-links">
+          <a href="https://aval.ar/turnos/casa-valkiria" target="_blank" rel="noopener" data-demo="valkiria-turnero">Sacar un turno</a>
+          <a href="https://aval.ar/casa-valkiria" target="_blank" rel="noopener" data-demo="valkiria-pagina">Su página</a>
+          <a href="https://aval.ar/gift/casa-valkiria" target="_blank" rel="noopener" data-demo="valkiria-gift">Regalar una gift</a>
+          <a href="https://aval.ar/productos/casa-valkiria" target="_blank" rel="noopener" data-demo="valkiria-productos">Sus productos</a>
+        </div>
+      </div>
+      <div class="prueba">
+        <b>Y esa página también es tuya</b>
+        <p>
+          No es solo el turnero: es tu negocio online completo. Tu página
+          con tus fotos, las gift cards que se venden para regalar, tus
+          productos. Todo sale del mismo lugar y lo cambiás vos, sin
+          llamar a nadie ni pagar por cada retoque.
+        </p>
+        <div class="prueba-links">
+          <a href="https://sicilianoresto.com.ar" target="_blank" rel="noopener" data-demo="siciliano-web">Otro cliente, con dominio propio</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 · EL DÍA, recortado. Solo los momentos donde el sistema trabaja
+     solo: es lo que compra el que todavía no te conoce. -->
+<section class="clara">
+  <div class="wrap">
+    <div class="intro">
+      <p class="eyebrow">Un martes cualquiera</p>
+      <h2>Lo que pasa mientras vos atendés</h2>
+    </div>
+
+    <p class="dia-ref">
+      <span class="ref vos">Lo hacés vos</span>
+      <span class="ref solo">Lo hace el sistema</span>
+      <span class="ref cliente">Lo hace tu clienta</span>
+    </p>
+
+    <div class="dia">
+      <div class="mom cliente">
+        <span class="hora">23:40</span>
+        <div>
+          <b>Saca turno desde la cama.</b>
+          <p>Elige el servicio, la profesional y un horario que está libre
+          de verdad. Deja la seña y <b>la plata entra a tu cuenta</b>. La
+          agenda se ocupa sola, sin que nadie conteste un WhatsApp.</p>
+        </div>
+      </div>
+
+      <div class="mom solo">
+        <span class="hora">10:00</span>
+        <div>
+          <b>A la que viene mañana le llega el recordatorio.</b>
+          <p>Por WhatsApp, sin que nadie se acuerde de mandarlo. La que no
+          viene y no avisa es <b>el agujero más caro</b> que tiene una
+          agenda, y la seña más el recordatorio lo tapan.</p>
+        </div>
+      </div>
+
+      <div class="mom vos">
+        <span class="hora">16:00</span>
+        <div>
+          <b>Atendés, y le sacás la foto.</b>
+          <p>El antes y el después quedan <b>en la ficha de ella</b>, con
+          qué se le hizo, con qué producto y quién la atendió. La próxima
+          sesión no depende de tu memoria.</p>
+        </div>
+      </div>
+
+      <div class="mom solo">
+        <span class="hora">16:40</span>
+        <div>
+          <b>Le descuenta la sesión del combo.</b>
+          <p>Había comprado el combo de cuatro por la web. Al cerrar el
+          turno se descuenta sola y <b>le quedan dos</b>. Si después
+          cancela, la sesión le vuelve. Nadie lleva esa cuenta a mano.</p>
+        </div>
+      </div>
+
+      <div class="mom solo">
+        <span class="hora">Fin<br>de mes</span>
+        <div>
+          <b>Los sueldos y las comisiones.</b>
+          <p>Salen de las horas que fichó cada una con el celular y de lo
+          que atendió, con los adelantos ya descontados. <b>No hay un
+          Excel aparte.</b></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 · LA OFERTA. Entra antes de la pantalla 4: el precio es a lo que
+     vino el que tocó el anuncio, y en la home vivía en la pantalla 11. -->
+<section id="oferta">
+  <div class="wrap">
+    <div class="intro">
+      <p class="eyebrow">Cuánto sale</p>
+      <h2>Todo junto, y el precio clavado un año</h2>
+    </div>
+
+    <div class="oferta">
+      <span class="oferta-rot">La promo de agosto</span>
+      <b class="oferta-num">$50.000<small>/mes</small></b>
+      <span class="oferta-clavo">Y en agosto de 2027 seguís pagando $50.000.</span>
+      <ul>
+        <li><b>Tu turnero online</b>, con reservas y seña por Mercado Pago</li>
+        <li><b>Recordatorio automático</b> por WhatsApp la víspera</li>
+        <li><b>El reloj de tu gente</b>: fichan con el celular y de ahí salen los sueldos</li>
+        <li><b>Tu página web</b>, con tus fotos, tus gift cards y tus productos</li>
+        <li><b>Tus gastos</b>: le mandás la foto de la boleta por WhatsApp y queda cargada</li>
+        <li>Caja, cierres y los números del mes, sin armar una planilla</li>
+      </ul>
+      <div class="acciones">
+        <a class="btn btn-wa btn-grande" data-wa="Hola! Quiero la promo del turnero a $50.000 por mes. ¿Cómo seguimos?" href="#">Lo quiero, escribime</a>
+      </div>
+      <p class="oferta-pie">
+        Sin permanencia: si te querés ir, te vas. Lo que se congela es el
+        precio, no vos. Instalación y capacitación incluidas.
+      </p>
+    </div>
+
+    <p class="contra">
+      Afuera, <b>un turnero solo</b> te sale más o menos lo mismo. Y hace
+      una sola cosa.
+    </p>
+
+    <div class="seguros">
+      <div class="seguro">
+        <i>📅</i><b>Si nos pasamos de la fecha</b>
+        <small>El primer mes no lo pagás.</small>
+      </div>
+      <div class="seguro">
+        <i>💾</i><b>Tus datos son tuyos</b>
+        <small>Te los llevás en Excel cuando los pidas.</small>
+      </div>
+      <div class="seguro">
+        <i>💬</i><b>Si tenés una duda</b>
+        <small>Hablás con quien lo hizo, no con un call center.</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 · CIERRE: quién atiende y el único botón que queda -->
+<section class="oscura cierre-caja" data-fin>
+  <div class="wrap">
+    <div class="firma">
+      <span class="firma-foto">
+        <img src="demos/foto-pela.jpg" alt="Víctor Pelá Martínez" onerror="this.remove()"><em>VM</em>
+      </span>
+      <div>
+        <p class="eyebrow">Quién te lo va a hacer</p>
+        <h2>Soy Víctor "Pelá" Martínez</h2>
+        <p class="lead">
+          Tengo un restaurante en San Juan y armo sistemas para negocios
+          de acá. Casa Valkiria es clienta mía y ese turnero que acabás de
+          tocar lo hice yo. <b>El que te va a atender soy yo.</b>
+        </p>
+      </div>
+    </div>
+    <div class="acciones" style="justify-content:center;margin-top:var(--e4)">
+      <a class="btn btn-wa btn-grande" data-wa href="#">Contame de tu negocio</a>
+    </div>
+  </div>
+</section>
+
+<!-- La barra que no se pierde. El hallazgo más caro de la auditoría fue
+     que en la home el único WhatsApp estaba en la pantalla 15,4 de 15,6. -->
+<div class="fija">
+  <span class="fija-txt">$50.000/mes, clavado un año<small>Sin permanencia</small></span>
+  <a class="btn btn-wa" data-wa href="#">Escribime</a>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p><b>respald.ar</b> · Soluciones informáticas · San Juan</p>
+    <p><a href="https://respald.ar">Ver todo lo que hacemos</a></p>
+  </div>
+</footer>
+
+<script src="campana.js"></script>
+</body>
+</html>

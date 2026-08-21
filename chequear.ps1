@@ -8,10 +8,22 @@
 #
 #  Correlo antes de publicar:   powershell -File respald\chequear.ps1
 #  Sale 0 si está limpio, 1 si se coló algo.
+#
+#  21/08/2026: miraba SOLO index.html. Con las landings de campaña y el
+#  CSS compartido eso ya no alcanza: un color se cuela justo en el
+#  archivo que el guardián no mira y el guardián dice que está todo
+#  bien. Ahora barre todos los .html y .css de la carpeta y de marca/,
+#  y dice en cuál apareció.
 # ═══════════════════════════════════════════════════════════════════
 
-$archivo = Join-Path $PSScriptRoot "index.html"
-$texto = [System.IO.File]::ReadAllText($archivo, [System.Text.Encoding]::UTF8)
+# marca/mundos.html y marca/propuestas*.html quedan AFUERA a propósito:
+# son los tableros donde se muestran paletas alternativas para elegir
+# una. Si el guardián las mirara, gritaría siempre y dejaríamos de
+# hacerle caso, que es la única forma de que un chequeo sirva de nada.
+$fuera = 'mundos\.html$|propuestas.*\.html$'
+
+$archivos = @(Get-ChildItem -Path $PSScriptRoot -Include *.html,*.css -File -Recurse |
+              Where-Object { $_.FullName -notmatch '\\\.git\\' -and $_.Name -notmatch $fuera })
 
 # Los únicos colores que pueden aparecer escritos a mano. Todo lo demás
 # tiene que salir de una variable var(--…). Si necesitás un tono nuevo,
@@ -28,14 +40,22 @@ $permitidos = @(
 )
 
 $intrusos = @{}
-foreach ($m in [regex]::Matches($texto, '#[0-9a-fA-F]{3,8}')) {
-  $c = $m.Value.ToLower()
-  if ($permitidos -notcontains $c) {
-    if (-not $intrusos.ContainsKey($c)) { $intrusos[$c] = 0 }
-    $intrusos[$c]++
+foreach ($a in $archivos) {
+  $texto = [System.IO.File]::ReadAllText($a.FullName, [System.Text.Encoding]::UTF8)
+  $rel = $a.FullName.Substring($PSScriptRoot.Length).TrimStart('\')
+  foreach ($m in [regex]::Matches($texto, '#[0-9a-fA-F]{3,8}')) {
+    $c = $m.Value.ToLower()
+    if ($permitidos -notcontains $c) {
+      $linea = ($texto.Substring(0, $m.Index) -split "`n").Count
+      if (-not $intrusos.ContainsKey($c)) {
+        $intrusos[$c] = [pscustomobject]@{ Veces = 0; Donde = "$rel linea $linea" }
+      }
+      $intrusos[$c].Veces++
+    }
   }
 }
 
+"Revisados $($archivos.Count) archivos (.html y .css)."
 if ($intrusos.Count -eq 0) {
   "PALETA OK - ningun color fuera de la marca"
   exit 0
@@ -43,8 +63,7 @@ if ($intrusos.Count -eq 0) {
 
 "PALETA ROTA - se colaron $($intrusos.Count) colores que no son de la marca:"
 foreach ($k in ($intrusos.Keys | Sort-Object)) {
-  $linea = ($texto.Substring(0, $texto.ToLower().IndexOf($k)) -split "`n").Count
-  "   $k   x$($intrusos[$k])   (primera vez en la linea $linea)"
+  "   $k   x$($intrusos[$k].Veces)   (primera vez en $($intrusos[$k].Donde))"
 }
 "Arreglalo: usa un var(--token) existente, o sumalo arriba si de verdad hace falta."
 exit 1

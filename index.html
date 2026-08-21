@@ -164,7 +164,31 @@ section{padding-block:var(--e5)}
 .hero-txt p{text-align:left}
 .hero .lead{color:var(--gris-claro)}
 .hero em{font-style:normal;color:var(--lima)}
-.hero-nota{font-size:14.5px;color:var(--gris-claro);margin-top:var(--e3)}
+.hero-nota{font-size:14.5px;color:var(--gris-claro);margin-top:var(--e2)}
+/* la píldora del precio, en la primera pantalla */
+.pildora-precio{display:inline-flex;align-items:center;gap:9px;background:rgba(200,238,61,.14);
+  border:1px solid var(--lima-osc);color:var(--lima);border-radius:999px;
+  padding:9px 18px;font-size:14.5px;font-weight:800;margin-top:var(--e3);text-align:left}
+.pildora-precio b{color:#fff}
+
+/* ── EL WHATSAPP QUE NO SE PIERDE ───────────────────────────────
+   Auditoría del 21/08/2026, medido en producción a 375px: había UN
+   solo link de WhatsApp en toda la página y estaba en la pantalla
+   15,4 de 15,6. El camino más corto para hablar con Pelá quedaba
+   detrás del 99% del scroll. Ahora flota, siempre.
+   Va abajo a la derecha y con z-index por debajo de nada: no tapa
+   el chat del cierre porque ese vive en el ancho de la columna. */
+.wa-flota{position:fixed;right:18px;bottom:18px;z-index:80;
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--calido);color:#fff;text-decoration:none;font-weight:800;font-size:15px;
+  padding:14px 20px;border-radius:999px;box-shadow:0 8px 24px rgba(10,28,48,.32);
+  transition:transform .12s ease}
+.wa-flota:hover{transform:translateY(-2px)}
+.wa-flota i{font-style:normal;font-size:19px;line-height:1}
+@media(max-width:560px){
+  .wa-flota{right:14px;bottom:14px;padding:14px;font-size:0;gap:0}
+  .wa-flota i{font-size:23px}
+}
 @media(max-width:900px){
   .hero-grid{grid-template-columns:1fr}
   .hero-txt{text-align:center}
@@ -701,6 +725,12 @@ ul.lista li,ul.lista li b,.mod,.mod b,.hito,.hito b,.perfil,.perfil b,
    se comen media pantalla de celular para decir una sola cosa */
 .rubros-tira{margin-top:var(--e2);gap:7px}
 .rubros-tira .rchip{padding:6px 12px;font-size:13px}
+/* las fichas que SON un link a la landing del rubro: se diferencian de
+   las 28 de arriba (que son texto suelto) con tinta y peso, si no el
+   visitante no descubre que se puede tocar */
+.rchip-link{color:var(--tinta);font-weight:800;text-decoration:none;border-color:var(--gris-claro)}
+.rubros-tira .rchip-link{padding:9px 16px;font-size:14px}
+.rchip-link:hover{border-color:var(--calido);color:var(--calido-osc)}
 
 /* ── chat en vivo del cierre ────────────────────────────────── */
 .chatwrap{max-width:672px;margin:var(--e3) auto 0;text-align:left}
@@ -775,7 +805,7 @@ footer a{color:#e2ecf5}
 footer b{color:#fff}
 </style>
 </head>
-<body>
+<body data-wa-default="Hola! Vi la página de respald.ar y quiero saber cómo sería para mi negocio.">
 
 <header>
   <div class="wrap barra">
@@ -806,6 +836,10 @@ footer b{color:#fff}
           <a class="btn btn-lima" href="#contacto">Contame qué necesitás</a>
           <a class="btn btn-borde" href="#demos">Ver los que ya andan</a>
         </div>
+        <!-- El precio vivía en la pantalla 11 de 15,6 (medido el 21/08 en
+             producción, a 375px). Es el dato que más se busca y el que más
+             tarde llegaba: acá entra en la primera. -->
+        <p class="pildora-precio">💰 <b>Desde $40.000 por mes</b> · o a medida, con presupuesto cerrado</p>
         <p class="hero-nota">Precio cerrado y fecha de entrega · <b class="cupo">tomamos 3 proyectos por mes</b></p>
       </div>
       <figure class="screen">
@@ -1327,12 +1361,23 @@ footer b{color:#fff}
       ¿No está el tuyo? Mejor: los que nadie hizo son los que más nos gustan.
     </p>
 
-    <p class="logos-tit">Corriendo hoy, en estos negocios</p>
-    <div class="logos">
-      <span class="lg"><img src="demos/logo-diosas.jpg" alt="Diosas Odiosas" loading="lazy"></span>
-      <span class="lg"><img src="demos/logo-siciliano.jpg" alt="Siciliano Caffè & Pasta" loading="lazy"></span>
-      <span class="lg lg-txt">LORSAL<small>S.R.L.</small></span>
-      <span class="lg"><img src="demos/logo-valkiria.jpg" alt="Casa Valkiria" loading="lazy"></span>
+    <!-- 21/08/2026 · ACÁ ESTABA LA TIRA DE LOGOS y se fue.
+         Decía "corriendo hoy en estos negocios" con Diosas, Siciliano,
+         LORSAL y Valkiria: los mismos cuatro que la sección de demos ya
+         muestra ARRIBA, con nombre, captura real y link que abre. Era la
+         versión floja de una prueba que ya diste, y costaba 0,4
+         pantallas para repetirse.
+         En su lugar van las puertas a las landings de cada rubro, que es
+         lo que sí faltaba: una página entera escrita para ese negocio,
+         con su prueba y su precio. Sirven para la publicidad y sirven
+         para mandarle el link justo a un prospecto por WhatsApp. -->
+    <p class="logos-tit">Y hay una página entera para tu rubro</p>
+    <div class="rubros rubros-tira">
+      <a class="rchip rchip-link" href="turnos.html">📅 Turnos con seña</a>
+      <a class="rchip rchip-link" href="gastronomia.html">🍽️ Gastronomía</a>
+      <a class="rchip rchip-link" href="tienda.html">🛍️ Tienda y stock</a>
+      <a class="rchip rchip-link" href="whatsapp.html">🤖 El bot de WhatsApp</a>
+      <a class="rchip rchip-link" href="transporte.html">🚚 Transporte</a>
     </div>
   </div>
 </section>
@@ -1352,6 +1397,17 @@ footer b{color:#fff}
         es nuestro y lo usás gratis, nos compres o no.
       </p>
     </div>
+    <!-- 21/08/2026 · TRES ESCALONES, NO CUATRO TARJETAS.
+         Pelá sumó la promo de $50.000 y decidió que el paquete de
+         $40.000 se queda. El riesgo de eso es obvio y hay que taparlo
+         acá: con dos números en la misma pantalla, el más barato parece
+         la ganga y el visitante no entiende qué le falta. La diferencia
+         se escribe entonces en lo único que NO se puede discutir, que
+         es el precio congelado: el de $40.000 sigue la inflación como
+         cualquier abono, el de $50.000 no se mueve en 12 meses.
+         La comparación con lo de afuera dejó de ser tarjeta y bajó a
+         una línea: cuatro columnas no entran, y ahí abajo no compite
+         con los planes que sí queremos que se lean. -->
     <div class="precios">
       <div class="pr">
         <span class="pr-rot">Paquete listo</span>
@@ -1364,14 +1420,27 @@ footer b{color:#fff}
           <li>Gastos por foto con la IA</li>
           <li>Tu página web</li>
         </ul>
-        <span class="pr-nota">Primer mes bonificado · sin permanencia</span>
+        <span class="pr-nota">Sin permanencia · el abono se actualiza como cualquier otro</span>
       </div>
       <div class="pr destacado">
+        <span class="pr-rot">Todo adentro · la promo</span>
+        <b class="pr-num">$50.000<small>/mes</small></b>
+        <span class="pr-sub">Y en 2027 seguís pagando $50.000</span>
+        <ul>
+          <li>Todo lo del paquete listo</li>
+          <li><b>Cobrás online</b>: turnos y reservas con seña que entra a tu cuenta</li>
+          <li><b>El precio no te sube en 12 meses</b></li>
+          <li>Instalación y capacitación incluidas</li>
+          <li>Sin permanencia: se congela el precio, no vos</li>
+        </ul>
+        <span class="pr-nota">Primer mes bonificado si nos pasamos de la fecha</span>
+      </div>
+      <div class="pr">
         <span class="pr-rot">A medida</span>
         <b class="pr-num">Presupuesto<small> cerrado</small></b>
         <span class="pr-sub">De 3 a 6 semanas</span>
         <ul>
-          <li>Todo lo del paquete</li>
+          <li>Todo lo de arriba</li>
           <li>Hecho para cómo trabajás vos</li>
           <li>Lo que hoy hacés a mano, automático</li>
           <li>Precio y fecha por escrito, antes de empezar</li>
@@ -1379,15 +1448,13 @@ footer b{color:#fff}
         </ul>
         <span class="pr-nota">Se cotiza en la primera charla</span>
       </div>
-      <div class="pr comparar">
-        <span class="pr-rot">Afuera</span>
-        <b class="pr-num afuera">~$50.000<small>/mes</small></b>
-        <span class="pr-sub">Y hace UNA cosa</span>
-        <p>Un turnero suelto, o un sistema de stock suelto, o el de sueldos
-        suelto. Cada uno con su abono y ninguno se habla con el otro.</p>
-      </div>
     </div>
-    <p class="lead mt-3">Tener un sistema de este nivel dejó de ser caro. Eso también es la IA.</p>
+    <p class="lead mt-3">
+      Afuera, <b>un turnero suelto</b> te sale más o menos lo mismo que la
+      promo entera. Y hace una sola cosa: cada sistema con su abono, y
+      ninguno se habla con el otro. Tener uno de este nivel dejó de ser
+      caro, y eso también es la IA.
+    </p>
   </div>
 </section>
 
@@ -1463,7 +1530,7 @@ footer b{color:#fff}
       </div>
       <p class="chat-nota">
         Esta charla es la prueba de manejo: es la misma IA que va a trabajar adentro de tu sistema.<br>
-        <a class="wa-directo" href="https://wa.me/5492644123194">¿Preferís hablar conmigo? Escribime por WhatsApp →</a>
+        <a class="wa-directo" data-wa href="https://wa.me/5492644123194">¿Preferís hablar conmigo? Escribime por WhatsApp →</a>
       </p>
     </div>
   </div>
@@ -1524,7 +1591,17 @@ footer b{color:#fff}
         ["07:30","solo","Todavía estás durmiendo.","En el mail está el cierre de ayer y cómo viene el mes: <b>12% arriba del anterior</b>."],
         ["09:00","vos","Llega el pedido de insumos.","Le sacás una foto a la boleta y la mandás por WhatsApp. Queda el gasto cargado, con el proveedor y el vencimiento."],
         ["10:00","cliente","Alguien saca turno desde tu web.","Elige entre los horarios que tenés libres de verdad, deja la seña y <b>la plata entra a tu cuenta</b>. La agenda se ocupa sola."],
-        ["10:30","solo","Se cayó el turno de las cuatro.","El sistema le avisa a las que estaban anotadas esperando ese horario, de a dos y por orden de llegada. <b>El hueco se llena sin que llames a nadie</b>, que es la plata que se pierde todos los días sin que la veas."],
+        /* 🔴 21/08/2026 · ACÁ HABÍA UNA PROMESA QUE NO SE CUMPLE.
+           Decía que cuando se cae un turno el sistema le avisa solo a
+           las que estaban anotadas esperando ese horario. La lista de
+           espera EXISTE, pero vive en el módulo de reservas de
+           restaurante y arranca APAGADA para todas las empresas
+           (`espera_activa` en false, ver avalar-reservas-lista-espera):
+           una estética que compre por esta página no la tiene. Se
+           borró el momento en vez de suavizarlo: media verdad en una
+           página de venta es lo que hace que el cliente desarme
+           después todo lo demás, que sí es cierto.
+           Si algún día se prende para estética, vuelve tal cual. */
         ["11:00","solo","Entra el personal.","Fichan con el celular. Esas horas son las mismas con las que después se arma el sueldo."],
         ["14:00","solo","A la que viene mañana le llega el recordatorio.","Sin que nadie se acuerde de mandarlo. La que no viene y no avisa es <b>el agujero más caro</b> que tiene una agenda."],
         ["16:00","vos","Atendés, y le sacás la foto.","El antes y el después quedan guardados <b>en la ficha de ella</b>, junto con qué se le hizo, con qué producto y quién la atendió. La próxima sesión no depende de tu memoria, y cuando quiere ver cómo viene, se lo mostrás."],
@@ -1704,6 +1781,11 @@ footer b{color:#fff}
   function terminar(){
     envio.style.display = "none"; chips.innerHTML = ""; fin.style.display = "block";
     try{ sessionStorage.setItem("deleg_chat_fin", "1"); }catch(_){}
+    /* ESTA es la conversión de verdad: la entrevista terminó y el resumen
+       ya salió por mail. Es el evento que hay que optimizar en Meta, no
+       el clic ni la visita. Si algún día no se dispara, la campaña queda
+       aprendiendo a traer gente que mira y se va. */
+    try{ if(window.fbq) window.fbq("track","Lead",{content_name:"entrevista completa"}); }catch(_){}
   }
 
   function preguntar(texto, adjuntos){
@@ -1797,12 +1879,20 @@ footer b{color:#fff}
 })();
 </script>
 
+<!-- El WhatsApp que no se pierde. campana.js le arma el mensaje y le
+     mete el rótulo de campaña, y dispara el evento Contact del píxel. -->
+<a class="wa-flota" data-wa="Hola! Vi la página de respald.ar y quiero saber cómo sería para mi negocio." href="#"><i>💬</i>Escribime</a>
+
 <footer>
   <div class="wrap pie">
     <p><b>respald.ar</b> · Soluciones informáticas</p>
     <p>Por Víctor "Pelá" Martínez · <a href="https://aval.ar" target="_blank" rel="noopener">Creadores de Aval.ar</a></p>
   </div>
 </footer>
+
+<!-- El píxel, de dónde vino el visitante y los eventos. La home no
+     tenía NADA de medición: ver el encabezado de campana.js. -->
+<script src="campana.js"></script>
 
 </body>
 </html>
